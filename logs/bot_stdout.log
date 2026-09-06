@@ -1,0 +1,922 @@
+[bot] logging to C:\Claude STS Bot\sts2_bot\logs\run_20260831_140225.jsonl
+[bot] a run was already in progress (act 2 floor 20) -- abandoning it; it will not be counted
+[menu] act1 f0 hp0/1 -> menu_select{'option': 'abandon_run'}
+[menu] act1 f0 hp0/1 -> menu_select{'option': 'singleplayer'}
+[menu] act1 f0 hp0/1 -> menu_select{'option': 'standard'}
+[menu] act1 f0 hp0/1 -> menu_select{'option': 'SILENT'}
+[menu] act1 f0 hp0/1 -> menu_select{'option': 'confirm'}
+[event] act1 f1 hp70/70 -> choose_event_option{'index': 0}
+[event] act1 f1 hp70/70 -> choose_event_option{'index': 0}
+[map] act1 f1 hp70/70 -> choose_map_node{'index': 2}
+[map] act1 f1 hp70/70 -> choose_map_node{'index': 2}
+[monster] act1 f2 hp70/70 -> play_card{'card_index': 3}
+[hand_select] act1 f2 hp70/70 -> combat_select_card{'card_index': 1}
+[hand_select] act1 f2 hp70/70 -> combat_confirm_selection{}
+[monster] act1 f2 hp70/70 -> play_card{'card_index': 1}
+[monster] act1 f2 hp70/70 -> play_card{'card_index': 0, 'target': 'CORPSE_SLUG_1'}
+[monster] act1 f2 hp70/70 -> end_turn{}
+[monster] act1 f2 hp69/70 -> play_card{'card_index': 1, 'target': 'CORPSE_SLUG_0'}
+[monster] act1 f2 hp69/70 -> play_card{'card_index': 1}
+[monster] act1 f2 hp69/70 -> play_card{'card_index': 0, 'target': 'CORPSE_SLUG_1'}
+[monster] act1 f2 hp69/70 -> play_card{'card_index': 0, 'target': 'CORPSE_SLUG_1'}
+[monster] act1 f2 hp69/70 -> end_turn{}
+[monster] act1 f2 hp68/70 -> play_card{'card_index': 1, 'target': 'CORPSE_SLUG_1'}
+[monster] act1 f2 hp68/70 -> play_card{'card_index': 1, 'target': 'CORPSE_SLUG_1'}
+[monster] act1 f2 hp68/70 -> play_card{'card_index': 2, 'target': 'CORPSE_SLUG_0'}
+[monster] act1 f2 hp68/70 -> end_turn{}
+[monster] act1 f2 hp68/70 -> play_card{'card_index': 1, 'target': 'CORPSE_SLUG_0'}
+[monster] act1 f2 hp68/70 -> play_card{'card_index': 0, 'target': 'CORPSE_SLUG_0'}
+[monster] act1 f2 hp68/70 -> play_card{'card_index': 0}
+[monster] act1 f2 hp68/70 -> play_card{'card_index': 0}
+[monster] act1 f2 hp68/70 -> end_turn{}
+[monster] act1 f2 hp68/70 -> play_card{'card_index': 1, 'target': 'CORPSE_SLUG_0'}
+[monster] act1 f2 hp68/70 -> play_card{'card_index': 2, 'target': 'CORPSE_SLUG_0'}
+[rewards] act1 f2 hp68/70 -> claim_reward{'index': 0}
+[rewards] act1 f2 hp68/70 -> claim_reward{'index': 0}
+[rewards] act1 f2 hp68/70 -> claim_reward{'index': 0}
+[card_reward] act1 f2 hp68/70 -> select_card_reward{'card_index': 0}
+[rewards] act1 f2 hp68/70 -> proceed{}
+[map] act1 f2 hp68/70 -> choose_map_node{'index': 0}
+[map] act1 f2 hp68/70 -> choose_map_node{'index': 0}
+[shop] act1 f3 hp68/70 -> shop_purchase{'index': 7}
+[shop] act1 f3 hp68/70 -> shop_purchase{'index': 13}
+[card_select] act1 f3 hp68/70 -> select_card{'index': 0}
+[card_select] act1 f3 hp68/70 -> confirm_selection{}
+[shop] act1 f3 hp68/70 -> proceed{}
+[map] act1 f3 hp68/70 -> choose_map_node{'index': 0}
+[map] act1 f3 hp68/70 -> choose_map_node{'index': 0}
+[monster] act1 f4 hp68/70 -> play_card{'card_index': 4}
+[hand_select] act1 f4 hp68/70 -> combat_select_card{'card_index': 1}
+[hand_select] act1 f4 hp68/70 -> combat_confirm_selection{}
+[monster] act1 f4 hp68/70 -> play_card{'card_index': 0, 'target': 'SLUDGE_SPINNER_0'}
+[monster] act1 f4 hp68/70 -> play_card{'card_index': 2, 'target': 'SLUDGE_SPINNER_0'}
+[monster] act1 f4 hp68/70 -> end_turn{}
+[monster] act1 f4 hp68/70 -> use_potion{'slot': 0}
+[monster] act1 f4 hp68/70 -> play_card{'card_index': 0, 'target': 'SLUDGE_SPINNER_0'}
+[monster] act1 f4 hp68/70 -> play_card{'card_index': 3, 'target': 'SLUDGE_SPINNER_0'}
+[monster] act1 f4 hp68/70 -> play_card{'card_index': 1, 'target': 'SLUDGE_SPINNER_0'}
+[rewards] act1 f4 hp68/70 -> claim_reward{'index': 0}
+[rewards] act1 f4 hp68/70 -> claim_reward{'index': 0}
+[card_reward] act1 f4 hp68/70 -> select_card_reward{'card_index': 0}
+[rewards] act1 f4 hp68/70 -> proceed{}
+[map] act1 f4 hp68/70 -> choose_map_node{'index': 0}
+[map] act1 f4 hp68/70 -> choose_map_node{'index': 0}
+[monster] act1 f5 hp68/70 -> play_card{'card_index': 0}
+[hand_select] act1 f5 hp68/70 -> combat_select_card{'card_index': 3}
+[hand_select] act1 f5 hp68/70 -> combat_confirm_selection{}
+[monster] act1 f5 hp68/70 -> play_card{'card_index': 4, 'target': 'SEAPUNK_0'}
+[monster] act1 f5 hp68/70 -> play_card{'card_index': 0}
+[monster] act1 f5 hp68/70 -> end_turn{}
+[monster] act1 f5 hp68/70 -> play_card{'card_index': 4}
+[monster] act1 f5 hp68/70 -> play_card{'card_index': 2}
+[monster] act1 f5 hp68/70 -> play_card{'card_index': 0, 'target': 'SEAPUNK_0'}
+[monster] act1 f5 hp68/70 -> end_turn{}
+[monster] act1 f5 hp65/70 -> play_card{'card_index': 0, 'target': 'SEAPUNK_0'}
+[monster] act1 f5 hp65/70 -> play_card{'card_index': 0}
+[monster] act1 f5 hp65/70 -> play_card{'card_index': 0}
+[monster] act1 f5 hp65/70 -> play_card{'card_index': 0}
+[monster] act1 f5 hp65/70 -> end_turn{}
+[monster] act1 f5 hp65/70 -> play_card{'card_index': 3}
+[monster] act1 f5 hp65/70 -> play_card{'card_index': 3}
+[monster] act1 f5 hp65/70 -> play_card{'card_index': 0, 'target': 'SEAPUNK_0'}
+[monster] act1 f5 hp65/70 -> end_turn{}
+[monster] act1 f5 hp63/70 -> play_card{'card_index': 3}
+[hand_select] act1 f5 hp63/70 -> combat_select_card{'card_index': 1}
+[hand_select] act1 f5 hp63/70 -> combat_confirm_selection{}
+[monster] act1 f5 hp63/70 -> play_card{'card_index': 1, 'target': 'SEAPUNK_0'}
+[monster] act1 f5 hp63/70 -> play_card{'card_index': 1, 'target': 'SEAPUNK_0'}
+[monster] act1 f5 hp63/70 -> play_card{'card_index': 0, 'target': 'SEAPUNK_0'}
+[monster] act1 f5 hp63/70 -> play_card{'card_index': 0, 'target': 'SEAPUNK_0'}
+[monster] act1 f5 hp63/70 -> end_turn{}
+[monster] act1 f5 hp63/70 -> play_card{'card_index': 0, 'target': 'SEAPUNK_0'}
+[monster] act1 f5 hp63/70 -> play_card{'card_index': 0}
+[monster] act1 f5 hp63/70 -> play_card{'card_index': 0}
+[monster] act1 f5 hp63/70 -> end_turn{}
+[monster] act1 f5 hp63/70 -> play_card{'card_index': 3, 'target': 'SEAPUNK_0'}
+[monster] act1 f5 hp63/70 -> play_card{'card_index': 3}
+[monster] act1 f5 hp63/70 -> play_card{'card_index': 1}
+[monster] act1 f5 hp63/70 -> end_turn{}
+[monster] act1 f5 hp63/70 -> play_card{'card_index': 2, 'target': 'SEAPUNK_0'}
+[monster] act1 f5 hp63/70 -> play_card{'card_index': 3, 'target': 'SEAPUNK_0'}
+[rewards] act1 f5 hp63/70 -> claim_reward{'index': 0}
+[rewards] act1 f5 hp63/70 -> claim_reward{'index': 0}
+[card_reward] act1 f5 hp63/70 -> select_card_reward{'card_index': 0}
+[rewards] act1 f5 hp63/70 -> proceed{}
+[map] act1 f5 hp63/70 -> choose_map_node{'index': 1}
+[map] act1 f5 hp63/70 -> choose_map_node{'index': 0}
+[monster] act1 f6 hp63/70 -> play_card{'card_index': 0, 'target': 'FOSSIL_STALKER_0'}
+[monster] act1 f6 hp63/70 -> play_card{'card_index': 5}
+[hand_select] act1 f6 hp63/70 -> combat_select_card{'card_index': 0}
+[hand_select] act1 f6 hp63/70 -> combat_confirm_selection{}
+[monster] act1 f6 hp63/70 -> play_card{'card_index': 2, 'target': 'FOSSIL_STALKER_0'}
+[monster] act1 f6 hp63/70 -> play_card{'card_index': 3, 'target': 'FOSSIL_STALKER_0'}
+[monster] act1 f6 hp63/70 -> end_turn{}
+[monster] act1 f6 hp61/70 -> play_card{'card_index': 1}
+[hand_select] act1 f6 hp61/70 -> combat_select_card{'card_index': 1}
+[hand_select] act1 f6 hp61/70 -> combat_confirm_selection{}
+[monster] act1 f6 hp61/70 -> play_card{'card_index': 2}
+[monster] act1 f6 hp61/70 -> play_card{'card_index': 0, 'target': 'FOSSIL_STALKER_0'}
+[monster] act1 f6 hp61/70 -> end_turn{}
+[monster] act1 f6 hp61/70 -> play_card{'card_index': 1}
+[monster] act1 f6 hp61/70 -> play_card{'card_index': 3}
+[hand_select] act1 f6 hp61/70 -> combat_select_card{'card_index': 0}
+[hand_select] act1 f6 hp61/70 -> combat_confirm_selection{}
+[monster] act1 f6 hp61/70 -> play_card{'card_index': 1}
+[monster] act1 f6 hp61/70 -> end_turn{}
+[monster] act1 f6 hp61/70 -> play_card{'card_index': 2}
+[monster] act1 f6 hp61/70 -> play_card{'card_index': 2}
+[monster] act1 f6 hp61/70 -> end_turn{}
+[monster] act1 f6 hp58/70 -> play_card{'card_index': 0, 'target': 'FOSSIL_STALKER_0'}
+[monster] act1 f6 hp58/70 -> play_card{'card_index': 3}
+[monster] act1 f6 hp58/70 -> play_card{'card_index': 0}
+[monster] act1 f6 hp58/70 -> end_turn{}
+[monster] act1 f6 hp58/70 -> play_card{'card_index': 3}
+[hand_select] act1 f6 hp58/70 -> combat_select_card{'card_index': 0}
+[hand_select] act1 f6 hp58/70 -> combat_confirm_selection{}
+[monster] act1 f6 hp58/70 -> play_card{'card_index': 0}
+[monster] act1 f6 hp58/70 -> play_card{'card_index': 1}
+[monster] act1 f6 hp58/70 -> end_turn{}
+[monster] act1 f6 hp51/70 -> play_card{'card_index': 2}
+[hand_select] act1 f6 hp51/70 -> combat_select_card{'card_index': 0}
+[hand_select] act1 f6 hp51/70 -> combat_confirm_selection{}
+[monster] act1 f6 hp51/70 -> play_card{'card_index': 2}
+[monster] act1 f6 hp51/70 -> play_card{'card_index': 0, 'target': 'FOSSIL_STALKER_0'}
+[monster] act1 f6 hp51/70 -> end_turn{}
+[monster] act1 f6 hp46/70 -> play_card{'card_index': 1}
+[hand_select] act1 f6 hp46/70 -> combat_select_card{'card_index': 0}
+[hand_select] act1 f6 hp46/70 -> combat_confirm_selection{}
+[monster] act1 f6 hp46/70 -> play_card{'card_index': 1}
+[monster] act1 f6 hp46/70 -> end_turn{}
+[monster] act1 f6 hp25/70 -> play_card{'card_index': 0, 'target': 'FOSSIL_STALKER_0'}
+[monster] act1 f6 hp25/70 -> play_card{'card_index': 3}
+[hand_select] act1 f6 hp25/70 -> combat_select_card{'card_index': 0}
+[hand_select] act1 f6 hp25/70 -> combat_confirm_selection{}
+[monster] act1 f6 hp25/70 -> play_card{'card_index': 1}
+[monster] act1 f6 hp25/70 -> play_card{'card_index': 1}
+[monster] act1 f6 hp25/70 -> end_turn{}
+[monster] act1 f6 hp12/70 -> play_card{'card_index': 1, 'target': 'FOSSIL_STALKER_0'}
+[monster] act1 f6 hp12/70 -> play_card{'card_index': 1, 'target': 'FOSSIL_STALKER_0'}
+[rewards] act1 f6 hp12/70 -> claim_reward{'index': 0}
+[rewards] act1 f6 hp12/70 -> claim_reward{'index': 0}
+[card_reward] act1 f6 hp12/70 -> select_card_reward{'card_index': 1}
+[rewards] act1 f6 hp12/70 -> proceed{}
+[map] act1 f6 hp12/70 -> choose_map_node{'index': 0}
+[map] act1 f6 hp12/70 -> choose_map_node{'index': 0}
+[rest_site] act1 f7 hp12/70 -> choose_rest_option{'index': 0}
+[rest_site] act1 f7 hp12/70 -> choose_rest_option{'index': 0}
+[rest_site] act1 f7 hp33/70 -> proceed{}
+[rest_site] act1 f7 hp33/70 -> proceed{}
+[map] act1 f7 hp33/70 -> choose_map_node{'index': 1}
+[map] act1 f7 hp33/70 -> choose_map_node{'index': 0}
+[monster] act1 f8 hp33/70 -> play_card{'card_index': 0}
+[monster] act1 f8 hp33/70 -> play_card{'card_index': 4, 'target': 'CORPSE_SLUG_2'}
+[monster] act1 f8 hp33/70 -> play_card{'card_index': 0}
+[monster] act1 f8 hp33/70 -> play_card{'card_index': 1}
+[monster] act1 f8 hp33/70 -> end_turn{}
+[monster] act1 f8 hp31/70 -> play_card{'card_index': 1}
+[monster] act1 f8 hp31/70 -> play_card{'card_index': 3}
+[hand_select] act1 f8 hp31/70 -> combat_select_card{'card_index': 0}
+[hand_select] act1 f8 hp31/70 -> combat_confirm_selection{}
+[monster] act1 f8 hp31/70 -> play_card{'card_index': 0}
+[monster] act1 f8 hp31/70 -> end_turn{}
+[monster] act1 f8 hp28/70 -> play_card{'card_index': 2}
+[monster] act1 f8 hp28/70 -> play_card{'card_index': 3}
+[monster] act1 f8 hp28/70 -> end_turn{}
+[monster] act1 f8 hp23/70 -> play_card{'card_index': 4, 'target': 'CORPSE_SLUG_2'}
+[monster] act1 f8 hp23/70 -> play_card{'card_index': 2}
+[hand_select] act1 f8 hp23/70 -> combat_select_card{'card_index': 0}
+[hand_select] act1 f8 hp23/70 -> combat_confirm_selection{}
+[monster] act1 f8 hp23/70 -> play_card{'card_index': 0}
+[monster] act1 f8 hp23/70 -> play_card{'card_index': 0}
+[monster] act1 f8 hp23/70 -> end_turn{}
+[monster] act1 f8 hp23/70 -> play_card{'card_index': 2}
+[hand_select] act1 f8 hp23/70 -> combat_select_card{'card_index': 0}
+[hand_select] act1 f8 hp23/70 -> combat_confirm_selection{}
+[monster] act1 f8 hp23/70 -> play_card{'card_index': 0}
+[monster] act1 f8 hp23/70 -> play_card{'card_index': 0, 'target': 'CORPSE_SLUG_2'}
+[monster] act1 f8 hp23/70 -> end_turn{}
+[monster] act1 f8 hp21/70 -> play_card{'card_index': 0, 'target': 'CORPSE_SLUG_0'}
+[monster] act1 f8 hp21/70 -> play_card{'card_index': 0}
+[monster] act1 f8 hp21/70 -> play_card{'card_index': 2}
+[monster] act1 f8 hp21/70 -> end_turn{}
+[monster] act1 f8 hp21/70 -> play_card{'card_index': 0}
+[monster] act1 f8 hp21/70 -> play_card{'card_index': 0}
+[monster] act1 f8 hp21/70 -> play_card{'card_index': 0}
+[monster] act1 f8 hp21/70 -> end_turn{}
+[monster] act1 f8 hp19/70 -> play_card{'card_index': 1}
+[hand_select] act1 f8 hp19/70 -> combat_select_card{'card_index': 0}
+[hand_select] act1 f8 hp19/70 -> combat_confirm_selection{}
+[monster] act1 f8 hp19/70 -> play_card{'card_index': 1, 'target': 'CORPSE_SLUG_1'}
+[monster] act1 f8 hp19/70 -> play_card{'card_index': 0}
+[monster] act1 f8 hp19/70 -> play_card{'card_index': 0}
+[monster] act1 f8 hp19/70 -> end_turn{}
+[monster] act1 f8 hp19/70 -> play_card{'card_index': 0, 'target': 'CORPSE_SLUG_2'}
+[monster] act1 f8 hp19/70 -> play_card{'card_index': 0, 'target': 'CORPSE_SLUG_2'}
+[monster] act1 f8 hp19/70 -> play_card{'card_index': 2, 'target': 'CORPSE_SLUG_2'}
+[monster] act1 f8 hp19/70 -> end_turn{}
+[monster] act1 f8 hp19/70 -> play_card{'card_index': 2}
+[hand_select] act1 f8 hp19/70 -> combat_select_card{'card_index': 0}
+[hand_select] act1 f8 hp19/70 -> combat_confirm_selection{}
+[monster] act1 f8 hp19/70 -> play_card{'card_index': 1}
+[monster] act1 f8 hp19/70 -> play_card{'card_index': 0, 'target': 'CORPSE_SLUG_1'}
+[monster] act1 f8 hp19/70 -> end_turn{}
+[monster] act1 f8 hp19/70 -> play_card{'card_index': 2, 'target': 'CORPSE_SLUG_1'}
+[monster] act1 f8 hp19/70 -> play_card{'card_index': 0}
+[monster] act1 f8 hp19/70 -> play_card{'card_index': 0}
+[monster] act1 f8 hp19/70 -> end_turn{}
+[monster] act1 f8 hp19/70 -> play_card{'card_index': 0, 'target': 'CORPSE_SLUG_1'}
+[monster] act1 f8 hp19/70 -> play_card{'card_index': 0, 'target': 'CORPSE_SLUG_1'}
+[monster] act1 f8 hp19/70 -> play_card{'card_index': 2, 'target': 'CORPSE_SLUG_1'}
+[monster] act1 f8 hp19/70 -> end_turn{}
+[monster] act1 f8 hp19/70 -> play_card{'card_index': 4, 'target': 'CORPSE_SLUG_0'}
+[monster] act1 f8 hp19/70 -> play_card{'card_index': 1}
+[hand_select] act1 f8 hp19/70 -> combat_select_card{'card_index': 2}
+[hand_select] act1 f8 hp19/70 -> combat_confirm_selection{}
+[monster] act1 f8 hp19/70 -> play_card{'card_index': 0}
+[monster] act1 f8 hp19/70 -> play_card{'card_index': 0}
+[monster] act1 f8 hp19/70 -> end_turn{}
+[monster] act1 f8 hp19/70 -> play_card{'card_index': 2}
+[monster] act1 f8 hp19/70 -> play_card{'card_index': 2}
+[monster] act1 f8 hp19/70 -> end_turn{}
+[monster] act1 f8 hp12/70 -> play_card{'card_index': 2, 'target': 'CORPSE_SLUG_0'}
+[monster] act1 f8 hp12/70 -> play_card{'card_index': 3, 'target': 'CORPSE_SLUG_0'}
+[monster] act1 f8 hp12/70 -> play_card{'card_index': 0}
+[monster] act1 f8 hp12/70 -> end_turn{}
+[monster] act1 f8 hp12/70 -> play_card{'card_index': 3, 'target': 'CORPSE_SLUG_0'}
+[monster] act1 f8 hp12/70 -> play_card{'card_index': 3, 'target': 'CORPSE_SLUG_0'}
+[rewards] act1 f8 hp12/70 -> claim_reward{'index': 0}
+[rewards] act1 f8 hp12/70 -> claim_reward{'index': 0}
+[rewards] act1 f8 hp12/70 -> claim_reward{'index': 0}
+[card_reward] act1 f8 hp12/70 -> select_card_reward{'card_index': 1}
+[rewards] act1 f8 hp12/70 -> proceed{}
+[map] act1 f8 hp12/70 -> choose_map_node{'index': 0}
+[map] act1 f8 hp12/70 -> choose_map_node{'index': 0}
+[monster] act1 f9 hp12/70 -> play_card{'card_index': 5}
+[monster] act1 f9 hp12/70 -> play_card{'card_index': 5, 'target': 'HAUNTED_SHIP_0'}
+[monster] act1 f9 hp12/70 -> play_card{'card_index': 2, 'target': 'HAUNTED_SHIP_0'}
+[monster] act1 f9 hp12/70 -> play_card{'card_index': 5, 'target': 'HAUNTED_SHIP_0'}
+[monster] act1 f9 hp12/70 -> play_card{'card_index': 5, 'target': 'HAUNTED_SHIP_0'}
+[monster] act1 f9 hp12/70 -> play_card{'card_index': 4, 'target': 'HAUNTED_SHIP_0'}
+[monster] act1 f9 hp12/70 -> end_turn{}
+[monster] act1 f9 hp12/70 -> use_potion{'slot': 0}
+[card_select] act1 f9 hp12/70 -> select_card{'index': 0}
+[card_select] act1 f9 hp12/70 -> select_card{'index': 2}
+[monster] act1 f9 hp12/70 -> play_card{'card_index': 4, 'target': 'HAUNTED_SHIP_0'}
+[monster] act1 f9 hp12/70 -> play_card{'card_index': 3}
+[monster] act1 f9 hp12/70 -> play_card{'card_index': 2}
+[hand_select] act1 f9 hp12/70 -> combat_select_card{'card_index': 1}
+[hand_select] act1 f9 hp12/70 -> combat_confirm_selection{}
+[monster] act1 f9 hp12/70 -> play_card{'card_index': 0}
+[monster] act1 f9 hp12/70 -> play_card{'card_index': 0}
+[monster] act1 f9 hp12/70 -> end_turn{}
+[monster] act1 f9 hp12/70 -> play_card{'card_index': 0}
+[monster] act1 f9 hp12/70 -> play_card{'card_index': 0, 'target': 'HAUNTED_SHIP_0'}
+[monster] act1 f9 hp12/70 -> play_card{'card_index': 0, 'target': 'HAUNTED_SHIP_0'}
+[monster] act1 f9 hp12/70 -> end_turn{}
+[monster] act1 f9 hp10/70 -> play_card{'card_index': 2, 'target': 'HAUNTED_SHIP_0'}
+[monster] act1 f9 hp10/70 -> play_card{'card_index': 1}
+[hand_select] act1 f9 hp10/70 -> combat_select_card{'card_index': 0}
+[hand_select] act1 f9 hp10/70 -> combat_confirm_selection{}
+[monster] act1 f9 hp10/70 -> play_card{'card_index': 1}
+[monster] act1 f9 hp10/70 -> play_card{'card_index': 1}
+[monster] act1 f9 hp10/70 -> play_card{'card_index': 0}
+[monster] act1 f9 hp10/70 -> end_turn{}
+[monster] act1 f9 hp10/70 -> play_card{'card_index': 0}
+[monster] act1 f9 hp10/70 -> play_card{'card_index': 3}
+[monster] act1 f9 hp10/70 -> play_card{'card_index': 2, 'target': 'HAUNTED_SHIP_0'}
+[monster] act1 f9 hp10/70 -> end_turn{}
+[monster] act1 f9 hp10/70 -> play_card{'card_index': 3, 'target': 'HAUNTED_SHIP_0'}
+[monster] act1 f9 hp10/70 -> play_card{'card_index': 4, 'target': 'HAUNTED_SHIP_0'}
+[monster] act1 f9 hp10/70 -> play_card{'card_index': 4, 'target': 'HAUNTED_SHIP_0'}
+[monster] act1 f9 hp10/70 -> end_turn{}
+[rewards] act1 f9 hp10/70 -> claim_reward{'index': 0}
+[rewards] act1 f9 hp10/70 -> claim_reward{'index': 0}
+[card_reward] act1 f9 hp10/70 -> select_card_reward{'card_index': 1}
+[rewards] act1 f9 hp10/70 -> proceed{}
+[map] act1 f9 hp10/70 -> choose_map_node{'index': 0}
+[map] act1 f9 hp10/70 -> choose_map_node{'index': 0}
+[treasure] act1 f10 hp10/70 -> claim_treasure_relic{'index': 0}
+[treasure] act1 f10 hp10/70 -> claim_treasure_relic{'index': 0}
+[treasure] act1 f10 hp10/70 -> claim_treasure_relic{'index': 0}
+[treasure] act1 f10 hp10/70 -> proceed{}
+[map] act1 f10 hp10/70 -> choose_map_node{'index': 1}
+[map] act1 f10 hp10/70 -> choose_map_node{'index': 0}
+[rest_site] act1 f11 hp10/70 -> choose_rest_option{'index': 0}
+[rest_site] act1 f11 hp10/70 -> choose_rest_option{'index': 0}
+[rest_site] act1 f11 hp31/70 -> proceed{}
+[rest_site] act1 f11 hp31/70 -> proceed{}
+[map] act1 f11 hp31/70 -> choose_map_node{'index': 0}
+[map] act1 f11 hp31/70 -> choose_map_node{'index': 0}
+[monster] act1 f12 hp31/70 -> play_card{'card_index': 3, 'target': 'TWO_TAILED_RAT_0'}
+[monster] act1 f12 hp31/70 -> play_card{'card_index': 2, 'target': 'TWO_TAILED_RAT_0'}
+[monster] act1 f12 hp31/70 -> play_card{'card_index': 2, 'target': 'TWO_TAILED_RAT_0'}
+[monster] act1 f12 hp31/70 -> play_card{'card_index': 5, 'target': 'TWO_TAILED_RAT_0'}
+[monster] act1 f12 hp31/70 -> play_card{'card_index': 5, 'target': 'TWO_TAILED_RAT_1'}
+[monster] act1 f12 hp31/70 -> play_card{'card_index': 0, 'target': 'TWO_TAILED_RAT_0'}
+[monster] act1 f12 hp31/70 -> play_card{'card_index': 2}
+[hand_select] act1 f12 hp31/70 -> combat_select_card{'card_index': 2}
+[hand_select] act1 f12 hp31/70 -> combat_confirm_selection{}
+[monster] act1 f12 hp31/70 -> end_turn{}
+[monster] act1 f12 hp31/70 -> play_card{'card_index': 1, 'target': 'TWO_TAILED_RAT_1'}
+[monster] act1 f12 hp31/70 -> play_card{'card_index': 3, 'target': 'TWO_TAILED_RAT_1'}
+[monster] act1 f12 hp31/70 -> play_card{'card_index': 1}
+[monster] act1 f12 hp31/70 -> end_turn{}
+[monster] act1 f12 hp26/70 -> play_card{'card_index': 4}
+[monster] act1 f12 hp26/70 -> play_card{'card_index': 3, 'target': 'TWO_TAILED_RAT_0'}
+[monster] act1 f12 hp26/70 -> play_card{'card_index': 0}
+[monster] act1 f12 hp26/70 -> end_turn{}
+[monster] act1 f12 hp26/70 -> play_card{'card_index': 1}
+[monster] act1 f12 hp26/70 -> play_card{'card_index': 1, 'target': 'TWO_TAILED_RAT_0'}
+[monster] act1 f12 hp26/70 -> play_card{'card_index': 0}
+[monster] act1 f12 hp26/70 -> end_turn{}
+[monster] act1 f12 hp26/70 -> play_card{'card_index': 2}
+[hand_select] act1 f12 hp26/70 -> combat_select_card{'card_index': 0}
+[hand_select] act1 f12 hp26/70 -> combat_confirm_selection{}
+[monster] act1 f12 hp26/70 -> play_card{'card_index': 2, 'target': 'TWO_TAILED_RAT_0'}
+[monster] act1 f12 hp26/70 -> play_card{'card_index': 2, 'target': 'TWO_TAILED_RAT_0'}
+[monster] act1 f12 hp26/70 -> end_turn{}
+[monster] act1 f12 hp26/70 -> play_card{'card_index': 1, 'target': 'TWO_TAILED_RAT_0'}
+[monster] act1 f12 hp26/70 -> play_card{'card_index': 4, 'target': 'TWO_TAILED_RAT_0'}
+[monster] act1 f12 hp26/70 -> play_card{'card_index': 4, 'target': 'TWO_TAILED_RAT_0'}
+[monster] act1 f12 hp26/70 -> play_card{'card_index': 4, 'target': 'TWO_TAILED_RAT_0'}
+[monster] act1 f12 hp26/70 -> end_turn{}
+[rewards] act1 f12 hp26/70 -> claim_reward{'index': 0}
+[rewards] act1 f12 hp26/70 -> claim_reward{'index': 0}
+[rewards] act1 f12 hp26/70 -> claim_reward{'index': 0}
+[card_reward] act1 f12 hp26/70 -> select_card_reward{'card_index': 1}
+[rewards] act1 f12 hp26/70 -> proceed{}
+[map] act1 f12 hp26/70 -> choose_map_node{'index': 0}
+[map] act1 f12 hp26/70 -> choose_map_node{'index': 0}
+[event] act1 f13 hp26/70 -> choose_event_option{'index': 0}
+[rewards] act1 f13 hp26/70 -> claim_reward{'index': 0}
+[event] act1 f13 hp26/70 -> choose_event_option{'index': 0}
+[map] act1 f13 hp26/70 -> choose_map_node{'index': 0}
+[map] act1 f13 hp26/70 -> choose_map_node{'index': 0}
+[monster] act1 f14 hp26/70 -> play_card{'card_index': 2, 'target': 'CALCIFIED_CULTIST_0'}
+[monster] act1 f14 hp26/70 -> play_card{'card_index': 2}
+[monster] act1 f14 hp26/70 -> end_turn{}
+[monster] act1 f14 hp26/70 -> play_card{'card_index': 0}
+[hand_select] act1 f14 hp26/70 -> combat_select_card{'card_index': 3}
+[hand_select] act1 f14 hp26/70 -> combat_confirm_selection{}
+[monster] act1 f14 hp26/70 -> play_card{'card_index': 0, 'target': 'CALCIFIED_CULTIST_0'}
+[monster] act1 f14 hp26/70 -> end_turn{}
+[monster] act1 f14 hp26/70 -> play_card{'card_index': 2}
+[monster] act1 f14 hp26/70 -> play_card{'card_index': 2}
+[monster] act1 f14 hp26/70 -> play_card{'card_index': 1}
+[monster] act1 f14 hp26/70 -> end_turn{}
+[monster] act1 f14 hp19/70 -> use_potion{'slot': 0}
+[card_select] act1 f14 hp19/70 -> select_card{'index': 1}
+[card_select] act1 f14 hp19/70 -> select_card{'index': 2}
+[monster] act1 f14 hp19/70 -> play_card{'card_index': 5}
+[monster] act1 f14 hp19/70 -> play_card{'card_index': 1, 'target': 'CALCIFIED_CULTIST_0'}
+[monster] act1 f14 hp19/70 -> play_card{'card_index': 2, 'target': 'CALCIFIED_CULTIST_0'}
+[monster] act1 f14 hp19/70 -> play_card{'card_index': 2, 'target': 'CALCIFIED_CULTIST_0'}
+[monster] act1 f14 hp19/70 -> end_turn{}
+[monster] act1 f14 hp3/70 -> play_card{'card_index': 1, 'target': 'CALCIFIED_CULTIST_0'}
+[monster] act1 f14 hp3/70 -> play_card{'card_index': 4, 'target': 'CALCIFIED_CULTIST_0'}
+[monster] act1 f14 hp3/70 -> play_card{'card_index': 4, 'target': 'CALCIFIED_CULTIST_0'}
+[monster] act1 f14 hp3/70 -> play_card{'card_index': 4, 'target': 'CALCIFIED_CULTIST_0'}
+[monster] act1 f14 hp3/70 -> play_card{'card_index': 1, 'target': 'DAMP_CULTIST_0'}
+[monster] act1 f14 hp3/70 -> play_card{'card_index': 0}
+[hand_select] act1 f14 hp3/70 -> combat_select_card{'card_index': 0}
+[hand_select] act1 f14 hp3/70 -> combat_confirm_selection{}
+[monster] act1 f14 hp3/70 -> play_card{'card_index': 0}
+[monster] act1 f14 hp3/70 -> end_turn{}
+[monster] act1 f14 hp3/70 -> play_card{'card_index': 0, 'target': 'DAMP_CULTIST_0'}
+[monster] act1 f14 hp3/70 -> play_card{'card_index': 2}
+[monster] act1 f14 hp3/70 -> end_turn{}
+[monster] act1 f14 hp3/70 -> play_card{'card_index': 1}
+[monster] act1 f14 hp3/70 -> play_card{'card_index': 2}
+[monster] act1 f14 hp3/70 -> play_card{'card_index': 2}
+[monster] act1 f14 hp3/70 -> end_turn{}
+[monster] act1 f14 hp2/70 -> play_card{'card_index': 4, 'target': 'DAMP_CULTIST_0'}
+[monster] act1 f14 hp2/70 -> play_card{'card_index': 3}
+[monster] act1 f14 hp2/70 -> end_turn{}
+[monster] act1 f14 hp35/70 -> play_card{'card_index': 2, 'target': 'DAMP_CULTIST_0'}
+[monster] act1 f14 hp35/70 -> play_card{'card_index': 2}
+[hand_select] act1 f14 hp35/70 -> combat_select_card{'card_index': 1}
+[hand_select] act1 f14 hp35/70 -> combat_confirm_selection{}
+[monster] act1 f14 hp35/70 -> play_card{'card_index': 2}
+[monster] act1 f14 hp35/70 -> play_card{'card_index': 0}
+[monster] act1 f14 hp35/70 -> end_turn{}
+[monster] act1 f14 hp24/70 -> play_card{'card_index': 2}
+[hand_select] act1 f14 hp24/70 -> combat_select_card{'card_index': 0}
+[hand_select] act1 f14 hp24/70 -> combat_confirm_selection{}
+[monster] act1 f14 hp24/70 -> play_card{'card_index': 2}
+[monster] act1 f14 hp24/70 -> play_card{'card_index': 0, 'target': 'DAMP_CULTIST_0'}
+[monster] act1 f14 hp24/70 -> end_turn{}
+[monster] act1 f14 hp10/70 -> play_card{'card_index': 3, 'target': 'DAMP_CULTIST_0'}
+[monster] act1 f14 hp10/70 -> play_card{'card_index': 3}
+[monster] act1 f14 hp10/70 -> play_card{'card_index': 1}
+[monster] act1 f14 hp10/70 -> end_turn{}
+[game_over] act1 f14 hp0/70 -> menu_select{'option': 'main_menu'}
+[menu] act1 f0 hp0/1 -> menu_select{'option': 'singleplayer'}
+[menu] act1 f0 hp0/1 -> menu_select{'option': 'standard'}
+[menu] act1 f0 hp0/1 -> menu_select{'option': 'SILENT'}
+[menu] act1 f0 hp0/1 -> menu_select{'option': 'confirm'}
+[event] act1 f1 hp70/70 -> choose_event_option{'index': 1}
+[event] act1 f1 hp70/70 -> choose_event_option{'index': 0}
+[map] act1 f1 hp70/70 -> choose_map_node{'index': 2}
+[map] act1 f1 hp70/70 -> choose_map_node{'index': 0}
+[monster] act1 f2 hp70/70 -> play_card{'card_index': 1}
+[monster] act1 f2 hp70/70 -> play_card{'card_index': 0, 'target': 'TOADPOLE_1'}
+[monster] act1 f2 hp70/70 -> play_card{'card_index': 0, 'target': 'TOADPOLE_1'}
+[monster] act1 f2 hp70/70 -> end_turn{}
+[monster] act1 f2 hp68/70 -> play_card{'card_index': 3}
+[hand_select] act1 f2 hp68/70 -> combat_select_card{'card_index': 3}
+[hand_select] act1 f2 hp68/70 -> combat_confirm_selection{}
+[monster] act1 f2 hp68/70 -> play_card{'card_index': 1, 'target': 'TOADPOLE_1'}
+[monster] act1 f2 hp68/70 -> play_card{'card_index': 1, 'target': 'TOADPOLE_1'}
+[monster] act1 f2 hp68/70 -> end_turn{}
+[monster] act1 f2 hp67/70 -> play_card{'card_index': 0}
+[monster] act1 f2 hp67/70 -> play_card{'card_index': 0, 'target': 'TOADPOLE_0'}
+[monster] act1 f2 hp67/70 -> play_card{'card_index': 0, 'target': 'TOADPOLE_0'}
+[monster] act1 f2 hp67/70 -> end_turn{}
+[monster] act1 f2 hp65/70 -> play_card{'card_index': 0, 'target': 'TOADPOLE_0'}
+[monster] act1 f2 hp65/70 -> play_card{'card_index': 3, 'target': 'TOADPOLE_0'}
+[monster] act1 f2 hp65/70 -> play_card{'card_index': 0}
+[monster] act1 f2 hp65/70 -> play_card{'card_index': 0}
+[monster] act1 f2 hp65/70 -> end_turn{}
+[monster] act1 f2 hp65/70 -> play_card{'card_index': 0}
+[hand_select] act1 f2 hp65/70 -> combat_select_card{'card_index': 1}
+[hand_select] act1 f2 hp65/70 -> combat_confirm_selection{}
+[monster] act1 f2 hp65/70 -> play_card{'card_index': 0, 'target': 'TOADPOLE_0'}
+[rewards] act1 f2 hp65/70 -> claim_reward{'index': 0}
+[rewards] act1 f2 hp65/70 -> claim_reward{'index': 0}
+[card_reward] act1 f2 hp65/70 -> select_card_reward{'card_index': 1}
+[rewards] act1 f2 hp65/70 -> proceed{}
+[map] act1 f2 hp65/70 -> choose_map_node{'index': 0}
+[map] act1 f2 hp65/70 -> choose_map_node{'index': 0}
+[monster] act1 f3 hp65/70 -> play_card{'card_index': 6, 'target': 'CORPSE_SLUG_1'}
+[monster] act1 f3 hp65/70 -> play_card{'card_index': 1}
+[monster] act1 f3 hp65/70 -> play_card{'card_index': 0, 'target': 'CORPSE_SLUG_1'}
+[monster] act1 f3 hp65/70 -> play_card{'card_index': 1, 'target': 'CORPSE_SLUG_1'}
+[monster] act1 f3 hp65/70 -> end_turn{}
+[monster] act1 f3 hp65/70 -> play_card{'card_index': 0, 'target': 'CORPSE_SLUG_1'}
+[monster] act1 f3 hp65/70 -> play_card{'card_index': 2, 'target': 'CORPSE_SLUG_1'}
+[monster] act1 f3 hp65/70 -> play_card{'card_index': 0}
+[monster] act1 f3 hp65/70 -> end_turn{}
+[monster] act1 f3 hp65/70 -> play_card{'card_index': 1}
+[hand_select] act1 f3 hp65/70 -> combat_select_card{'card_index': 1}
+[hand_select] act1 f3 hp65/70 -> combat_confirm_selection{}
+[monster] act1 f3 hp65/70 -> play_card{'card_index': 0}
+[monster] act1 f3 hp65/70 -> play_card{'card_index': 0}
+[monster] act1 f3 hp65/70 -> end_turn{}
+[monster] act1 f3 hp63/70 -> play_card{'card_index': 4, 'target': 'CORPSE_SLUG_0'}
+[monster] act1 f3 hp63/70 -> play_card{'card_index': 0}
+[monster] act1 f3 hp63/70 -> play_card{'card_index': 0}
+[monster] act1 f3 hp63/70 -> play_card{'card_index': 0, 'target': 'CORPSE_SLUG_0'}
+[hand_select] act1 f3 hp63/70 -> combat_select_card{'card_index': 0}
+[hand_select] act1 f3 hp63/70 -> combat_confirm_selection{}
+[monster] act1 f3 hp63/70 -> end_turn{}
+[monster] act1 f3 hp63/70 -> play_card{'card_index': 4, 'target': 'CORPSE_SLUG_0'}
+[monster] act1 f3 hp63/70 -> play_card{'card_index': 0, 'target': 'CORPSE_SLUG_0'}
+[monster] act1 f3 hp63/70 -> play_card{'card_index': 0, 'target': 'CORPSE_SLUG_0'}
+[rewards] act1 f3 hp63/70 -> claim_reward{'index': 0}
+[rewards] act1 f3 hp63/70 -> claim_reward{'index': 0}
+[card_reward] act1 f3 hp63/70 -> select_card_reward{'card_index': 1}
+[rewards] act1 f3 hp63/70 -> proceed{}
+[map] act1 f3 hp63/70 -> choose_map_node{'index': 0}
+[map] act1 f3 hp63/70 -> choose_map_node{'index': 0}
+[monster] act1 f4 hp63/70 -> play_card{'card_index': 2}
+[monster] act1 f4 hp63/70 -> play_card{'card_index': 0, 'target': 'SLUDGE_SPINNER_0'}
+[monster] act1 f4 hp63/70 -> play_card{'card_index': 0, 'target': 'SLUDGE_SPINNER_0'}
+[monster] act1 f4 hp63/70 -> end_turn{}
+[monster] act1 f4 hp61/70 -> play_card{'card_index': 1}
+[monster] act1 f4 hp61/70 -> play_card{'card_index': 0, 'target': 'SLUDGE_SPINNER_0'}
+[monster] act1 f4 hp61/70 -> play_card{'card_index': 0, 'target': 'SLUDGE_SPINNER_0'}
+[monster] act1 f4 hp61/70 -> end_turn{}
+[monster] act1 f4 hp60/70 -> play_card{'card_index': 1, 'target': 'SLUDGE_SPINNER_0'}
+[hand_select] act1 f4 hp60/70 -> combat_select_card{'card_index': 0}
+[hand_select] act1 f4 hp60/70 -> combat_confirm_selection{}
+[monster] act1 f4 hp60/70 -> play_card{'card_index': 1}
+[hand_select] act1 f4 hp60/70 -> combat_select_card{'card_index': 0}
+[hand_select] act1 f4 hp60/70 -> combat_confirm_selection{}
+[monster] act1 f4 hp60/70 -> play_card{'card_index': 0}
+[monster] act1 f4 hp60/70 -> end_turn{}
+[monster] act1 f4 hp59/70 -> play_card{'card_index': 0, 'target': 'SLUDGE_SPINNER_0'}
+[monster] act1 f4 hp59/70 -> play_card{'card_index': 2, 'target': 'SLUDGE_SPINNER_0'}
+[rewards] act1 f4 hp59/70 -> claim_reward{'index': 0}
+[rewards] act1 f4 hp59/70 -> claim_reward{'index': 0}
+[rewards] act1 f4 hp59/70 -> claim_reward{'index': 0}
+[card_reward] act1 f4 hp59/70 -> select_card_reward{'card_index': 1}
+[rewards] act1 f4 hp59/70 -> proceed{}
+[map] act1 f4 hp59/70 -> choose_map_node{'index': 0}
+[map] act1 f4 hp59/70 -> choose_map_node{'index': 0}
+[monster] act1 f5 hp59/70 -> play_card{'card_index': 3, 'target': 'GREMLIN_MERC_0'}
+[monster] act1 f5 hp59/70 -> play_card{'card_index': 1}
+[monster] act1 f5 hp59/70 -> play_card{'card_index': 4}
+[monster] act1 f5 hp59/70 -> play_card{'card_index': 0, 'target': 'GREMLIN_MERC_0'}
+[monster] act1 f5 hp59/70 -> end_turn{}
+[monster] act1 f5 hp59/70 -> play_card{'card_index': 0}
+[monster] act1 f5 hp59/70 -> play_card{'card_index': 0}
+[monster] act1 f5 hp59/70 -> play_card{'card_index': 0, 'target': 'GREMLIN_MERC_0'}
+[monster] act1 f5 hp59/70 -> end_turn{}
+[monster] act1 f5 hp57/70 -> play_card{'card_index': 0}
+[monster] act1 f5 hp57/70 -> play_card{'card_index': 0, 'target': 'GREMLIN_MERC_0'}
+[monster] act1 f5 hp57/70 -> play_card{'card_index': 1}
+[monster] act1 f5 hp57/70 -> end_turn{}
+[monster] act1 f5 hp57/70 -> play_card{'card_index': 2}
+[hand_select] act1 f5 hp57/70 -> combat_select_card{'card_index': 0}
+[hand_select] act1 f5 hp57/70 -> combat_confirm_selection{}
+[monster] act1 f5 hp57/70 -> play_card{'card_index': 1}
+[monster] act1 f5 hp57/70 -> play_card{'card_index': 1}
+[monster] act1 f5 hp57/70 -> end_turn{}
+[monster] act1 f5 hp57/70 -> play_card{'card_index': 3, 'target': 'GREMLIN_MERC_0'}
+[monster] act1 f5 hp57/70 -> play_card{'card_index': 1}
+[monster] act1 f5 hp57/70 -> play_card{'card_index': 2}
+[monster] act1 f5 hp57/70 -> play_card{'card_index': 0, 'target': 'GREMLIN_MERC_0'}
+[monster] act1 f5 hp57/70 -> end_turn{}
+[monster] act1 f5 hp55/70 -> play_card{'card_index': 4}
+[hand_select] act1 f5 hp55/70 -> combat_select_card{'card_index': 2}
+[hand_select] act1 f5 hp55/70 -> combat_confirm_selection{}
+[monster] act1 f5 hp55/70 -> play_card{'card_index': 2, 'target': 'GREMLIN_MERC_0'}
+[monster] act1 f5 hp55/70 -> play_card{'card_index': 1, 'target': 'GREMLIN_MERC_0'}
+[hand_select] act1 f5 hp55/70 -> combat_select_card{'card_index': 0}
+[hand_select] act1 f5 hp55/70 -> combat_confirm_selection{}
+[monster] act1 f5 hp55/70 -> end_turn{}
+[monster] act1 f5 hp53/70 -> play_card{'card_index': 0, 'target': 'GREMLIN_MERC_0'}
+[monster] act1 f5 hp53/70 -> play_card{'card_index': 0, 'target': 'GREMLIN_MERC_0'}
+[monster] act1 f5 hp53/70 -> play_card{'card_index': 0, 'target': 'GREMLIN_MERC_0'}
+[monster] act1 f5 hp53/70 -> end_turn{}
+[monster] act1 f5 hp53/70 -> play_card{'card_index': 4, 'target': 'SNEAKY_GREMLIN_0'}
+[monster] act1 f5 hp53/70 -> play_card{'card_index': 2}
+[hand_select] act1 f5 hp53/70 -> combat_select_card{'card_index': 0}
+[hand_select] act1 f5 hp53/70 -> combat_confirm_selection{}
+[monster] act1 f5 hp53/70 -> play_card{'card_index': 0, 'target': 'SNEAKY_GREMLIN_0'}
+[hand_select] act1 f5 hp53/70 -> combat_select_card{'card_index': 0}
+[hand_select] act1 f5 hp53/70 -> combat_confirm_selection{}
+[monster] act1 f5 hp53/70 -> play_card{'card_index': 0, 'target': 'SNEAKY_GREMLIN_0'}
+[monster] act1 f5 hp53/70 -> end_turn{}
+[rewards] act1 f5 hp53/70 -> claim_reward{'index': 0}
+[rewards] act1 f5 hp53/70 -> claim_reward{'index': 0}
+[card_reward] act1 f5 hp53/70 -> select_card_reward{'card_index': 0}
+[rewards] act1 f5 hp53/70 -> proceed{}
+[map] act1 f5 hp53/70 -> choose_map_node{'index': 0}
+[map] act1 f5 hp53/70 -> choose_map_node{'index': 0}
+[event] act1 f6 hp53/70 -> choose_event_option{'index': 1}
+[event] act1 f6 hp63/70 -> choose_event_option{'index': 0}
+[map] act1 f6 hp63/70 -> choose_map_node{'index': 0}
+[map] act1 f6 hp63/70 -> choose_map_node{'index': 0}
+[monster] act1 f7 hp63/70 -> play_card{'card_index': 6}
+[monster] act1 f7 hp63/70 -> play_card{'card_index': 1}
+[monster] act1 f7 hp63/70 -> play_card{'card_index': 1}
+[monster] act1 f7 hp63/70 -> end_turn{}
+[monster] act1 f7 hp63/70 -> play_card{'card_index': 3}
+[hand_select] act1 f7 hp63/70 -> combat_select_card{'card_index': 0}
+[hand_select] act1 f7 hp63/70 -> combat_confirm_selection{}
+[monster] act1 f7 hp63/70 -> play_card{'card_index': 1}
+[monster] act1 f7 hp63/70 -> play_card{'card_index': 0, 'target': 'CALCIFIED_CULTIST_0'}
+[monster] act1 f7 hp63/70 -> end_turn{}
+[monster] act1 f7 hp63/70 -> play_card{'card_index': 1, 'target': 'CALCIFIED_CULTIST_0'}
+[monster] act1 f7 hp63/70 -> play_card{'card_index': 0}
+[monster] act1 f7 hp63/70 -> play_card{'card_index': 0, 'target': 'CALCIFIED_CULTIST_0'}
+[monster] act1 f7 hp63/70 -> play_card{'card_index': 1, 'target': 'CALCIFIED_CULTIST_0'}
+[hand_select] act1 f7 hp63/70 -> combat_select_card{'card_index': 0}
+[hand_select] act1 f7 hp63/70 -> combat_confirm_selection{}
+[monster] act1 f7 hp63/70 -> end_turn{}
+[monster] act1 f7 hp61/70 -> play_card{'card_index': 3}
+[hand_select] act1 f7 hp61/70 -> combat_select_card{'card_index': 1}
+[hand_select] act1 f7 hp61/70 -> combat_confirm_selection{}
+[monster] act1 f7 hp61/70 -> play_card{'card_index': 0}
+[monster] act1 f7 hp61/70 -> play_card{'card_index': 0}
+[monster] act1 f7 hp61/70 -> end_turn{}
+[monster] act1 f7 hp60/70 -> play_card{'card_index': 0, 'target': 'CALCIFIED_CULTIST_0'}
+[monster] act1 f7 hp60/70 -> play_card{'card_index': 0, 'target': 'CALCIFIED_CULTIST_0'}
+[monster] act1 f7 hp60/70 -> play_card{'card_index': 0, 'target': 'CALCIFIED_CULTIST_0'}
+[monster] act1 f7 hp60/70 -> end_turn{}
+[monster] act1 f7 hp48/70 -> play_card{'card_index': 2, 'target': 'SEAPUNK_0'}
+[monster] act1 f7 hp48/70 -> play_card{'card_index': 2, 'target': 'SEAPUNK_0'}
+[monster] act1 f7 hp48/70 -> play_card{'card_index': 0}
+[monster] act1 f7 hp48/70 -> play_card{'card_index': 0}
+[monster] act1 f7 hp48/70 -> end_turn{}
+[monster] act1 f7 hp48/70 -> play_card{'card_index': 4, 'target': 'SEAPUNK_0'}
+[monster] act1 f7 hp48/70 -> play_card{'card_index': 2}
+[hand_select] act1 f7 hp48/70 -> combat_select_card{'card_index': 1}
+[hand_select] act1 f7 hp48/70 -> combat_confirm_selection{}
+[monster] act1 f7 hp48/70 -> play_card{'card_index': 0, 'target': 'SEAPUNK_0'}
+[hand_select] act1 f7 hp48/70 -> combat_select_card{'card_index': 0}
+[hand_select] act1 f7 hp48/70 -> combat_confirm_selection{}
+[monster] act1 f7 hp48/70 -> play_card{'card_index': 0, 'target': 'SEAPUNK_0'}
+[monster] act1 f7 hp48/70 -> end_turn{}
+[monster] act1 f7 hp48/70 -> play_card{'card_index': 1}
+[monster] act1 f7 hp48/70 -> play_card{'card_index': 1}
+[monster] act1 f7 hp48/70 -> play_card{'card_index': 0, 'target': 'SEAPUNK_0'}
+[monster] act1 f7 hp48/70 -> end_turn{}
+[monster] act1 f7 hp46/70 -> play_card{'card_index': 0, 'target': 'SEAPUNK_0'}
+[monster] act1 f7 hp46/70 -> play_card{'card_index': 1, 'target': 'SEAPUNK_0'}
+[monster] act1 f7 hp46/70 -> play_card{'card_index': 2, 'target': 'SEAPUNK_0'}
+[monster] act1 f7 hp46/70 -> end_turn{}
+[monster] act1 f7 hp46/70 -> play_card{'card_index': 3, 'target': 'SEAPUNK_0'}
+[monster] act1 f7 hp46/70 -> play_card{'card_index': 1, 'target': 'SEAPUNK_0'}
+[rewards] act1 f7 hp46/70 -> claim_reward{'index': 0}
+[rewards] act1 f7 hp46/70 -> claim_reward{'index': 0}
+[card_reward] act1 f7 hp46/70 -> select_card_reward{'card_index': 0}
+[rewards] act1 f7 hp46/70 -> proceed{}
+[map] act1 f7 hp46/70 -> choose_map_node{'index': 0}
+[map] act1 f7 hp46/70 -> choose_map_node{'index': 0}
+[monster] act1 f8 hp46/70 -> play_card{'card_index': 5}
+[monster] act1 f8 hp46/70 -> play_card{'card_index': 6}
+[monster] act1 f8 hp46/70 -> play_card{'card_index': 6}
+[monster] act1 f8 hp46/70 -> end_turn{}
+[monster] act1 f8 hp46/70 -> play_card{'card_index': 1}
+[monster] act1 f8 hp46/70 -> play_card{'card_index': 2, 'target': 'PUNCH_CONSTRUCT_0'}
+[monster] act1 f8 hp46/70 -> play_card{'card_index': 1}
+[monster] act1 f8 hp46/70 -> play_card{'card_index': 0, 'target': 'PUNCH_CONSTRUCT_0'}
+[monster] act1 f8 hp46/70 -> end_turn{}
+[monster] act1 f8 hp46/70 -> play_card{'card_index': 2}
+[monster] act1 f8 hp46/70 -> play_card{'card_index': 3}
+[monster] act1 f8 hp46/70 -> play_card{'card_index': 2}
+[monster] act1 f8 hp46/70 -> end_turn{}
+[monster] act1 f8 hp42/70 -> play_card{'card_index': 2, 'target': 'PUNCH_CONSTRUCT_0'}
+[monster] act1 f8 hp42/70 -> play_card{'card_index': 0, 'target': 'PUNCH_CONSTRUCT_0'}
+[monster] act1 f8 hp42/70 -> play_card{'card_index': 0}
+[monster] act1 f8 hp42/70 -> play_card{'card_index': 0}
+[monster] act1 f8 hp42/70 -> end_turn{}
+[monster] act1 f8 hp42/70 -> play_card{'card_index': 4}
+[hand_select] act1 f8 hp42/70 -> combat_select_card{'card_index': 1}
+[hand_select] act1 f8 hp42/70 -> combat_confirm_selection{}
+[monster] act1 f8 hp42/70 -> play_card{'card_index': 0, 'target': 'PUNCH_CONSTRUCT_0'}
+[monster] act1 f8 hp42/70 -> play_card{'card_index': 1, 'target': 'PUNCH_CONSTRUCT_0'}
+[monster] act1 f8 hp42/70 -> end_turn{}
+[monster] act1 f8 hp42/70 -> play_card{'card_index': 1}
+[hand_select] act1 f8 hp42/70 -> combat_select_card{'card_index': 1}
+[hand_select] act1 f8 hp42/70 -> combat_confirm_selection{}
+[monster] act1 f8 hp42/70 -> play_card{'card_index': 1}
+[monster] act1 f8 hp42/70 -> play_card{'card_index': 0, 'target': 'PUNCH_CONSTRUCT_0'}
+[monster] act1 f8 hp42/70 -> end_turn{}
+[monster] act1 f8 hp40/70 -> play_card{'card_index': 4, 'target': 'PUNCH_CONSTRUCT_0'}
+[monster] act1 f8 hp40/70 -> play_card{'card_index': 1}
+[monster] act1 f8 hp40/70 -> play_card{'card_index': 3}
+[monster] act1 f8 hp40/70 -> play_card{'card_index': 3, 'target': 'PUNCH_CONSTRUCT_0'}
+[monster] act1 f8 hp40/70 -> end_turn{}
+[monster] act1 f8 hp40/70 -> play_card{'card_index': 0, 'target': 'PUNCH_CONSTRUCT_0'}
+[monster] act1 f8 hp40/70 -> play_card{'card_index': 0, 'target': 'PUNCH_CONSTRUCT_0'}
+[monster] act1 f8 hp40/70 -> play_card{'card_index': 2, 'target': 'PUNCH_CONSTRUCT_0'}
+[rewards] act1 f8 hp40/70 -> claim_reward{'index': 0}
+[rewards] act1 f8 hp40/70 -> claim_reward{'index': 0}
+[rewards] act1 f8 hp40/70 -> claim_reward{'index': 0}
+[card_reward] act1 f8 hp40/70 -> select_card_reward{'card_index': 0}
+[rewards] act1 f8 hp40/70 -> proceed{}
+[map] act1 f8 hp40/70 -> choose_map_node{'index': 0}
+[map] act1 f8 hp40/70 -> choose_map_node{'index': 0}
+[monster] act1 f9 hp40/70 -> play_card{'card_index': 6}
+[monster] act1 f9 hp40/70 -> play_card{'card_index': 0}
+[hand_select] act1 f9 hp40/70 -> combat_select_card{'card_index': 4}
+[hand_select] act1 f9 hp40/70 -> combat_confirm_selection{}
+[monster] act1 f9 hp40/70 -> play_card{'card_index': 0, 'target': 'SEWER_CLAM_0'}
+[monster] act1 f9 hp40/70 -> end_turn{}
+[monster] act1 f9 hp40/70 -> play_card{'card_index': 2}
+[monster] act1 f9 hp40/70 -> play_card{'card_index': 1}
+[monster] act1 f9 hp40/70 -> play_card{'card_index': 2, 'target': 'SEWER_CLAM_0'}
+[monster] act1 f9 hp40/70 -> end_turn{}
+[monster] act1 f9 hp40/70 -> play_card{'card_index': 1, 'target': 'SEWER_CLAM_0'}
+[monster] act1 f9 hp40/70 -> play_card{'card_index': 0}
+[monster] act1 f9 hp40/70 -> play_card{'card_index': 1}
+[monster] act1 f9 hp40/70 -> play_card{'card_index': 1}
+[monster] act1 f9 hp40/70 -> play_card{'card_index': 0, 'target': 'SEWER_CLAM_0'}
+[monster] act1 f9 hp40/70 -> end_turn{}
+[monster] act1 f9 hp40/70 -> play_card{'card_index': 4}
+[monster] act1 f9 hp40/70 -> play_card{'card_index': 0, 'target': 'SEWER_CLAM_0'}
+[monster] act1 f9 hp40/70 -> play_card{'card_index': 0, 'target': 'SEWER_CLAM_0'}
+[monster] act1 f9 hp40/70 -> end_turn{}
+[monster] act1 f9 hp40/70 -> play_card{'card_index': 1}
+[monster] act1 f9 hp40/70 -> play_card{'card_index': 4}
+[hand_select] act1 f9 hp40/70 -> combat_select_card{'card_index': 1}
+[hand_select] act1 f9 hp40/70 -> combat_confirm_selection{}
+[monster] act1 f9 hp40/70 -> play_card{'card_index': 0, 'target': 'SEWER_CLAM_0'}
+[monster] act1 f9 hp40/70 -> end_turn{}
+[monster] act1 f9 hp39/70 -> use_potion{'slot': 2}
+[monster] act1 f9 hp39/70 -> play_card{'card_index': 4, 'target': 'SEWER_CLAM_0'}
+[monster] act1 f9 hp39/70 -> play_card{'card_index': 0, 'target': 'SEWER_CLAM_0'}
+[monster] act1 f9 hp39/70 -> play_card{'card_index': 0, 'target': 'SEWER_CLAM_0'}
+[monster] act1 f9 hp39/70 -> play_card{'card_index': 0, 'target': 'SEWER_CLAM_0'}
+[rewards] act1 f9 hp39/70 -> claim_reward{'index': 0}
+[rewards] act1 f9 hp39/70 -> claim_reward{'index': 0}
+[rewards] act1 f9 hp39/70 -> claim_reward{'index': 0}
+[card_reward] act1 f9 hp39/70 -> skip_card_reward{}
+[rewards] act1 f9 hp39/70 -> proceed{}
+[map] act1 f9 hp39/70 -> choose_map_node{'index': 0}
+[map] act1 f9 hp39/70 -> choose_map_node{'index': 0}
+[treasure] act1 f10 hp39/70 -> claim_treasure_relic{'index': 0}
+[treasure] act1 f10 hp39/70 -> claim_treasure_relic{'index': 0}
+[treasure] act1 f10 hp39/70 -> claim_treasure_relic{'index': 0}
+[treasure] act1 f10 hp39/70 -> proceed{}
+[map] act1 f10 hp39/70 -> choose_map_node{'index': 0}
+[map] act1 f10 hp39/70 -> choose_map_node{'index': 0}
+[monster] act1 f11 hp39/70 -> play_card{'card_index': 5}
+[monster] act1 f11 hp39/70 -> play_card{'card_index': 1}
+[monster] act1 f11 hp39/70 -> play_card{'card_index': 0}
+[monster] act1 f11 hp39/70 -> play_card{'card_index': 2}
+[monster] act1 f11 hp39/70 -> end_turn{}
+[monster] act1 f11 hp39/70 -> play_card{'card_index': 3, 'target': 'CORPSE_SLUG_1'}
+[hand_select] act1 f11 hp39/70 -> combat_select_card{'card_index': 0}
+[hand_select] act1 f11 hp39/70 -> combat_confirm_selection{}
+[monster] act1 f11 hp39/70 -> play_card{'card_index': 0, 'target': 'CORPSE_SLUG_1'}
+[monster] act1 f11 hp39/70 -> play_card{'card_index': 0, 'target': 'CORPSE_SLUG_1'}
+[monster] act1 f11 hp39/70 -> play_card{'card_index': 0, 'target': 'CORPSE_SLUG_1'}
+[monster] act1 f11 hp39/70 -> end_turn{}
+[monster] act1 f11 hp39/70 -> play_card{'card_index': 4}
+[monster] act1 f11 hp39/70 -> play_card{'card_index': 3, 'target': 'CORPSE_SLUG_1'}
+[monster] act1 f11 hp39/70 -> play_card{'card_index': 1, 'target': 'CORPSE_SLUG_0'}
+[monster] act1 f11 hp39/70 -> play_card{'card_index': 1, 'target': 'CORPSE_SLUG_0'}
+[rewards] act1 f11 hp39/70 -> claim_reward{'index': 0}
+[rewards] act1 f11 hp39/70 -> claim_reward{'index': 0}
+[card_reward] act1 f11 hp39/70 -> select_card_reward{'card_index': 1}
+[rewards] act1 f11 hp39/70 -> proceed{}
+[map] act1 f11 hp39/70 -> choose_map_node{'index': 0}
+[map] act1 f11 hp39/70 -> choose_map_node{'index': 0}
+[rest_site] act1 f12 hp39/70 -> choose_rest_option{'index': 1}
+[card_select] act1 f12 hp39/70 -> select_card{'index': 11}
+[card_select] act1 f12 hp39/70 -> confirm_selection{}
+[rest_site] act1 f12 hp39/70 -> proceed{}
+[map] act1 f12 hp39/70 -> choose_map_node{'index': 0}
+[map] act1 f12 hp39/70 -> choose_map_node{'index': 0}
+[monster] act1 f13 hp39/70 -> play_card{'card_index': 5}
+[monster] act1 f13 hp39/70 -> play_card{'card_index': 1}
+[monster] act1 f13 hp39/70 -> play_card{'card_index': 1, 'target': 'FOSSIL_STALKER_0'}
+[monster] act1 f13 hp39/70 -> end_turn{}
+[monster] act1 f13 hp39/70 -> play_card{'card_index': 4}
+[monster] act1 f13 hp39/70 -> play_card{'card_index': 0}
+[monster] act1 f13 hp39/70 -> play_card{'card_index': 4, 'target': 'FOSSIL_STALKER_0'}
+[monster] act1 f13 hp39/70 -> play_card{'card_index': 1}
+[monster] act1 f13 hp39/70 -> end_turn{}
+[monster] act1 f13 hp39/70 -> play_card{'card_index': 3}
+[monster] act1 f13 hp39/70 -> play_card{'card_index': 2}
+[hand_select] act1 f13 hp39/70 -> combat_select_card{'card_index': 0}
+[hand_select] act1 f13 hp39/70 -> combat_confirm_selection{}
+[monster] act1 f13 hp39/70 -> play_card{'card_index': 0}
+[monster] act1 f13 hp39/70 -> end_turn{}
+[monster] act1 f13 hp39/70 -> play_card{'card_index': 0}
+[hand_select] act1 f13 hp39/70 -> combat_select_card{'card_index': 3}
+[hand_select] act1 f13 hp39/70 -> combat_confirm_selection{}
+[monster] act1 f13 hp39/70 -> play_card{'card_index': 0}
+[monster] act1 f13 hp39/70 -> play_card{'card_index': 0, 'target': 'FOSSIL_STALKER_0'}
+[monster] act1 f13 hp39/70 -> end_turn{}
+[monster] act1 f13 hp39/70 -> play_card{'card_index': 4, 'target': 'FOSSIL_STALKER_0'}
+[monster] act1 f13 hp39/70 -> play_card{'card_index': 0}
+[monster] act1 f13 hp39/70 -> play_card{'card_index': 0}
+[monster] act1 f13 hp39/70 -> play_card{'card_index': 1, 'target': 'FOSSIL_STALKER_0'}
+[rewards] act1 f13 hp39/70 -> claim_reward{'index': 0}
+[rewards] act1 f13 hp39/70 -> claim_reward{'index': 0}
+[card_reward] act1 f13 hp39/70 -> select_card_reward{'card_index': 2}
+[rewards] act1 f13 hp39/70 -> proceed{}
+[map] act1 f13 hp39/70 -> choose_map_node{'index': 0}
+[map] act1 f13 hp39/70 -> choose_map_node{'index': 0}
+[elite] act1 f14 hp39/70 -> use_potion{'slot': 2}
+[elite] act1 f14 hp39/70 -> use_potion{'slot': 0}
+[elite] act1 f14 hp39/70 -> use_potion{'slot': 1}
+[elite] act1 f14 hp39/70 -> play_card{'card_index': 6}
+[elite] act1 f14 hp39/70 -> play_card{'card_index': 5, 'target': 'PHANTASMAL_GARDENER_1'}
+[hand_select] act1 f14 hp39/70 -> combat_select_card{'card_index': 1}
+[hand_select] act1 f14 hp39/70 -> combat_confirm_selection{}
+[elite] act1 f14 hp39/70 -> play_card{'card_index': 3}
+[elite] act1 f14 hp39/70 -> play_card{'card_index': 0}
+[elite] act1 f14 hp39/70 -> end_turn{}
+[elite] act1 f14 hp39/70 -> play_card{'card_index': 1}
+[elite] act1 f14 hp39/70 -> play_card{'card_index': 1, 'target': 'PHANTASMAL_GARDENER_2'}
+[elite] act1 f14 hp39/70 -> play_card{'card_index': 1}
+[elite] act1 f14 hp39/70 -> play_card{'card_index': 1}
+[elite] act1 f14 hp39/70 -> play_card{'card_index': 1, 'target': 'PHANTASMAL_GARDENER_1'}
+[elite] act1 f14 hp39/70 -> end_turn{}
+[elite] act1 f14 hp39/70 -> play_card{'card_index': 4}
+[elite] act1 f14 hp39/70 -> play_card{'card_index': 3, 'target': 'PHANTASMAL_GARDENER_1'}
+[elite] act1 f14 hp39/70 -> play_card{'card_index': 0, 'target': 'PHANTASMAL_GARDENER_1'}
+[elite] act1 f14 hp39/70 -> play_card{'card_index': 0, 'target': 'PHANTASMAL_GARDENER_1'}
+[elite] act1 f14 hp39/70 -> end_turn{}
+[elite] act1 f14 hp39/70 -> play_card{'card_index': 3}
+[elite] act1 f14 hp39/70 -> play_card{'card_index': 2, 'target': 'PHANTASMAL_GARDENER_1'}
+[elite] act1 f14 hp39/70 -> play_card{'card_index': 1}
+[elite] act1 f14 hp39/70 -> end_turn{}
+[elite] act1 f14 hp39/70 -> play_card{'card_index': 0}
+[elite] act1 f14 hp39/70 -> play_card{'card_index': 1, 'target': 'PHANTASMAL_GARDENER_0'}
+[elite] act1 f14 hp39/70 -> play_card{'card_index': 2, 'target': 'PHANTASMAL_GARDENER_1'}
+[elite] act1 f14 hp39/70 -> play_card{'card_index': 2, 'target': 'PHANTASMAL_GARDENER_1'}
+[elite] act1 f14 hp39/70 -> end_turn{}
+[elite] act1 f14 hp39/70 -> play_card{'card_index': 1, 'target': 'PHANTASMAL_GARDENER_1'}
+[hand_select] act1 f14 hp39/70 -> combat_select_card{'card_index': 3}
+[hand_select] act1 f14 hp39/70 -> combat_confirm_selection{}
+[elite] act1 f14 hp39/70 -> play_card{'card_index': 0}
+[elite] act1 f14 hp39/70 -> play_card{'card_index': 0, 'target': 'PHANTASMAL_GARDENER_0'}
+[rewards] act1 f14 hp39/70 -> claim_reward{'index': 0}
+[rewards] act1 f14 hp39/70 -> claim_reward{'index': 0}
+[rewards] act1 f14 hp39/70 -> claim_reward{'index': 0}
+[rewards] act1 f14 hp39/70 -> claim_reward{'index': 0}
+[card_reward] act1 f14 hp39/70 -> select_card_reward{'card_index': 0}
+[rewards] act1 f14 hp39/70 -> proceed{}
+[map] act1 f14 hp39/70 -> choose_map_node{'index': 0}
+[map] act1 f14 hp39/70 -> choose_map_node{'index': 0}
+[shop] act1 f15 hp39/70 -> shop_purchase{'index': 8}
+[shop] act1 f15 hp39/70 -> proceed{}
+[map] act1 f15 hp39/70 -> choose_map_node{'index': 0}
+[map] act1 f15 hp39/70 -> choose_map_node{'index': 0}
+[rest_site] act1 f16 hp39/70 -> choose_rest_option{'index': 1}
+[card_select] act1 f16 hp39/70 -> select_card{'index': 12}
+[card_select] act1 f16 hp39/70 -> confirm_selection{}
+[rest_site] act1 f16 hp39/70 -> proceed{}
+[map] act1 f16 hp39/70 -> choose_map_node{'index': 0}
+[map] act1 f16 hp39/70 -> choose_map_node{'index': 0}
+[boss] act1 f17 hp39/70 -> use_potion{'slot': 0}
+[boss] act1 f17 hp39/70 -> play_card{'card_index': 2}
+[boss] act1 f17 hp39/70 -> play_card{'card_index': 5}
+[boss] act1 f17 hp39/70 -> play_card{'card_index': 5}
+[boss] act1 f17 hp39/70 -> play_card{'card_index': 2}
+[boss] act1 f17 hp39/70 -> end_turn{}
+[boss] act1 f17 hp39/70 -> play_card{'card_index': 2, 'target': 'LAGAVULIN_MATRIARCH_0'}
+[boss] act1 f17 hp39/70 -> play_card{'card_index': 0}
+[boss] act1 f17 hp39/70 -> end_turn{}
+[boss] act1 f17 hp39/70 -> play_card{'card_index': 1}
+[boss] act1 f17 hp39/70 -> play_card{'card_index': 2}
+[boss] act1 f17 hp39/70 -> play_card{'card_index': 2}
+[boss] act1 f17 hp39/70 -> play_card{'card_index': 1}
+[boss] act1 f17 hp39/70 -> end_turn{}
+[boss] act1 f17 hp39/70 -> play_card{'card_index': 0, 'target': 'LAGAVULIN_MATRIARCH_0'}
+[boss] act1 f17 hp39/70 -> play_card{'card_index': 1}
+[boss] act1 f17 hp39/70 -> play_card{'card_index': 2}
+[boss] act1 f17 hp39/70 -> play_card{'card_index': 0, 'target': 'LAGAVULIN_MATRIARCH_0'}
+[boss] act1 f17 hp39/70 -> end_turn{}
+[boss] act1 f17 hp32/70 -> play_card{'card_index': 1}
+[hand_select] act1 f17 hp32/70 -> combat_select_card{'card_index': 1}
+[hand_select] act1 f17 hp32/70 -> combat_confirm_selection{}
+[boss] act1 f17 hp32/70 -> play_card{'card_index': 0}
+[boss] act1 f17 hp32/70 -> play_card{'card_index': 1, 'target': 'LAGAVULIN_MATRIARCH_0'}
+[boss] act1 f17 hp32/70 -> play_card{'card_index': 1}
+[boss] act1 f17 hp32/70 -> play_card{'card_index': 1, 'target': 'LAGAVULIN_MATRIARCH_0'}
+[boss] act1 f17 hp32/70 -> end_turn{}
+[boss] act1 f17 hp32/70 -> play_card{'card_index': 1}
+[boss] act1 f17 hp32/70 -> play_card{'card_index': 3}
+[boss] act1 f17 hp32/70 -> play_card{'card_index': 2}
+[boss] act1 f17 hp32/70 -> play_card{'card_index': 1}
+[boss] act1 f17 hp32/70 -> end_turn{}
+[boss] act1 f17 hp32/70 -> play_card{'card_index': 4, 'target': 'LAGAVULIN_MATRIARCH_0'}
+[boss] act1 f17 hp32/70 -> play_card{'card_index': 1}
+[boss] act1 f17 hp32/70 -> play_card{'card_index': 0, 'target': 'LAGAVULIN_MATRIARCH_0'}
+[boss] act1 f17 hp32/70 -> play_card{'card_index': 2, 'target': 'LAGAVULIN_MATRIARCH_0'}
+[boss] act1 f17 hp32/70 -> play_card{'card_index': 1, 'target': 'LAGAVULIN_MATRIARCH_0'}
+[hand_select] act1 f17 hp32/70 -> combat_select_card{'card_index': 2}
+[hand_select] act1 f17 hp32/70 -> combat_confirm_selection{}
+[boss] act1 f17 hp32/70 -> end_turn{}
+[boss] act1 f17 hp32/70 -> play_card{'card_index': 1}
+[hand_select] act1 f17 hp32/70 -> combat_select_card{'card_index': 0}
+[hand_select] act1 f17 hp32/70 -> combat_confirm_selection{}
+[boss] act1 f17 hp32/70 -> play_card{'card_index': 1, 'target': 'LAGAVULIN_MATRIARCH_0'}
+[boss] act1 f17 hp32/70 -> play_card{'card_index': 0}
+[boss] act1 f17 hp32/70 -> end_turn{}
+[boss] act1 f17 hp30/70 -> play_card{'card_index': 2}
+[boss] act1 f17 hp30/70 -> play_card{'card_index': 3}
+[boss] act1 f17 hp30/70 -> play_card{'card_index': 2}
+[boss] act1 f17 hp30/70 -> end_turn{}
+[boss] act1 f17 hp18/70 -> play_card{'card_index': 4, 'target': 'LAGAVULIN_MATRIARCH_0'}
+[boss] act1 f17 hp18/70 -> play_card{'card_index': 2}
+[boss] act1 f17 hp18/70 -> play_card{'card_index': 2}
+[boss] act1 f17 hp18/70 -> play_card{'card_index': 0}
+[boss] act1 f17 hp18/70 -> play_card{'card_index': 3, 'target': 'LAGAVULIN_MATRIARCH_0'}
+[boss] act1 f17 hp18/70 -> play_card{'card_index': 2, 'target': 'LAGAVULIN_MATRIARCH_0'}
+[boss] act1 f17 hp18/70 -> end_turn{}
+[boss] act1 f17 hp18/70 -> play_card{'card_index': 3}
+[boss] act1 f17 hp18/70 -> play_card{'card_index': 4}
+[boss] act1 f17 hp18/70 -> play_card{'card_index': 0, 'target': 'LAGAVULIN_MATRIARCH_0'}
+[boss] act1 f17 hp18/70 -> end_turn{}
+[boss] act1 f17 hp18/70 -> play_card{'card_index': 0}
+[boss] act1 f17 hp18/70 -> play_card{'card_index': 0}
+[boss] act1 f17 hp18/70 -> play_card{'card_index': 0}
+[boss] act1 f17 hp18/70 -> end_turn{}
+[boss] act1 f17 hp10/70 -> play_card{'card_index': 4}
+[hand_select] act1 f17 hp10/70 -> combat_select_card{'card_index': 3}
+[hand_select] act1 f17 hp10/70 -> combat_confirm_selection{}
+[boss] act1 f17 hp10/70 -> play_card{'card_index': 0}
+[boss] act1 f17 hp10/70 -> play_card{'card_index': 0}
+[boss] act1 f17 hp10/70 -> end_turn{}
+[boss] act1 f17 hp4/70 -> play_card{'card_index': 4, 'target': 'LAGAVULIN_MATRIARCH_0'}
+[boss] act1 f17 hp4/70 -> play_card{'card_index': 3}
+[boss] act1 f17 hp4/70 -> play_card{'card_index': 1}
+[boss] act1 f17 hp4/70 -> play_card{'card_index': 1}
+[boss] act1 f17 hp4/70 -> end_turn{}
+[boss] act1 f17 hp2/70 -> play_card{'card_index': 3}
+[boss] act1 f17 hp2/70 -> play_card{'card_index': 0, 'target': 'LAGAVULIN_MATRIARCH_0'}
+[boss] act1 f17 hp2/70 -> play_card{'card_index': 2, 'target': 'LAGAVULIN_MATRIARCH_0'}
+[boss] act1 f17 hp2/70 -> play_card{'card_index': 2}
+[rewards] act1 f17 hp2/70 -> claim_reward{'index': 0}
+[rewards] act1 f17 hp2/70 -> claim_reward{'index': 0}
+[card_reward] act1 f17 hp2/70 -> select_card_reward{'card_index': 2}
+[rewards] act1 f17 hp2/70 -> proceed{}
+[rewards] act1 f17 hp2/70 -> proceed{}
+[map] act2 f17 hp2/70 -> choose_map_node{'index': 0}
+[map] act2 f17 hp2/70 -> choose_map_node{'index': 0}
+[event] act2 f18 hp70/70 -> choose_event_option{'index': 1}
+[card_select] act2 f18 hp70/70 -> select_card{'index': 0}
+[card_select] act2 f18 hp70/70 -> select_card{'index': 5}
+[card_select] act2 f18 hp70/70 -> select_card{'index': 1}
+[card_select] act2 f18 hp70/70 -> select_card{'index': 6}
+[card_select] act2 f18 hp70/70 -> confirm_selection{}
+[event] act2 f18 hp70/70 -> choose_event_option{'index': 0}
+[map] act2 f18 hp70/70 -> choose_map_node{'index': 2}
+[map] act2 f18 hp70/70 -> choose_map_node{'index': 1}
+[monster] act2 f19 hp70/70 -> play_card{'card_index': 2}
+[monster] act2 f19 hp70/70 -> play_card{'card_index': 0, 'target': 'BOWLBUG_EGG_0'}
+[monster] act2 f19 hp70/70 -> play_card{'card_index': 1, 'target': 'BOWLBUG_EGG_0'}
+[monster] act2 f19 hp70/70 -> end_turn{}
+[monster] act2 f19 hp55/70 -> play_card{'card_index': 1}
+[monster] act2 f19 hp55/70 -> play_card{'card_index': 1}
+[monster] act2 f19 hp55/70 -> play_card{'card_index': 1}
+[monster] act2 f19 hp55/70 -> play_card{'card_index': 0}

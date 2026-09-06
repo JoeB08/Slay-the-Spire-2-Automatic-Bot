@@ -1,0 +1,566 @@
+{
+ "_source": "STS2MCP /api/v1/wiki (base + upgraded variants), imported live",
+ "_note": "gain = weighted delta between base and upgraded. Cost reductions dominate; poison/draw/debuffs weigh more than raw damage. Only cards discovered by the active profile are available.",
+ "cards": {
+  "Adrenaline": {
+   "base_cost": "0",
+   "upgraded_cost": "0",
+   "base_text": "Gain [silent_energy_icon.png]. Draw 2 cards. Exhaust.",
+   "upgraded_text": "Gain [silent_energy_icon.png][silent_energy_icon.png]. Draw 2 cards. Exhaust.",
+   "gain": 25.0
+  },
+  "Afterimage": {
+   "base_cost": "1",
+   "upgraded_cost": "1",
+   "base_text": "Whenever you play a card, gain 1 Block.",
+   "upgraded_text": "Innate. Whenever you play a card, gain 1 Block.",
+   "gain": 6.0
+  },
+  "Abrasive": {
+   "base_cost": "3",
+   "upgraded_cost": "3",
+   "base_text": "Sly. Gain 1 Dexterity. Gain 4 Thorns.",
+   "upgraded_text": "Sly. Gain 1 Dexterity. Gain 6 Thorns.",
+   "gain": 4.0
+  },
+  "Footwork": {
+   "base_cost": "1",
+   "upgraded_cost": "1",
+   "base_text": "Gain 2 Dexterity.",
+   "upgraded_text": "Gain 3 Dexterity.",
+   "gain": 6.0
+  },
+  "Tools of the Trade": {
+   "base_cost": "1",
+   "upgraded_cost": "0",
+   "base_text": "At the start of your turn, draw 1 card and discard 1 card.",
+   "upgraded_text": "At the start of your turn, draw 1 card and discard 1 card.",
+   "gain": 25.0
+  },
+  "Assassinate": {
+   "base_cost": "0",
+   "upgraded_cost": "0",
+   "base_text": "Innate. Deal 10 damage. Apply 1 Vulnerable. Exhaust.",
+   "upgraded_text": "Innate. Deal 13 damage. Apply 2 Vulnerable. Exhaust.",
+   "gain": 8.0
+  },
+  "Noxious Fumes": {
+   "base_cost": "1",
+   "upgraded_cost": "1",
+   "base_text": "At the start of your turn, apply 2 Poison to ALL enemies.",
+   "upgraded_text": "At the start of your turn, apply 3 Poison to ALL enemies.",
+   "gain": 2.0
+  },
+  "Echoing Slash": {
+   "base_cost": "1",
+   "upgraded_cost": "1",
+   "base_text": "Deal 10 damage to ALL enemies. Repeat this effect for each enemy killed.",
+   "upgraded_text": "Deal 13 damage to ALL enemies. Repeat this effect for each enemy killed.",
+   "gain": 6.0
+  },
+  "Acrobatics": {
+   "base_cost": "1",
+   "upgraded_cost": "1",
+   "base_text": "Draw 3 cards. Discard 1 card.",
+   "upgraded_text": "Draw 4 cards. Discard 1 card.",
+   "gain": 8.0
+  },
+  "Fan of Knives": {
+   "base_cost": "2",
+   "upgraded_cost": "2",
+   "base_text": "Shivs now hit ALL enemies. Add 4 Shivs into your Hand.",
+   "upgraded_text": "Shivs now hit ALL enemies. Add 5 Shivs into your Hand.",
+   "gain": 4.0
+  },
+  "Malaise": {
+   "base_cost": "X",
+   "upgraded_cost": "X",
+   "base_text": "Enemy loses X Strength. Apply X Weak. Exhaust.",
+   "upgraded_text": "Enemy loses X+1 Strength. Apply X+1 Weak. Exhaust.",
+   "gain": 6.0
+  },
+  "Burst": {
+   "base_cost": "1",
+   "upgraded_cost": "1",
+   "base_text": "This turn, your next Skill is played an extra time.",
+   "upgraded_text": "This turn, your next 2 Skills are played an extra time.",
+   "gain": 0.0
+  },
+  "Leg Sweep": {
+   "base_cost": "2",
+   "upgraded_cost": "2",
+   "base_text": "Apply 2 Weak. Gain 11 Block.",
+   "upgraded_text": "Apply 3 Weak. Gain 14 Block.",
+   "gain": 8.0
+  },
+  "Escape Plan": {
+   "base_cost": "0",
+   "upgraded_cost": "0",
+   "base_text": "Draw 1 card. If you draw a Skill, gain 3 Block.",
+   "upgraded_text": "Draw 1 card. If you draw a Skill, gain 5 Block.",
+   "gain": 4.0
+  },
+  "Shadowmeld": {
+   "base_cost": "1",
+   "upgraded_cost": "0",
+   "base_text": "Double your Block gain this turn.",
+   "upgraded_text": "Double your Block gain this turn.",
+   "gain": 25.0
+  },
+  "The Hunt": {
+   "base_cost": "1",
+   "upgraded_cost": "1",
+   "base_text": "Deal 10 damage. If Fatal, gain an additional card reward. Exhaust.",
+   "upgraded_text": "Deal 15 damage. If Fatal, gain an additional card reward. Exhaust.",
+   "gain": 10.0
+  },
+  "Serpent Form": {
+   "base_cost": "3",
+   "upgraded_cost": "3",
+   "base_text": "Whenever you play a card, deal 4 damage to a random enemy.",
+   "upgraded_text": "Whenever you play a card, deal 6 damage to a random enemy.",
+   "gain": 4.0
+  },
+  "Tracking": {
+   "base_cost": "2",
+   "upgraded_cost": "1",
+   "base_text": "Weak enemies take double damage from Attacks.",
+   "upgraded_text": "Weak enemies take double damage from Attacks.",
+   "gain": 25.0
+  },
+  "Prepared": {
+   "base_cost": "0",
+   "upgraded_cost": "0",
+   "base_text": "Draw 1 card. Discard 1 card.",
+   "upgraded_text": "Draw 2 cards. Discard 2 cards.",
+   "gain": 8.0
+  },
+  "Bullet Time": {
+   "base_cost": "3",
+   "upgraded_cost": "2",
+   "base_text": "You cannot draw additional cards this turn. ALL cards in your Hand are free to play this turn.",
+   "upgraded_text": "You cannot draw additional cards this turn. ALL cards in your Hand are free to play this turn.",
+   "gain": 25.0
+  },
+  "Calculated Gamble": {
+   "base_cost": "0",
+   "upgraded_cost": "0",
+   "base_text": "Discard your Hand, then draw that many cards. Exhaust.",
+   "upgraded_text": "Retain. Discard your Hand, then draw that many cards. Exhaust.",
+   "gain": 6.0
+  },
+  "Envenom": {
+   "base_cost": "2",
+   "upgraded_cost": "2",
+   "base_text": "Whenever an Attack deals unblocked damage, apply 1 Poison.",
+   "upgraded_text": "Whenever an Attack deals unblocked damage, apply 2 Poison.",
+   "gain": 2.0
+  },
+  "Well-Laid Plans": {
+   "base_cost": "1",
+   "upgraded_cost": "1",
+   "base_text": "At the end of your turn, Retain up to 1 card.",
+   "upgraded_text": "At the end of your turn, Retain up to 2 cards.",
+   "gain": 2.0
+  },
+  "Blur": {
+   "base_cost": "1",
+   "upgraded_cost": "1",
+   "base_text": "Gain 5 Block. Block is not removed at the start of your next turn.",
+   "upgraded_text": "Gain 8 Block. Block is not removed at the start of your next turn.",
+   "gain": 6.0
+  },
+  "Knife Trap": {
+   "base_cost": "2",
+   "upgraded_cost": "2",
+   "base_text": "Play every Shiv in your Exhaust Pile on the enemy. (Plays 0 Shivs)",
+   "upgraded_text": "Upgrade and play every Shiv in your Exhaust Pile on the enemy. (Plays 0 Shivs)",
+   "gain": 6.0
+  },
+  "Backstab": {
+   "base_cost": "0",
+   "upgraded_cost": "0",
+   "base_text": "Innate. Deal 11 damage. Exhaust.",
+   "upgraded_text": "Innate. Deal 15 damage. Exhaust.",
+   "gain": 8.0
+  },
+  "Dash": {
+   "base_cost": "2",
+   "upgraded_cost": "2",
+   "base_text": "Gain 10 Block. Deal 10 damage.",
+   "upgraded_text": "Gain 13 Block. Deal 13 damage.",
+   "gain": 12.0
+  },
+  "Bouncing Flask": {
+   "base_cost": "2",
+   "upgraded_cost": "2",
+   "base_text": "Apply 3 Poison to a random enemy 3 times.",
+   "upgraded_text": "Apply 3 Poison to a random enemy 4 times.",
+   "gain": 2.0
+  },
+  "Backflip": {
+   "base_cost": "1",
+   "upgraded_cost": "1",
+   "base_text": "Gain 5 Block. Draw 2 cards.",
+   "upgraded_text": "Gain 8 Block. Draw 2 cards.",
+   "gain": 6.0
+  },
+  "Corrosive Wave": {
+   "base_cost": "1",
+   "upgraded_cost": "1",
+   "base_text": "Whenever you draw a card this turn, apply 2 Poison to ALL enemies.",
+   "upgraded_text": "Whenever you draw a card this turn, apply 3 Poison to ALL enemies.",
+   "gain": 2.0
+  },
+  "Snakebite": {
+   "base_cost": "2",
+   "upgraded_cost": "2",
+   "base_text": "Retain. Apply 7 Poison.",
+   "upgraded_text": "Retain. Apply 10 Poison.",
+   "gain": 6.0
+  },
+  "Accelerant": {
+   "base_cost": "1",
+   "upgraded_cost": "1",
+   "base_text": "Poison is triggered 1 additional time.",
+   "upgraded_text": "Poison is triggered 2 additional times.",
+   "gain": 2.0
+  },
+  "Haze": {
+   "base_cost": "3",
+   "upgraded_cost": "3",
+   "base_text": "Sly. Apply 4 Poison to ALL enemies.",
+   "upgraded_text": "Sly. Apply 6 Poison to ALL enemies.",
+   "gain": 4.0
+  },
+  "Expose": {
+   "base_cost": "0",
+   "upgraded_cost": "0",
+   "base_text": "Remove all Artifact and Block from the enemy. Apply 2 Vulnerable. Exhaust.",
+   "upgraded_text": "Remove all Artifact and Block from the enemy. Apply 3 Vulnerable. Exhaust.",
+   "gain": 5.0
+  },
+  "Accuracy": {
+   "base_cost": "1",
+   "upgraded_cost": "1",
+   "base_text": "Shivs deal 4 additional damage.",
+   "upgraded_text": "Shivs deal 6 additional damage.",
+   "gain": 4.0
+  },
+  "Storm of Steel": {
+   "base_cost": "1",
+   "upgraded_cost": "1",
+   "base_text": "Discard your Hand. Add 1 Shiv into your Hand for each card discarded.",
+   "upgraded_text": "Discard your Hand. Add 1 Shiv+ into your Hand for each card discarded.",
+   "gain": 6.0
+  },
+  "Shadow Step": {
+   "base_cost": "1",
+   "upgraded_cost": "0",
+   "base_text": "Discard your Hand. Next turn, Attacks deal double damage.",
+   "upgraded_text": "Discard your Hand. Next turn, Attacks deal double damage.",
+   "gain": 25.0
+  },
+  "Piercing Wail": {
+   "base_cost": "1",
+   "upgraded_cost": "1",
+   "base_text": "ALL enemies lose 6 Strength this turn. Exhaust.",
+   "upgraded_text": "ALL enemies lose 8 Strength this turn. Exhaust.",
+   "gain": 4.0
+  },
+  "Leading Strike": {
+   "base_cost": "1",
+   "upgraded_cost": "1",
+   "base_text": "Deal 3 damage. Add 2 Shivs into your Hand.",
+   "upgraded_text": "Deal 6 damage. Add 2 Shivs into your Hand.",
+   "gain": 6.0
+  },
+  "Infinite Blades": {
+   "base_cost": "1",
+   "upgraded_cost": "1",
+   "base_text": "At the start of your turn, add 1 Shiv into your Hand.",
+   "upgraded_text": "Innate. At the start of your turn, add 1 Shiv into your Hand.",
+   "gain": 6.0
+  },
+  "Tactician": {
+   "base_cost": "3",
+   "upgraded_cost": "3",
+   "base_text": "Sly. Gain [silent_energy_icon.png].",
+   "upgraded_text": "Sly. Gain [silent_energy_icon.png][silent_energy_icon.png].",
+   "gain": 25.0
+  },
+  "Flechettes": {
+   "base_cost": "1",
+   "upgraded_cost": "1",
+   "base_text": "Deal 5 damage for each Skill in your Hand. (Hits 0 times)",
+   "upgraded_text": "Deal 7 damage for each Skill in your Hand. (Hits 0 times)",
+   "gain": 4.0
+  },
+  "Hand Trick": {
+   "base_cost": "1",
+   "upgraded_cost": "1",
+   "base_text": "Gain 7 Block. Add Sly to a Skill in your Hand this turn.",
+   "upgraded_text": "Gain 10 Block. Add Sly to a Skill in your Hand this turn.",
+   "gain": 6.0
+  },
+  "Cloak and Dagger": {
+   "base_cost": "1",
+   "upgraded_cost": "1",
+   "base_text": "Gain 6 Block. Add 1 Shiv into your Hand.",
+   "upgraded_text": "Gain 6 Block. Add 2 Shivs into your Hand.",
+   "gain": 4.0
+  },
+  "Untouchable": {
+   "base_cost": "2",
+   "upgraded_cost": "2",
+   "base_text": "Sly. Gain 6 Block.",
+   "upgraded_text": "Sly. Gain 9 Block.",
+   "gain": 6.0
+  },
+  "Blade Dance": {
+   "base_cost": "1",
+   "upgraded_cost": "1",
+   "base_text": "Add 3 Shivs into your Hand. Exhaust.",
+   "upgraded_text": "Add 4 Shivs into your Hand. Exhaust.",
+   "gain": 4.0
+  },
+  "Bubble Bubble": {
+   "base_cost": "1",
+   "upgraded_cost": "1",
+   "base_text": "If the enemy has Poison, apply 9 Poison.",
+   "upgraded_text": "If the enemy has Poison, apply 12 Poison.",
+   "gain": 6.0
+  },
+  "Dagger Throw": {
+   "base_cost": "1",
+   "upgraded_cost": "1",
+   "base_text": "Deal 9 damage. Draw 1 card. Discard 1 card.",
+   "upgraded_text": "Deal 12 damage. Draw 1 card. Discard 1 card.",
+   "gain": 6.0
+  },
+  "Nightmare": {
+   "base_cost": "3",
+   "upgraded_cost": "2",
+   "base_text": "Choose a card. Next turn, add 3 copies of that card into your Hand. Exhaust.",
+   "upgraded_text": "Choose a card. Next turn, add 3 copies of that card into your Hand. Exhaust.",
+   "gain": 25.0
+  },
+  "Murder": {
+   "base_cost": "3",
+   "upgraded_cost": "2",
+   "base_text": "Deal 1 damage. Deals 1 additional damage for each card drawn this combat.",
+   "upgraded_text": "Deal 1 damage. Deals 1 additional damage for each card drawn this combat.",
+   "gain": 25.0
+  },
+  "Pinpoint": {
+   "base_cost": "3",
+   "upgraded_cost": "3",
+   "base_text": "Deal 15 damage. Costs 1 less [silent_energy_icon.png] for each Skill played this turn.",
+   "upgraded_text": "Deal 19 damage. Costs 1 less [silent_energy_icon.png] for each Skill played this turn.",
+   "gain": 8.0
+  },
+  "Ricochet": {
+   "base_cost": "2",
+   "upgraded_cost": "2",
+   "base_text": "Sly. Deal 3 damage to a random enemy 4 times.",
+   "upgraded_text": "Sly. Deal 3 damage to a random enemy 5 times.",
+   "gain": 2.0
+  },
+  "Strangle": {
+   "base_cost": "1",
+   "upgraded_cost": "1",
+   "base_text": "Deal 8 damage. Whenever you play a card this turn, the enemy loses 2 HP.",
+   "upgraded_text": "Deal 10 damage. Whenever you play a card this turn, the enemy loses 3 HP.",
+   "gain": 6.0
+  },
+  "Reflex": {
+   "base_cost": "3",
+   "upgraded_cost": "3",
+   "base_text": "Sly. Draw 2 cards.",
+   "upgraded_text": "Sly. Draw 3 cards.",
+   "gain": 8.0
+  },
+  "Up My Sleeve": {
+   "base_cost": "2",
+   "upgraded_cost": "2",
+   "base_text": "Add 3 Shivs into your Hand. Reduce this card's cost by 1.",
+   "upgraded_text": "Add 4 Shivs into your Hand. Reduce this card's cost by 1.",
+   "gain": 4.0
+  },
+  "Pounce": {
+   "base_cost": "2",
+   "upgraded_cost": "2",
+   "base_text": "Deal 14 damage. The next Skill you play costs 0 [silent_energy_icon.png].",
+   "upgraded_text": "Deal 20 damage. The next Skill you play costs 0 [silent_energy_icon.png].",
+   "gain": 12.0
+  },
+  "Deadly Poison": {
+   "base_cost": "1",
+   "upgraded_cost": "1",
+   "base_text": "Apply 5 Poison.",
+   "upgraded_text": "Apply 7 Poison.",
+   "gain": 4.0
+  },
+  "Outbreak": {
+   "base_cost": "1",
+   "upgraded_cost": "1",
+   "base_text": "Every 3 times you apply Poison, deal 11 damage to ALL enemies.",
+   "upgraded_text": "Every 3 times you apply Poison, deal 15 damage to ALL enemies.",
+   "gain": 8.0
+  },
+  "Dagger Spray": {
+   "base_cost": "1",
+   "upgraded_cost": "1",
+   "base_text": "Deal 4 damage to ALL enemies twice.",
+   "upgraded_text": "Deal 6 damage to ALL enemies twice.",
+   "gain": 4.0
+  },
+  "Flick-Flack": {
+   "base_cost": "1",
+   "upgraded_cost": "1",
+   "base_text": "Sly. Deal 6 damage to ALL enemies.",
+   "upgraded_text": "Sly. Deal 8 damage to ALL enemies.",
+   "gain": 4.0
+  },
+  "Precise Cut": {
+   "base_cost": "0",
+   "upgraded_cost": "0",
+   "base_text": "Deal 13 damage. Deals 2 less damage for each other card in your Hand.",
+   "upgraded_text": "Deal 16 damage. Deals 2 less damage for each other card in your Hand.",
+   "gain": 6.0
+  },
+  "Finisher": {
+   "base_cost": "1",
+   "upgraded_cost": "1",
+   "base_text": "Deal 6 damage for each Attack already played this turn. (Hits 0 times)",
+   "upgraded_text": "Deal 8 damage for each Attack already played this turn. (Hits 0 times)",
+   "gain": 4.0
+  },
+  "Speedster": {
+   "base_cost": "2",
+   "upgraded_cost": "2",
+   "base_text": "Whenever you draw a card during your turn, deal 2 damage to ALL enemies.",
+   "upgraded_text": "Innate. Whenever you draw a card during your turn, deal 2 damage to ALL enemies.",
+   "gain": 6.0
+  },
+  "Dodge and Roll": {
+   "base_cost": "1",
+   "upgraded_cost": "1",
+   "base_text": "Gain 4 Block. Next turn, gain 4 Block.",
+   "upgraded_text": "Gain 6 Block. Next turn, gain 6 Block.",
+   "gain": 8.0
+  },
+  "Poisoned Stab": {
+   "base_cost": "1",
+   "upgraded_cost": "1",
+   "base_text": "Deal 6 damage. Apply 3 Poison.",
+   "upgraded_text": "Deal 8 damage. Apply 4 Poison.",
+   "gain": 6.0
+  },
+  "Scare": {
+   "base_cost": "0",
+   "upgraded_cost": "0",
+   "base_text": "Apply 1 Weak to ALL enemies. Exhaust.",
+   "upgraded_text": "Apply 1 Weak to ALL enemies.",
+   "gain": 6.0
+  },
+  "Mirage": {
+   "base_cost": "1",
+   "upgraded_cost": "0",
+   "base_text": "Gain Block equal to Poison on ALL enemies. (Gain 0 Block) Exhaust.",
+   "upgraded_text": "Gain Block equal to Poison on ALL enemies. (Gain 0 Block) Exhaust.",
+   "gain": 25.0
+  },
+  "Deflect": {
+   "base_cost": "0",
+   "upgraded_cost": "0",
+   "base_text": "Gain 4 Block.",
+   "upgraded_text": "Gain 7 Block.",
+   "gain": 6.0
+  },
+  "Predator": {
+   "base_cost": "2",
+   "upgraded_cost": "2",
+   "base_text": "Deal 15 damage. Next turn, draw 2 cards.",
+   "upgraded_text": "Deal 20 damage. Next turn, draw 2 cards.",
+   "gain": 10.0
+  },
+  "Memento Mori": {
+   "base_cost": "1",
+   "upgraded_cost": "1",
+   "base_text": "Deal 9 damage. Deals 4 additional damage for each card discarded this turn.",
+   "upgraded_text": "Deal 11 damage. Deals 5 additional damage for each card discarded this turn.",
+   "gain": 6.0
+  },
+  "Skewer": {
+   "base_cost": "X",
+   "upgraded_cost": "X",
+   "base_text": "Deal 8 damage X times.",
+   "upgraded_text": "Deal 11 damage X times.",
+   "gain": 6.0
+  },
+  "Expertise": {
+   "base_cost": "1",
+   "upgraded_cost": "1",
+   "base_text": "Draw cards until you have 6 in your Hand.",
+   "upgraded_text": "Draw cards until you have 7 in your Hand.",
+   "gain": 2.0
+  },
+  "Sucker Punch": {
+   "base_cost": "1",
+   "upgraded_cost": "1",
+   "base_text": "Deal 8 damage. Apply 1 Weak.",
+   "upgraded_text": "Deal 10 damage. Apply 2 Weak.",
+   "gain": 7.0
+  },
+  "Grand Finale": {
+   "base_cost": "0",
+   "upgraded_cost": "0",
+   "base_text": "Can only be played if there are no cards in your Draw Pile. Deal 60 damage to ALL enemies.",
+   "upgraded_text": "Can only be played if there are no cards in your Draw Pile. Deal 75 damage to ALL enemies.",
+   "gain": 30.0
+  },
+  "Anticipate": {
+   "base_cost": "0",
+   "upgraded_cost": "0",
+   "base_text": "Gain 2 Dexterity this turn.",
+   "upgraded_text": "Gain 3 Dexterity this turn.",
+   "gain": 6.0
+  },
+  "Slice": {
+   "base_cost": "0",
+   "upgraded_cost": "0",
+   "base_text": "Deal 6 damage.",
+   "upgraded_text": "Deal 9 damage.",
+   "gain": 6.0
+  },
+  "Strike": {
+   "base_cost": "1",
+   "upgraded_cost": "1",
+   "base_text": "Deal 6 damage.",
+   "upgraded_text": "Deal 9 damage.",
+   "gain": 6.0
+  },
+  "Defend": {
+   "base_cost": "1",
+   "upgraded_cost": "1",
+   "base_text": "Gain 5 Block.",
+   "upgraded_text": "Gain 8 Block.",
+   "gain": 6.0
+  },
+  "Neutralize": {
+   "base_cost": "0",
+   "upgraded_cost": "0",
+   "base_text": "Deal 3 damage. Apply 1 Weak.",
+   "upgraded_text": "Deal 4 damage. Apply 2 Weak.",
+   "gain": 6.0
+  },
+  "Survivor": {
+   "base_cost": "1",
+   "upgraded_cost": "1",
+   "base_text": "Gain 8 Block. Discard 1 card.",
+   "upgraded_text": "Gain 11 Block. Discard 1 card.",
+   "gain": 6.0
+  }
+ }
+}
