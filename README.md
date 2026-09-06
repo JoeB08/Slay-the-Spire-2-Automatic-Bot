@@ -1,7 +1,11 @@
 # STS2 Silent Bot
 
 A rules-based bot that autonomously plays Slay the Spire 2 as the Silent, via the
-[STS2MCP](https://github.com/Gennadiyev/STS2MCP) mod's local HTTP API.
+[STS2MCP](https://github.com/Gennadiyev/STS2MCP) mod's local HTTP API.<img width="2531" height="1336" alt="Animation-ezgif com-gif-maker" src="https://github.com/user-attachments/assets/fb721f6a-bbf2-40af-ac70-a488ddcab259" />
+<img width="2531" height="1336" alt="Animation-ezgif com-gif-maker" src="https://github.com/user-attachments/assets/e2732a99-6a2e-4fbc-89ce-f08ee363b18a" />
+
+
+
 
 See [KNOWLEDGE.md](KNOWLEDGE.md) for everything learned from real live runs — API
 field-name quirks, Silent strategy notes, every bug found and fixed, and how the
