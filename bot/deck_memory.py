@@ -18,6 +18,7 @@ import json
 from pathlib import Path
 from typing import Optional
 
+from . import recording
 from .game_state import GameState
 
 # Persisted so a bot restart mid-run doesn't start blind -- see load().
@@ -46,6 +47,8 @@ def load() -> None:
     concluded there was nothing worth upgrading, and healed instead.
     """
     global _deck, _last_floor
+    if not recording.enabled():
+        return  # memory-only in a copy that writes nothing -- see bot/recording.py
     try:
         data = json.loads(_cache_path().read_text(encoding="utf-8"))
     except (OSError, ValueError):
@@ -56,6 +59,8 @@ def load() -> None:
 
 
 def _save() -> None:
+    if not recording.enabled():
+        return  # the deck is still remembered in memory, just not on disk
     try:
         path = _cache_path()
         path.parent.mkdir(exist_ok=True)

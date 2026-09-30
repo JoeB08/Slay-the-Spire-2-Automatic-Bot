@@ -905,6 +905,27 @@ def _boss_block_bonus(name: str) -> float:
     return bonus if combat_mod._card_block({"description": text}) > 0 else 0.0
 
 
+# A payoff card for an engine the deck already feeds: Accuracy ("Shivs deal 4
+# additional damage") behind two or more Shiv makers. The user's rule -- "the
+# card within the archetype comes first if graded as a strong card". score_card
+# cannot grade it (it rates Accuracy 36-67 against Prepared's 116), so this
+# reads the card data's payoff tags and the enablers already in the deck. The
+# shop buys one ahead of relics; a card reward takes one ahead of the gate.
+PAYOFF_ENABLERS = {"shiv_payoff": "shiv", "poison_payoff": "poison"}
+KEY_CARD_MIN_ENABLERS = 2
+KEY_CARD_MAX_COPIES = 2
+
+
+def is_key_payoff(name: str, deck_names: list[str], counts: dict[str, int]) -> bool:
+    """A payoff card whose engine the deck already has 2+ enablers for."""
+    tags = set((card_info(name) or {}).get("tags") or [])
+    for payoff, enabler in PAYOFF_ENABLERS.items():
+        if payoff in tags and counts.get(enabler, 0) >= KEY_CARD_MIN_ENABLERS:
+            copies = sum(1 for n in deck_names if base_name(n) == base_name(name))
+            return copies < KEY_CARD_MAX_COPIES
+    return False
+
+
 def best_card_reward_index(
     cards: list[dict[str, Any]], deck_card_names: list[str], act: int = 1, floor: int = 0,
     relics: list[dict[str, Any]] | None = None,
@@ -950,6 +971,13 @@ def best_card_reward_index(
     gf = next((c for c in cards if base_name(c.get("name", "")) == GRAND_FINALE), None)
     if gf is not None and len(deck_card_names) <= GRAND_FINALE_MAX_DECK:
         return gf["index"]
+
+    # A payoff card for an engine the deck already feeds comes first -- see
+    # `is_key_payoff`. The quality gate below would refuse Accuracy on its
+    # rating alone.
+    key = next((c for c in cards if is_key_payoff(c.get("name", ""), deck_card_names, counts)), None)
+    if key is not None:
+        return key["index"]
 
     # Gate first, *then* pick. Doing it the other way round meant synergy
     # chose a candidate and the quality gate judged that same card: an

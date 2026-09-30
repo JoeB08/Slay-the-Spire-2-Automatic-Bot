@@ -7,9 +7,9 @@ pick the immediate option with the best downstream potential.
 """
 from __future__ import annotations
 
-from typing import Any
+from typing import Any, Optional
 
-from .. import deck_memory
+from .. import deck_memory, route_memory
 from ..game_state import GameState
 from . import cards as card_db
 
@@ -111,51 +111,127 @@ def _node_value(node_type: str, hp_pct: float, gold: int = 0, junk_cards: int = 
     return 0.0  # Boss, Ancient, unrecognized
 
 
+# What a node costs on arrival, in HP: the 75th percentile of recorded fights
+# (1,265 in act 1, 175 in act 2; later acts reuse act 2). An unknown room is
+# sometimes a fight. Set 3 lost runs 4, 6 and 7 to routes that each looked fine
+# one node at a time -- the lookahead scored every node with today's HP, so
+# two elites and no rest site looked as safe as one monster, and a shop two
+# floors on outweighed a rest site at 4 HP.
+NODE_HP_COST = {
+    1: {"Monster": 9, "Elite": 38, "Unknown": 5},
+    2: {"Monster": 16, "Elite": 44, "Unknown": 8},
+}
+REST_HEAL_FRACTION = 0.3
+REST_HEALS_BELOW = 0.7  # a rest site on the route is assumed to heal below this
+# p75 is not the worst case (act 1 monsters reach 18 at p90), so a route that
+# leaves less than this share of max HP is dangerous (DANGER_VALUE); one that
+# reaches 0 is death. The route beyond a dangerous node still counts -- a rest
+# site right after it is exactly what saves the run.
+DEATH_HP_FRACTION = 0.1
+DEATH_VALUE = -100.0
+DANGER_VALUE = -50.0
+
+
+def _node_hp_cost(node_type: str, act: int) -> int:
+    return (NODE_HP_COST.get(act) or NODE_HP_COST[2]).get(node_type, 0)
+
+
+def _hp_after(node_type: str, hp: float, max_hp: int, act: int) -> float:
+    if node_type == "RestSite":
+        if hp < REST_HEALS_BELOW * max_hp:
+            return min(float(max_hp), hp + REST_HEAL_FRACTION * max_hp)
+        return hp
+    return hp - _node_hp_cost(node_type, act)
+
+
+def _children(
+    nodes_by_pos: dict[tuple[int, int], dict[str, Any]], node: dict[str, Any]
+) -> list[dict[str, Any]]:
+    return [nodes_by_pos[tuple(c)] for c in node.get("children") or [] if tuple(c) in nodes_by_pos]
+
+
 def _best_path_value(
     nodes_by_pos: dict[tuple[int, int], dict[str, Any]],
     node: dict[str, Any],
-    hp_pct: float,
+    hp: float,
+    max_hp: int,
     depth: int,
-    memo: dict[tuple[int, int], float],
     gold: int = 0,
     junk_cards: int = 0,
     real_cards: int = EARLY_CARD_TARGET,
+    act: int = 1,
 ) -> float:
-    key = (node.get("col"), node.get("row"))
-    if key in memo:
-        return memo[key]
-    value = _node_value(node.get("type", ""), hp_pct, gold, junk_cards, real_cards)
-    children = node.get("children") or []
+    """Value of the best route through `node`, with HP carried along it.
+
+    Each node is scored at the HP we arrive with, then costs what a fight of
+    its kind costs. A route that runs us out of HP is worth DEATH_VALUE --
+    no amount of treasure beyond it counts.
+    """
+    node_type = node.get("type", "")
+    value = _node_value(node_type, hp / max_hp, gold, junk_cards, real_cards)
+    hp_after = _hp_after(node_type, hp, max_hp, act)
+    if hp_after <= 0:
+        return DEATH_VALUE
+    # Below the safety line a route is dangerous, not over: a rest site right
+    # after the fight still saves it. Scoring it DEATH_VALUE made every option
+    # look equally dead at low HP -- set 4, run 1, floor 7: 12/70 between two
+    # Monsters, one leading to a rest site, and the tie went to the first.
+    if hp_after < DEATH_HP_FRACTION * max_hp:
+        value += DANGER_VALUE
+    children = _children(nodes_by_pos, node)
     if not children or depth <= 0:
-        memo[key] = value
         return value
-    best_child = 0.0
-    found_child = False
-    for c in children:
-        child_key = tuple(c)
-        child_node = nodes_by_pos.get(child_key)
-        if child_node is None:
-            continue
-        found_child = True
-        best_child = max(
-            best_child,
-            _best_path_value(nodes_by_pos, child_node, hp_pct, depth - 1, memo,
-                             gold, junk_cards, real_cards),
-        )
-    total = value + (DECAY * best_child if found_child else 0.0)
-    memo[key] = total
-    return total
+    best_child = max(
+        _best_path_value(nodes_by_pos, c, hp_after, max_hp, depth - 1,
+                         gold, junk_cards, real_cards, act)
+        for c in children
+    )
+    # Every continuation dies: that stays negative. Otherwise a mildly
+    # negative continuation (an elite at low HP) is floored at 0, as before.
+    if best_child > DEATH_VALUE / 2:
+        best_child = max(0.0, best_child)
+    return value + DECAY * best_child
+
+
+def hp_at_next_rest(
+    start: dict[str, Any], hp: float, max_hp: int, act: int,
+    nodes_by_pos: dict[tuple[int, int], dict[str, Any]],
+) -> Optional[float]:
+    """HP on reaching the next rest site or boss from `start`, by the best route.
+
+    `start`'s own effect is not applied -- this is what we would arrive with
+    if we left it as we are. None when there is nowhere to go.
+    """
+    def reach(node: dict[str, Any], hp_now: float, depth: int) -> float:
+        node_type = node.get("type", "")
+        if node_type in ("RestSite", "Boss"):
+            return hp_now
+        hp_after = hp_now - _node_hp_cost(node_type, act)
+        children = _children(nodes_by_pos, node)
+        if not children or depth <= 0:
+            return hp_after
+        return max(reach(c, hp_after, depth - 1) for c in children)
+
+    children = _children(nodes_by_pos, start)
+    if not children:
+        return None
+    return max(reach(c, hp, 20) for c in children)
 
 
 def choose_map_node_index(
     map_data: dict[str, Any], hp_pct: float, gold: int = 0, junk_cards: int = 0,
-    real_cards: int = EARLY_CARD_TARGET,
+    real_cards: int = EARLY_CARD_TARGET, hp: Optional[float] = None,
+    max_hp: Optional[int] = None, act: int = 1,
 ) -> int:
     options = map_data.get("next_options") or []
     if not options:
         return 0
     if len(options) == 1:
         return options[0]["index"]
+    if max_hp is None:
+        max_hp = 70
+    if hp is None:
+        hp = hp_pct * max_hp
 
     nodes = map_data.get("nodes") or []
     nodes_by_pos = {(n.get("col"), n.get("row")): n for n in nodes}
@@ -176,9 +252,8 @@ def choose_map_node_index(
     scored = []
     for opt in options:
         node = nodes_by_pos.get((opt.get("col"), opt.get("row")), opt)
-        memo: dict[tuple[int, int], float] = {}
-        value = _best_path_value(nodes_by_pos, node, hp_pct, LOOKAHEAD_DEPTH, memo,
-                                 gold, junk_cards, real_cards)
+        value = _best_path_value(nodes_by_pos, node, hp, max_hp, LOOKAHEAD_DEPTH,
+                                 gold, junk_cards, real_cards, act)
         scored.append((value, opt["index"]))
 
     scored.sort(key=lambda t: t[0], reverse=True)
@@ -195,5 +270,8 @@ def decide_map(gs: GameState) -> tuple[str, dict[str, Any]]:
         1 for n in deck
         if card_db.base_name(n) not in card_db.STARTERS_BY_NAME and n not in JUNK_CARD_NAMES
     )
-    idx = choose_map_node_index(gs.map, gs.hp_pct, gs.gold, junk, real_cards)
+    idx = choose_map_node_index(gs.map, gs.hp_pct, gs.gold, junk, real_cards,
+                                hp=gs.hp, max_hp=gs.max_hp, act=gs.act)
+    # The rest site cannot see the map; it reads what lies ahead from here.
+    route_memory.remember(gs.map, idx, gs.floor)
     return "choose_map_node", {"index": idx}

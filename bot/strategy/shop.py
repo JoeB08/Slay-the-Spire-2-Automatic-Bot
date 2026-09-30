@@ -114,6 +114,62 @@ def _discounts_the_shop(item: dict[str, Any]) -> bool:
     return bool(_DISCOUNTS_SHOP_RE.search(text))
 
 
+# The Merchant??? (act 2 event, its own state_type `fake_merchant`) sells "???"
+# relics: weaker copies of real ones at about 50 gold -- Anchor??? "Start each
+# combat with 4 Block", Blood Vial??? "At the start of each combat, heal 1 HP"
+# -- and at least one that is only a drawback: Snecko Eye??? "Start each
+# combat Confused." with no draw. The user's call: "it should look at the
+# relics offered". They are judged like shop relics, by their text; a
+# drawback-only relic is never bought, a one-off pickup effect is not worth
+# the gold, and the card reserve is kept for the real shops ahead.
+_DRAWBACK_RE = re.compile(
+    r"\b(?:confused|curse|wound|lose \d+|take \d+ (?:more |additional )?damage)", re.IGNORECASE
+)
+_BENEFIT_RE = re.compile(
+    r"\b(?:gain|heal|block|energy|draw|strength|dexterity|max hp|upgrade|raise|deal)\b"
+    r"|energy_icon",
+    re.IGNORECASE,
+)
+FAKE_RELIC_MIN_VALUE = RELIC_BASE_VALUE + RECURRING_BONUS  # acts every combat, or better
+
+
+def _drawback_only(item: dict[str, Any]) -> bool:
+    text = item.get("relic_description") or item.get("description") or ""
+    return bool(_DRAWBACK_RE.search(text)) and not _BENEFIT_RE.search(text)
+
+
+def decide_fake_merchant(gs: GameState) -> tuple[str, dict[str, Any]]:
+    items = ((gs.raw.get("fake_merchant") or {}).get("shop") or {}).get("items") or []
+    worth_it = [
+        it for it in _buyable(items, "relic")
+        if not _drawback_only(it)
+        and relic_value(it) >= FAKE_RELIC_MIN_VALUE
+        and gs.gold - _price(it) >= CARD_PURCHASE_GOLD_RESERVE
+    ]
+    if worth_it:
+        best = max(worth_it, key=lambda it: (relic_value(it), -_price(it)))
+        return "shop_purchase", {"index": best["index"]}
+    # `proceed` works even while the shop reports can_proceed false.
+    return "proceed", {}
+
+
+# A key card for an engine the deck is already feeding comes before relics --
+# the user's call. Accuracy ("Shivs deal 4 additional damage") is the case: weak
+# on its own, very strong behind a handful of Shiv makers, and it can be the
+# card that turns a leaning deck into a shiv deck. The relic-first order spent
+# a floor-29 shop's 153 gold on Blood Vial and a removal, leaving 12 for a
+# 39-gold Accuracy in a deck holding Blade Dance, Leading Strike and Nunchaku.
+# `score_card` cannot see this -- it rates Accuracy 36-67 against Prepared's
+# 116 -- so the rule keys on the card data's payoff tags and on the enablers
+# already in the deck, not on the score. See `cards.is_key_payoff`, which card
+# rewards use too.
+def _is_key_card(item: dict[str, Any], deck_names: list[str], counts: dict[str, int]) -> bool:
+    """A payoff card whose engine the deck already has 2+ enablers for."""
+    if (item.get("category") or "").lower() != "card":
+        return False
+    return card_db.is_key_payoff(_card_name(item), deck_names, counts)
+
+
 def decide_shop(gs: GameState) -> tuple[str, dict[str, Any]]:
     items = gs.shop.get("items") or []
     if not items:
@@ -128,6 +184,12 @@ def decide_shop(gs: GameState) -> tuple[str, dict[str, Any]]:
     discounters = [it for it in discounters if _discounts_the_shop(it)]
     if discounters:
         return "shop_purchase", {"index": min(discounters, key=_price)["index"]}
+
+    # 0.5. A key card for an engine the deck is feeding -- see `_is_key_card`.
+    tag_counts = card_db.deck_tag_counts(deck_names)
+    key_cards = [it for it in _buyable(items, "card") if _is_key_card(it, deck_names, tag_counts)]
+    if key_cards:
+        return "shop_purchase", {"index": min(key_cards, key=_price)["index"]}
 
     # 1. Relics first. A shop relic is a one-time offer that is gone with the
     # shop; card removal recurs at later shops and at some events, and the

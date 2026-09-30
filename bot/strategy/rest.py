@@ -21,9 +21,38 @@ from __future__ import annotations
 import re
 from typing import Any
 
-from .. import deck_memory
+from .. import deck_memory, route_memory
 from ..game_state import GameState
 from . import cards as card_db
+from . import map_nav
+
+# The rest site before the boss heals. Set 3, the rest before the act 1 boss:
+# Smith 8 times, boss beaten 2; Rest 7 times, boss beaten 4 -- and the resting
+# runs arrived with 5-28 HP against 31-50. Across 98 recorded act 1 boss
+# fights, going in on 50+ HP won 7 of 9, on 30-49 about a third. The boss is
+# the one fight whose cost is known to be large, so the heal comes first.
+# Every act 1 pre-boss rest in the logs is on floor 16: the fallback when the
+# map was not seen (a restart mid-act).
+PRE_BOSS_ACT1_FLOOR = 16
+# Heal when, without it, the best route would reach the next rest site or
+# boss below this share of max HP (p75 fight costs, see map_nav). Set 3, run
+# 6: Smith at 37/70, then five fights and no rest -- 37 -> 3 -> dead.
+STRETCH_FLOOR_FRACTION = 0.15
+
+
+def _boss_is_next(gs: GameState) -> bool:
+    node = route_memory.current_node(gs.floor)
+    if node is None:
+        return gs.act == 1 and gs.floor == PRE_BOSS_ACT1_FLOOR
+    return any(k.get("type") == "Boss" for k in route_memory.children(node))
+
+
+def _long_stretch_ahead(gs: GameState) -> bool:
+    node = route_memory.current_node(gs.floor)
+    if node is None:
+        return False
+    projected = map_nav.hp_at_next_rest(node, gs.hp, gs.max_hp, gs.act, route_memory.nodes_by_pos())
+    return projected is not None and projected < STRETCH_FLOOR_FRACTION * gs.max_hp
 
 # Rest sites heal a fraction of max HP when the amount isn't stated.
 DEFAULT_REST_HEAL_FRACTION = 0.3
@@ -131,6 +160,12 @@ def decide_rest(gs: GameState) -> tuple[str, dict[str, Any]]:
     remove_option = kinds.get("remove")
     if remove_option is not None and _has_removable_junk(gs):
         return "choose_rest_option", {"index": remove_option["index"]}
+
+    # What comes next can matter more than where we are: the boss, or a run
+    # of fights with no rest site -- see PRE_BOSS_ACT1_FLOOR and
+    # STRETCH_FLOOR_FRACTION.
+    if rest_option and _heal_is_worthwhile(gain, gs) and (_boss_is_next(gs) or _long_stretch_ahead(gs)):
+        return "choose_rest_option", {"index": rest_option["index"]}
 
     # Hurt enough that the next fight is the real threat -- heal, provided the
     # heal is actually worth something.

@@ -17,7 +17,7 @@ import uuid
 from pathlib import Path
 from typing import Any, Optional
 
-from . import act_variant, explore, relic_stats
+from . import act_variant, explore, recording, relic_stats
 from .game_state import GameState
 
 RUNS_FILE = "runs.jsonl"
@@ -142,6 +142,11 @@ class RunRecorder:
     def finish(self, gs: GameState) -> None:
         if self.run_id is None:
             return
+        if not recording.enabled():
+            # Nothing is written down in a copy without the RECORD_RUNS marker.
+            # The run still ended, and the next one still starts clean.
+            self._reset()
+            return
 
         hp = gs.hp
         outcome = "death" if hp <= 0 else "ended"
@@ -178,6 +183,18 @@ class RunRecorder:
 
         with open(self._runs_path, "a", encoding="utf-8") as f:
             f.write(json.dumps(record) + "\n")
+
+        # A readable account of the run for a person to go through -- see
+        # `run_story`. It only reads what is already logged, and nothing it
+        # does may stop the bot.
+        try:
+            from . import run_story
+
+            run_story.write_story(
+                self.log_dir / self.decision_log_name, record, self.log_dir / run_story.STORIES_DIR
+            )
+        except Exception as exc:  # noqa: BLE001
+            print(f"[bot] could not write the run story: {exc}")
 
         # Also append to the persistent relic history, which lives outside
         # logs/ so it survives the log wipes between evaluation sets -- relic
