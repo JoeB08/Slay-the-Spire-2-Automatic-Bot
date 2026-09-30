@@ -1,0 +1,466 @@
+{
+ "raw": {
+  "player": {
+   "character": "The Silent",
+   "hp": 72,
+   "max_hp": 77,
+   "block": 0,
+   "energy": 3,
+   "max_energy": 3,
+   "hand": [
+    {
+     "id": "STRIKE_SILENT",
+     "name": "Strike",
+     "type": "Attack",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 17 damage.",
+     "rarity": "Basic",
+     "is_upgraded": false,
+     "keywords": [],
+     "index": 0,
+     "target_type": "AnyEnemy",
+     "can_play": true,
+     "unplayable_reason": null
+    },
+    {
+     "id": "DEFEND_SILENT",
+     "name": "Defend",
+     "type": "Skill",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 7 Block.",
+     "rarity": "Basic",
+     "is_upgraded": false,
+     "keywords": [
+      {
+       "name": "Block",
+       "description": "Until next turn, prevents damage."
+      }
+     ],
+     "index": 1,
+     "target_type": "Self",
+     "can_play": true,
+     "unplayable_reason": null
+    },
+    {
+     "id": "DEFEND_SILENT",
+     "name": "Defend",
+     "type": "Skill",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 7 Block.",
+     "rarity": "Basic",
+     "is_upgraded": false,
+     "keywords": [
+      {
+       "name": "Block",
+       "description": "Until next turn, prevents damage."
+      }
+     ],
+     "index": 2,
+     "target_type": "Self",
+     "can_play": true,
+     "unplayable_reason": null
+    },
+    {
+     "id": "STRIKE_SILENT",
+     "name": "Strike",
+     "type": "Attack",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 17 damage.",
+     "rarity": "Basic",
+     "is_upgraded": false,
+     "keywords": [],
+     "index": 3,
+     "target_type": "AnyEnemy",
+     "can_play": true,
+     "unplayable_reason": null
+    },
+    {
+     "id": "DEFEND_SILENT",
+     "name": "Defend",
+     "type": "Skill",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 7 Block.",
+     "rarity": "Basic",
+     "is_upgraded": false,
+     "keywords": [
+      {
+       "name": "Block",
+       "description": "Until next turn, prevents damage."
+      }
+     ],
+     "index": 4,
+     "target_type": "Self",
+     "can_play": true,
+     "unplayable_reason": null
+    }
+   ],
+   "draw_pile_count": 3,
+   "discard_pile_count": 0,
+   "exhaust_pile_count": 15,
+   "draw_pile": [
+    {
+     "name": "Defend",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 7 Block."
+    },
+    {
+     "name": "Prepared",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Draw 1 card. Discard 1 card."
+    },
+    {
+     "name": "Reflex",
+     "cost": "3",
+     "star_cost": null,
+     "description": "Sly. Draw 2 cards."
+    }
+   ],
+   "discard_pile": [],
+   "exhaust_pile": [
+    {
+     "name": "Accuracy",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Shivs deal 4 additional damage."
+    },
+    {
+     "name": "Backstab+",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Innate. Deal 17 damage. Exhaust."
+    },
+    {
+     "name": "Survivor",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 8 Block. Discard 1 card."
+    },
+    {
+     "name": "Expose",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Remove all Artifact and Block from the enemy. Apply 2 Vulnerable. Exhaust."
+    },
+    {
+     "name": "Strike",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage."
+    },
+    {
+     "name": "Shiv",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 13 damage. Exhaust."
+    },
+    {
+     "name": "Shiv",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 13 damage. Exhaust."
+    },
+    {
+     "name": "Prepared",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Draw 1 card. Discard 1 card."
+    },
+    {
+     "name": "Neutralize",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 3 damage. Apply 1 Weak."
+    },
+    {
+     "name": "Backflip",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 5 Block. Draw 2 cards."
+    },
+    {
+     "name": "Shiv",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 16 damage. Exhaust."
+    },
+    {
+     "name": "Shiv",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 16 damage. Exhaust."
+    },
+    {
+     "name": "Defend",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 5 Block."
+    },
+    {
+     "name": "Leading Strike+",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage. Add 2 Shivs into your Hand."
+    },
+    {
+     "name": "Strike",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage."
+    }
+   ],
+   "gold": 171,
+   "status": [
+    {
+     "id": "STRENGTH_POWER",
+     "name": "Strength",
+     "amount": 11,
+     "type": "Buff",
+     "description": "Increases attack damage by 11.",
+     "keywords": []
+    },
+    {
+     "id": "DEXTERITY_POWER",
+     "name": "Dexterity",
+     "amount": 2,
+     "type": "Buff",
+     "description": "Increases Block gained from cards by 2.",
+     "keywords": [
+      {
+       "name": "Block",
+       "description": "Until next turn, prevents damage."
+      }
+     ]
+    },
+    {
+     "id": "AFTERIMAGE_POWER",
+     "name": "Afterimage",
+     "amount": 1,
+     "type": "Buff",
+     "description": "Whenever you play a card, gain 1 Block.",
+     "keywords": [
+      {
+       "name": "Block",
+       "description": "Until next turn, prevents damage."
+      }
+     ]
+    },
+    {
+     "id": "ACCURACY_POWER",
+     "name": "Accuracy",
+     "amount": 4,
+     "type": "Buff",
+     "description": "Shivs deal 4 additional damage.",
+     "keywords": []
+    }
+   ],
+   "relics": [
+    {
+     "id": "RING_OF_THE_SNAKE",
+     "name": "Ring of the Snake",
+     "description": "At the start of each combat, draw 2 additional cards.",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "GOLDEN_PEARL",
+     "name": "Golden Pearl",
+     "description": "Upon pickup, gain 150 Gold.",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "VAJRA",
+     "name": "Vajra",
+     "description": "Start each combat with 1 Strength.",
+     "counter": null,
+     "keywords": [
+      {
+       "name": "Strength",
+       "description": "Strength adds additional damage to Attacks."
+      }
+     ]
+    },
+    {
+     "id": "ODDLY_SMOOTH_STONE",
+     "name": "Oddly Smooth Stone",
+     "description": "Start each combat with 1 Dexterity.",
+     "counter": null,
+     "keywords": [
+      {
+       "name": "Dexterity",
+       "description": "Dexterity improves Block gained from cards."
+      }
+     ]
+    },
+    {
+     "id": "CENTENNIAL_PUZZLE",
+     "name": "Centennial Puzzle",
+     "description": "The first time you lose HP each combat, draw 3 cards.",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "TUNING_FORK",
+     "name": "Tuning Fork",
+     "description": "Every time you play 10 Skills, gain 7 Block.",
+     "counter": 1,
+     "keywords": [
+      {
+       "name": "Block",
+       "description": "Until next turn, prevents damage."
+      }
+     ]
+    },
+    {
+     "id": "SPARKLING_ROUGE",
+     "name": "Sparkling Rouge",
+     "description": "At the start of your 3rd turn, gain 1 Strength and 1 Dexterity.",
+     "counter": null,
+     "keywords": [
+      {
+       "name": "Strength",
+       "description": "Strength adds additional damage to Attacks."
+      },
+      {
+       "name": "Dexterity",
+       "description": "Dexterity improves Block gained from cards."
+      }
+     ]
+    },
+    {
+     "id": "TOASTY_MITTENS",
+     "name": "Toasty Mittens",
+     "description": "At the start of your turn, Exhaust the top card of your Draw Pile and gain 1 Strength.",
+     "counter": null,
+     "keywords": [
+      {
+       "name": "Exhaust",
+       "description": "Removed until the end of combat."
+      },
+      {
+       "name": "Strength",
+       "description": "Strength adds additional damage to Attacks."
+      }
+     ]
+    }
+   ],
+   "potions": [
+    {
+     "id": "STRENGTH_POTION",
+     "name": "Strength Potion",
+     "description": "Gain 2 Strength.",
+     "slot": 0,
+     "can_use_in_combat": true,
+     "target_type": "AnyPlayer",
+     "keywords": [
+      {
+       "name": "Strength",
+       "description": "Strength adds additional damage to Attacks."
+      }
+     ]
+    }
+   ],
+   "max_potion_slots": 3
+  },
+  "battle": {
+   "round": 9,
+   "turn": "player",
+   "is_play_phase": true,
+   "enemies": [
+    {
+     "entity_id": "TOUGH_EGG_0",
+     "combat_id": 9,
+     "name": "Hatchling",
+     "hp": 20,
+     "max_hp": 20,
+     "block": 0,
+     "status": [
+      {
+       "id": "MINION_POWER",
+       "name": "Minion",
+       "amount": 1,
+       "type": "Buff",
+       "description": "Minions abandon combat without their leader.",
+       "keywords": []
+      }
+     ],
+     "intents": [
+      {
+       "type": "Attack",
+       "label": "4",
+       "title": "Aggressive",
+       "description": "This enemy intends to Attack for 4 damage."
+      }
+     ]
+    },
+    {
+     "entity_id": "TOUGH_EGG_1",
+     "combat_id": 8,
+     "name": "Hatchling",
+     "hp": 21,
+     "max_hp": 21,
+     "block": 0,
+     "status": [
+      {
+       "id": "MINION_POWER",
+       "name": "Minion",
+       "amount": 1,
+       "type": "Buff",
+       "description": "Minions abandon combat without their leader.",
+       "keywords": []
+      }
+     ],
+     "intents": [
+      {
+       "type": "Attack",
+       "label": "4",
+       "title": "Aggressive",
+       "description": "This enemy intends to Attack for 4 damage."
+      }
+     ]
+    },
+    {
+     "entity_id": "OVICOPTER_0",
+     "combat_id": 1,
+     "name": "Ovicopter",
+     "hp": 51,
+     "max_hp": 125,
+     "block": 0,
+     "status": [],
+     "intents": [
+      {
+       "type": "Attack",
+       "label": "7",
+       "title": "Aggressive",
+       "description": "This enemy intends to Attack for 7 damage."
+      },
+      {
+       "type": "Debuff",
+       "label": "",
+       "title": "Strategic",
+       "description": "This enemy intends to apply a Debuff to you."
+      }
+     ]
+    }
+   ]
+  },
+  "run": {
+   "act": 2,
+   "floor": 21,
+   "ascension": 0
+  },
+  "state_type": "monster"
+ },
+ "logged_action": "play_card",
+ "logged_fields": {
+  "card_index": 0,
+  "target": "TOUGH_EGG_0"
+ }
+}

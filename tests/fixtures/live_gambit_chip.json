@@ -1,0 +1,219 @@
+{
+ "raw": {
+  "player": {
+   "character": "The Silent",
+   "hp": 69,
+   "max_hp": 70,
+   "block": 13,
+   "energy": 1,
+   "max_energy": 3,
+   "hand": [
+    {
+     "id": "DEFEND_SILENT",
+     "name": "Defend",
+     "type": "Skill",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 5 Block.",
+     "rarity": "Basic",
+     "is_upgraded": false,
+     "keywords": [
+      {
+       "name": "Block",
+       "description": "Until next turn, prevents damage."
+      }
+     ],
+     "index": 0,
+     "target_type": "Self",
+     "can_play": true,
+     "unplayable_reason": null
+    },
+    {
+     "id": "STRIKE_SILENT",
+     "name": "Strike",
+     "type": "Attack",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage.",
+     "rarity": "Basic",
+     "is_upgraded": false,
+     "keywords": [],
+     "index": 1,
+     "target_type": "AnyEnemy",
+     "can_play": true,
+     "unplayable_reason": null
+    }
+   ],
+   "draw_pile_count": 2,
+   "discard_pile_count": 10,
+   "exhaust_pile_count": 0,
+   "draw_pile": [
+    {
+     "name": "Neutralize",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 3 damage. Apply 1 Weak."
+    },
+    {
+     "name": "Strike",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage."
+    }
+   ],
+   "discard_pile": [
+    {
+     "name": "Flechettes",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 5 damage for each Skill in your Hand. (Hits 3 time)"
+    },
+    {
+     "name": "The Gambit",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Gain 50 Block. If you take unblocked attack damage this combat, die."
+    },
+    {
+     "name": "Strike",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage."
+    },
+    {
+     "name": "Strike",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage."
+    },
+    {
+     "name": "Defend",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 5 Block."
+    },
+    {
+     "name": "Defend",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 5 Block."
+    },
+    {
+     "name": "Strike",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage."
+    },
+    {
+     "name": "Defend",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 5 Block."
+    },
+    {
+     "name": "Survivor",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 8 Block. Discard 1 card."
+    },
+    {
+     "name": "Defend",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 5 Block."
+    }
+   ],
+   "exhaust_pile": [],
+   "gold": 119,
+   "status": [
+    {
+     "id": "THE_GAMBIT_POWER",
+     "name": "The Gambit",
+     "amount": 1,
+     "type": "Debuff",
+     "description": "If you take unblocked attack damage this combat, die.",
+     "keywords": []
+    }
+   ],
+   "relics": [
+    {
+     "id": "RING_OF_THE_SNAKE",
+     "name": "Ring of the Snake",
+     "description": "At the start of each combat, draw 2 additional cards.",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "LEAD_PAPERWEIGHT",
+     "name": "Lead Paperweight",
+     "description": "Upon pickup, choose 1 of 2 Colorless cards to add to your Deck.",
+     "counter": null,
+     "keywords": []
+    }
+   ],
+   "potions": [],
+   "max_potion_slots": 3
+  },
+  "battle": {
+   "round": 2,
+   "turn": "player",
+   "is_play_phase": true,
+   "enemies": [
+    {
+     "entity_id": "CORPSE_SLUG_0",
+     "combat_id": 1,
+     "name": "Corpse Slug",
+     "hp": 26,
+     "max_hp": 26,
+     "block": 0,
+     "status": [
+      {
+       "id": "RAVENOUS_POWER",
+       "name": "Ravenous",
+       "amount": 4,
+       "type": "Buff",
+       "description": "When an enemy dies, Corpse Slug immediately eats it, becoming Stunned and gaining 4 Strength.",
+       "keywords": [
+        {
+         "name": "Strength",
+         "description": "Strength adds additional damage to Attacks."
+        },
+        {
+         "name": "Stun",
+         "description": "Prevent the enemy from acting on its next turn."
+        }
+       ]
+      },
+      {
+       "id": "STRENGTH_POWER",
+       "name": "Strength",
+       "amount": 4,
+       "type": "Buff",
+       "description": "Increases attack damage by 4.",
+       "keywords": []
+      }
+     ],
+     "intents": [
+      {
+       "type": "Attack",
+       "label": "7x2",
+       "title": "Aggressive",
+       "description": "This enemy intends to Attack for 7 damage 2 times."
+      }
+     ]
+    }
+   ]
+  },
+  "run": {
+   "act": 1,
+   "floor": 3,
+   "ascension": 0
+  },
+  "state_type": "monster"
+ },
+ "logged_action": "play_card",
+ "logged_fields": {
+  "card_index": 1,
+  "target": "CORPSE_SLUG_0"
+ }
+}

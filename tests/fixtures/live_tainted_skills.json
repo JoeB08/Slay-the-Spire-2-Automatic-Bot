@@ -1,0 +1,414 @@
+{
+ "raw": {
+  "player": {
+   "character": "The Silent",
+   "hp": 68,
+   "max_hp": 70,
+   "block": 0,
+   "energy": 2,
+   "max_energy": 3,
+   "hand": [
+    {
+     "id": "DEFEND_SILENT",
+     "name": "Defend+",
+     "type": "Skill",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 8 Block. Gain 2 Tainted.",
+     "rarity": "Basic",
+     "is_upgraded": true,
+     "keywords": [
+      {
+       "name": "Tainted",
+       "description": "Gain 2 Tainted when played."
+      },
+      {
+       "name": "Block",
+       "description": "Until next turn, prevents damage."
+      }
+     ],
+     "index": 0,
+     "target_type": "Self",
+     "can_play": true,
+     "unplayable_reason": null
+    },
+    {
+     "id": "ACROBATICS",
+     "name": "Acrobatics+",
+     "type": "Skill",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Draw 4 cards. Discard 1 card. Gain 2 Tainted.",
+     "rarity": "Uncommon",
+     "is_upgraded": true,
+     "keywords": [
+      {
+       "name": "Tainted",
+       "description": "Gain 2 Tainted when played."
+      }
+     ],
+     "index": 1,
+     "target_type": "Self",
+     "can_play": true,
+     "unplayable_reason": null
+    },
+    {
+     "id": "BACKFLIP",
+     "name": "Backflip+",
+     "type": "Skill",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 8 Block. Draw 2 cards. Gain 2 Tainted.",
+     "rarity": "Common",
+     "is_upgraded": true,
+     "keywords": [
+      {
+       "name": "Tainted",
+       "description": "Gain 2 Tainted when played."
+      },
+      {
+       "name": "Block",
+       "description": "Until next turn, prevents damage."
+      }
+     ],
+     "index": 2,
+     "target_type": "Self",
+     "can_play": true,
+     "unplayable_reason": null
+    },
+    {
+     "id": "DEFEND_SILENT",
+     "name": "Defend+",
+     "type": "Skill",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 8 Block. Gain 2 Tainted.",
+     "rarity": "Basic",
+     "is_upgraded": true,
+     "keywords": [
+      {
+       "name": "Tainted",
+       "description": "Gain 2 Tainted when played."
+      },
+      {
+       "name": "Block",
+       "description": "Until next turn, prevents damage."
+      }
+     ],
+     "index": 3,
+     "target_type": "Self",
+     "can_play": true,
+     "unplayable_reason": null
+    }
+   ],
+   "draw_pile_count": 17,
+   "discard_pile_count": 0,
+   "exhaust_pile_count": 3,
+   "draw_pile": [
+    {
+     "name": "Defend",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 5 Block. Gain 2 Tainted."
+    },
+    {
+     "name": "Defend",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 5 Block. Gain 2 Tainted."
+    },
+    {
+     "name": "Neutralize",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 3 damage. Apply 1 Weak."
+    },
+    {
+     "name": "Strike",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage."
+    },
+    {
+     "name": "Strike",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage."
+    },
+    {
+     "name": "Survivor",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 8 Block. Discard 1 card. Gain 2 Tainted."
+    },
+    {
+     "name": "Blade Dance",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Add 3 Shivs into your Hand. Gain 2 Tainted. Exhaust."
+    },
+    {
+     "name": "Leading Strike",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 3 damage. Add 2 Shivs into your Hand."
+    },
+    {
+     "name": "Acrobatics",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Draw 3 cards. Discard 1 card. Gain 2 Tainted."
+    },
+    {
+     "name": "Escape Plan",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Draw 1 card. If you draw a Skill, gain 3 Block. Gain 2 Tainted."
+    },
+    {
+     "name": "Escape Plan",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Draw 1 card. If you draw a Skill, gain 3 Block. Gain 2 Tainted."
+    },
+    {
+     "name": "Footwork",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 2 Dexterity."
+    },
+    {
+     "name": "Leg Sweep",
+     "cost": "2",
+     "star_cost": null,
+     "description": "Apply 2 Weak. Gain 11 Block. Gain 2 Tainted."
+    },
+    {
+     "name": "Noxious Fumes",
+     "cost": "1",
+     "star_cost": null,
+     "description": "At the start of your turn, apply 2 Poison to ALL enemies."
+    },
+    {
+     "name": "Echoing Slash",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 10 damage to ALL enemies. Repeat this effect for each enemy killed."
+    },
+    {
+     "name": "Echoing Slash+",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 13 damage to ALL enemies. Repeat this effect for each enemy killed."
+    },
+    {
+     "name": "Murder+",
+     "cost": "2",
+     "star_cost": null,
+     "description": "Deal 1 damage. Deals 1 additional damage for each card drawn this combat."
+    }
+   ],
+   "discard_pile": [],
+   "exhaust_pile": [
+    {
+     "name": "Strike",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage."
+    },
+    {
+     "name": "Assassinate+",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Innate. Deal 14 damage. Apply 2 Vulnerable. Exhaust."
+    },
+    {
+     "name": "Backstab+",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Innate. Deal 24 damage. Exhaust."
+    }
+   ],
+   "gold": 12,
+   "status": [
+    {
+     "id": "STRENGTH_POWER",
+     "name": "Strength",
+     "amount": 1,
+     "type": "Buff",
+     "description": "Increases attack damage by 1.",
+     "keywords": []
+    },
+    {
+     "id": "WELL_LAID_PLANS_POWER",
+     "name": "Well-Laid Plans",
+     "amount": 2,
+     "type": "Buff",
+     "description": "At the end of your turn, Retain up to 2 cards.",
+     "keywords": []
+    }
+   ],
+   "relics": [
+    {
+     "id": "RING_OF_THE_SNAKE",
+     "name": "Ring of the Snake",
+     "description": "At the start of each combat, draw 2 additional cards.",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "PHIAL_HOLSTER",
+     "name": "Phial Holster",
+     "description": "Upon pickup, gain 1 potion slot and procure 2 random potions.",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "CANDELABRA",
+     "name": "Candelabra",
+     "description": "At the start of your 2nd turn, gain [silent_energy_icon.png][silent_energy_icon.png].",
+     "counter": null,
+     "keywords": [
+      {
+       "name": "Energy",
+       "description": "Energy is used to play cards from your Hand."
+      }
+     ]
+    },
+    {
+     "id": "PENDULUM",
+     "name": "Pendulum",
+     "description": "Every 3 turns, draw 1 card.",
+     "counter": 1,
+     "keywords": []
+    },
+    {
+     "id": "GAMBLING_CHIP",
+     "name": "Gambling Chip",
+     "description": "At the start of each combat, discard any number of cards then draw that many.",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "TOASTY_MITTENS",
+     "name": "Toasty Mittens",
+     "description": "At the start of your turn, Exhaust the top card of your Draw Pile and gain 1 Strength.",
+     "counter": null,
+     "keywords": [
+      {
+       "name": "Exhaust",
+       "description": "Removed until the end of combat."
+      },
+      {
+       "name": "Strength",
+       "description": "Strength adds additional damage to Attacks."
+      }
+     ]
+    },
+    {
+     "id": "BELLOWS",
+     "name": "Bellows",
+     "description": "The first Hand you draw each combat is Upgraded.",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "MEMBERSHIP_CARD",
+     "name": "Membership Card",
+     "description": "50% discount on all products!",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "NUNCHAKU",
+     "name": "Nunchaku",
+     "description": "Every time you play 10 Attacks, gain [silent_energy_icon.png].",
+     "counter": 6,
+     "keywords": [
+      {
+       "name": "Energy",
+       "description": "Energy is used to play cards from your Hand."
+      }
+     ]
+    },
+    {
+     "id": "ORICHALCUM",
+     "name": "Orichalcum",
+     "description": "If you end your turn without Block, gain 6 Block.",
+     "counter": null,
+     "keywords": [
+      {
+       "name": "Block",
+       "description": "Until next turn, prevents damage."
+      }
+     ]
+    },
+    {
+     "id": "BLOOD_VIAL",
+     "name": "Blood Vial",
+     "description": "At the start of each combat, heal 2 HP.",
+     "counter": null,
+     "keywords": []
+    }
+   ],
+   "potions": [],
+   "max_potion_slots": 4
+  },
+  "battle": {
+   "round": 1,
+   "turn": "player",
+   "is_play_phase": true,
+   "enemies": [
+    {
+     "entity_id": "INFESTED_PRISM_0",
+     "combat_id": 1,
+     "name": "Infested Prism",
+     "hp": 123,
+     "max_hp": 161,
+     "block": 0,
+     "status": [
+      {
+       "id": "VITAL_SPARK_POWER",
+       "name": "Vital Spark",
+       "amount": 2,
+       "type": "Buff",
+       "description": "ALL Skills are Tainted 2.",
+       "keywords": [
+        {
+         "name": "Tainted",
+         "description": "Gain 2 Tainted when played."
+        }
+       ]
+      },
+      {
+       "id": "VULNERABLE_POWER",
+       "name": "Vulnerable",
+       "amount": 2,
+       "type": "Debuff",
+       "description": "Receive 50% more damage from Attacks for 2 turns.",
+       "keywords": []
+      }
+     ],
+     "intents": [
+      {
+       "type": "Attack",
+       "label": "15",
+       "title": "Aggressive",
+       "description": "This enemy intends to Attack for 15 damage."
+      }
+     ]
+    }
+   ]
+  },
+  "run": {
+   "act": 2,
+   "floor": 30,
+   "ascension": 0
+  },
+  "state_type": "elite"
+ },
+ "logged_action": "play_card",
+ "logged_fields": {
+  "card_index": 0
+ }
+}

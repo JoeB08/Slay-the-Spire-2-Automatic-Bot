@@ -1,0 +1,141 @@
+{
+ "state_type": "bundle_select",
+ "bundle_select": {
+  "screen_type": "bundle",
+  "prompt": "Choose a bundle.",
+  "bundles": [
+   {
+    "index": 0,
+    "card_count": 3,
+    "cards": [
+     {
+      "id": "DEADLY_POISON",
+      "name": "Deadly Poison",
+      "type": "Skill",
+      "cost": "1",
+      "star_cost": null,
+      "description": "Apply 5 Poison.",
+      "rarity": "Common",
+      "is_upgraded": false,
+      "keywords": [
+       {
+        "name": "Poison",
+        "description": "Poisoned creatures lose HP at the start of their turn. Each turn, Poison is reduced by 1."
+       }
+      ],
+      "index": 0
+     },
+     {
+      "id": "BLADE_DANCE",
+      "name": "Blade Dance",
+      "type": "Skill",
+      "cost": "1",
+      "star_cost": null,
+      "description": "Add 3 Shivs into your Hand. Exhaust.",
+      "rarity": "Common",
+      "is_upgraded": false,
+      "keywords": [
+       {
+        "name": "Shiv",
+        "description": "Deal 4 damage. Exhaust."
+       },
+       {
+        "name": "Exhaust",
+        "description": "Removed until the end of combat."
+       }
+      ],
+      "index": 1
+     },
+     {
+      "id": "ACROBATICS",
+      "name": "Acrobatics",
+      "type": "Skill",
+      "cost": "1",
+      "star_cost": null,
+      "description": "Draw 3 cards. Discard 1 card.",
+      "rarity": "Uncommon",
+      "is_upgraded": false,
+      "keywords": [],
+      "index": 2
+     }
+    ]
+   },
+   {
+    "index": 1,
+    "card_count": 3,
+    "cards": [
+     {
+      "id": "SUCKER_PUNCH",
+      "name": "Sucker Punch",
+      "type": "Attack",
+      "cost": "1",
+      "star_cost": null,
+      "description": "Deal 8 damage. Apply 1 Weak.",
+      "rarity": "Common",
+      "is_upgraded": false,
+      "keywords": [
+       {
+        "name": "Weak",
+        "description": "Weakened creatures deal 25% less damage with Attacks."
+       }
+      ],
+      "index": 0
+     },
+     {
+      "id": "POISONED_STAB",
+      "name": "Poisoned Stab",
+      "type": "Attack",
+      "cost": "1",
+      "star_cost": null,
+      "description": "Deal 6 damage. Apply 3 Poison.",
+      "rarity": "Common",
+      "is_upgraded": false,
+      "keywords": [
+       {
+        "name": "Poison",
+        "description": "Poisoned creatures lose HP at the start of their turn. Each turn, Poison is reduced by 1."
+       }
+      ],
+      "index": 1
+     },
+     {
+      "id": "ESCAPE_PLAN",
+      "name": "Escape Plan",
+      "type": "Skill",
+      "cost": "0",
+      "star_cost": null,
+      "description": "Draw 1 card. If you draw a Skill, gain 3 Block.",
+      "rarity": "Uncommon",
+      "is_upgraded": false,
+      "keywords": [
+       {
+        "name": "Block",
+        "description": "Until next turn, prevents damage."
+       }
+      ],
+      "index": 2
+     }
+    ]
+   }
+  ],
+  "preview_showing": false,
+  "preview_cards": [],
+  "can_cancel": false,
+  "can_confirm": false
+ },
+ "run": {
+  "act": 1,
+  "floor": 1
+ },
+ "player": {
+  "hp": 70,
+  "max_hp": 70,
+  "gold": 99,
+  "potions": [],
+  "max_potion_slots": 3,
+  "hand": [],
+  "draw_pile": [],
+  "discard_pile": [],
+  "exhaust_pile": []
+ }
+}

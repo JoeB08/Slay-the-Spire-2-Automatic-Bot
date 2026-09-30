@@ -1,0 +1,600 @@
+{
+ "raw": {
+  "player": {
+   "character": "The Silent",
+   "hp": 3,
+   "max_hp": 85,
+   "block": 0,
+   "energy": 3,
+   "max_energy": 3,
+   "hand": [
+    {
+     "id": "HAZE",
+     "name": "Haze",
+     "type": "Skill",
+     "cost": "3",
+     "star_cost": null,
+     "description": "Sly. Apply 5 Poison to ALL enemies.",
+     "rarity": "Uncommon",
+     "is_upgraded": false,
+     "keywords": [
+      {
+       "name": "Poison",
+       "description": "Poisoned creatures lose HP at the start of their turn. Each turn, Poison is reduced by 1."
+      },
+      {
+       "name": "Sly",
+       "description": "If this card is discarded from your Hand before the end of your turn, play it for free."
+      }
+     ],
+     "index": 0,
+     "target_type": "AllEnemies",
+     "can_play": true,
+     "unplayable_reason": null
+    },
+    {
+     "id": "STORM_OF_STEEL",
+     "name": "Storm of Steel",
+     "type": "Skill",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Discard your Hand. Add 1 Shiv into your Hand for each card discarded.",
+     "rarity": "Rare",
+     "is_upgraded": false,
+     "keywords": [
+      {
+       "name": "Shiv",
+       "description": "Deal 4 damage. Exhaust."
+      }
+     ],
+     "index": 1,
+     "target_type": "Self",
+     "can_play": true,
+     "unplayable_reason": null
+    },
+    {
+     "id": "DAZED",
+     "name": "Dazed",
+     "type": "Status",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Unplayable. Ethereal.",
+     "rarity": "Status",
+     "is_upgraded": false,
+     "keywords": [
+      {
+       "name": "Ethereal",
+       "description": "If this card is in your Hand at the end of this turn, it is Exhausted."
+      },
+      {
+       "name": "Exhaust",
+       "description": "Removed until the end of combat."
+      },
+      {
+       "name": "Unplayable",
+       "description": "Unplayable cards cannot be played."
+      }
+     ],
+     "index": 2,
+     "target_type": "None",
+     "can_play": false,
+     "unplayable_reason": "HasUnplayableKeyword"
+    },
+    {
+     "id": "DAZED",
+     "name": "Dazed",
+     "type": "Status",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Unplayable. Ethereal.",
+     "rarity": "Status",
+     "is_upgraded": false,
+     "keywords": [
+      {
+       "name": "Ethereal",
+       "description": "If this card is in your Hand at the end of this turn, it is Exhausted."
+      },
+      {
+       "name": "Exhaust",
+       "description": "Removed until the end of combat."
+      },
+      {
+       "name": "Unplayable",
+       "description": "Unplayable cards cannot be played."
+      }
+     ],
+     "index": 3,
+     "target_type": "None",
+     "can_play": false,
+     "unplayable_reason": "HasUnplayableKeyword"
+    },
+    {
+     "id": "DAZED",
+     "name": "Dazed",
+     "type": "Status",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Unplayable. Ethereal.",
+     "rarity": "Status",
+     "is_upgraded": false,
+     "keywords": [
+      {
+       "name": "Ethereal",
+       "description": "If this card is in your Hand at the end of this turn, it is Exhausted."
+      },
+      {
+       "name": "Exhaust",
+       "description": "Removed until the end of combat."
+      },
+      {
+       "name": "Unplayable",
+       "description": "Unplayable cards cannot be played."
+      }
+     ],
+     "index": 4,
+     "target_type": "None",
+     "can_play": false,
+     "unplayable_reason": "HasUnplayableKeyword"
+    }
+   ],
+   "draw_pile_count": 26,
+   "discard_pile_count": 2,
+   "exhaust_pile_count": 19,
+   "draw_pile": [
+    {
+     "name": "Defend",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 5 Block."
+    },
+    {
+     "name": "Defend+",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 8 Block."
+    },
+    {
+     "name": "Defend",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 5 Block."
+    },
+    {
+     "name": "Defend",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 5 Block."
+    },
+    {
+     "name": "Defend",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 5 Block."
+    },
+    {
+     "name": "Neutralize+",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 4 damage. Apply 2 Weak."
+    },
+    {
+     "name": "Strike",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage."
+    },
+    {
+     "name": "Strike+",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 9 damage."
+    },
+    {
+     "name": "Strike",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage."
+    },
+    {
+     "name": "Strike+",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 9 damage."
+    },
+    {
+     "name": "Survivor+",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 11 Block. Discard 1 card."
+    },
+    {
+     "name": "Backflip+",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 8 Block. Draw 2 cards."
+    },
+    {
+     "name": "Cloak and Dagger+",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 6 Block. Add 2 Shivs into your Hand."
+    },
+    {
+     "name": "Dagger Throw+",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 12 damage. Draw 1 card. Discard 1 card."
+    },
+    {
+     "name": "Hand Trick",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 7 Block. Add Sly to a Skill in your Hand this turn."
+    },
+    {
+     "name": "Shadowmeld+",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Double your Block gain this turn."
+    },
+    {
+     "name": "Storm of Steel+",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Discard your Hand. Add 1 Shiv+ into your Hand for each card discarded."
+    },
+    {
+     "name": "Peck",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 2 damage 3 times."
+    },
+    {
+     "name": "Shiv",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 4 damage. Exhaust."
+    },
+    {
+     "name": "Dazed",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Unplayable. Ethereal."
+    },
+    {
+     "name": "Dazed",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Unplayable. Ethereal."
+    },
+    {
+     "name": "Dazed",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Unplayable. Ethereal."
+    },
+    {
+     "name": "Dazed",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Unplayable. Ethereal."
+    },
+    {
+     "name": "Dazed",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Unplayable. Ethereal."
+    },
+    {
+     "name": "Dazed",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Unplayable. Ethereal."
+    },
+    {
+     "name": "Dazed",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Unplayable. Ethereal."
+    }
+   ],
+   "discard_pile": [
+    {
+     "name": "Cloak and Dagger+",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 8 Block. Add 2 Shivs into your Hand."
+    },
+    {
+     "name": "Cloak and Dagger+",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 8 Block. Add 2 Shivs into your Hand."
+    }
+   ],
+   "exhaust_pile": [
+    {
+     "name": "Shiv+",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 6 damage. Exhaust."
+    },
+    {
+     "name": "Expose+",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Remove all Artifact and Block from the enemy. Apply 3 Vulnerable. Exhaust."
+    },
+    {
+     "name": "Shiv+",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 6 damage. Exhaust."
+    },
+    {
+     "name": "Dazed",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Unplayable. Ethereal."
+    },
+    {
+     "name": "Dazed",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Unplayable. Ethereal."
+    },
+    {
+     "name": "Shiv+",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 6 damage. Exhaust."
+    },
+    {
+     "name": "Shiv+",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 6 damage. Exhaust."
+    },
+    {
+     "name": "Shiv+",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 6 damage. Exhaust."
+    },
+    {
+     "name": "Dazed",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Unplayable. Ethereal."
+    },
+    {
+     "name": "Dazed",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Unplayable. Ethereal."
+    },
+    {
+     "name": "Dazed",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Unplayable. Ethereal."
+    },
+    {
+     "name": "Dazed",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Unplayable. Ethereal."
+    },
+    {
+     "name": "Shiv+",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 6 damage. Exhaust."
+    },
+    {
+     "name": "Shiv+",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 6 damage. Exhaust."
+    },
+    {
+     "name": "Shiv+",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 6 damage. Exhaust."
+    },
+    {
+     "name": "Shiv+",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 6 damage. Exhaust."
+    },
+    {
+     "name": "Dazed",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Unplayable. Ethereal."
+    },
+    {
+     "name": "Dazed",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Unplayable. Ethereal."
+    },
+    {
+     "name": "Dazed",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Unplayable. Ethereal."
+    }
+   ],
+   "gold": 71,
+   "status": [
+    {
+     "id": "ACCURACY_POWER",
+     "name": "Accuracy",
+     "amount": 6,
+     "type": "Buff",
+     "description": "Shivs deal 6 additional damage.",
+     "keywords": []
+    },
+    {
+     "id": "DEXTERITY_POWER",
+     "name": "Dexterity",
+     "amount": 2,
+     "type": "Buff",
+     "description": "Increases Block gained from cards by 2.",
+     "keywords": [
+      {
+       "name": "Block",
+       "description": "Until next turn, prevents damage."
+      }
+     ]
+    },
+    {
+     "id": "STRENGTH_POWER",
+     "name": "Strength",
+     "amount": 2,
+     "type": "Buff",
+     "description": "Increases attack damage by 2.",
+     "keywords": []
+    }
+   ],
+   "relics": [
+    {
+     "id": "RING_OF_THE_SNAKE",
+     "name": "Ring of the Snake",
+     "description": "At the start of each combat, draw 2 additional cards.",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "STONE_HUMIDIFIER",
+     "name": "Stone Humidifier",
+     "description": "Whenever you Rest at a Rest Site, raise your Max HP by 5.",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "WHETSTONE",
+     "name": "Whetstone",
+     "description": "Upon pickup, Upgrade 2 random Attacks.",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "BLOOD_VIAL",
+     "name": "Blood Vial",
+     "description": "At the start of each combat, heal 2 HP.",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "RAZOR_TOOTH",
+     "name": "Razor Tooth",
+     "description": "Every time you play an Attack or Skill, Upgrade it for the remainder of combat.",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "SNECKO_SKULL",
+     "name": "Snecko Skull",
+     "description": "Whenever you apply Poison, apply an additional 1 Poison.",
+     "counter": null,
+     "keywords": [
+      {
+       "name": "Poison",
+       "description": "Poisoned creatures lose HP at the start of their turn. Each turn, Poison is reduced by 1."
+      }
+     ]
+    },
+    {
+     "id": "PAELS_WING",
+     "name": "Pael's Wing",
+     "description": "You may sacrifice card rewards to Pael. Every 2 sacrifices, obtain a Relic.",
+     "counter": 0,
+     "keywords": []
+    },
+    {
+     "id": "BONE_TEA",
+     "name": "Bone Tea",
+     "description": "At the start of the next 0 combats, Upgrade your starting hand.",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "LAVA_LAMP",
+     "name": "Lava Lamp",
+     "description": "At the end of combat, Upgrade all card rewards if you took no damage.",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "MEAL_TICKET",
+     "name": "Meal Ticket",
+     "description": "Whenever you enter a shop room, heal 15 HP.",
+     "counter": null,
+     "keywords": []
+    }
+   ],
+   "potions": [],
+   "max_potion_slots": 3
+  },
+  "battle": {
+   "round": 7,
+   "turn": "player",
+   "is_play_phase": true,
+   "enemies": [
+    {
+     "entity_id": "ENTOMANCER_0",
+     "combat_id": 1,
+     "name": "Entomancer",
+     "hp": 8,
+     "max_hp": 145,
+     "block": 0,
+     "status": [
+      {
+       "id": "PERSONAL_HIVE_POWER",
+       "name": "Personal Hive",
+       "amount": 3,
+       "type": "Buff",
+       "description": "Whenever this enemy is hit by an Attack, add 3 Dazed into your Draw Pile.",
+       "keywords": [
+        {
+         "name": "Dazed",
+         "description": "Unplayable. Ethereal."
+        }
+       ]
+      },
+      {
+       "id": "STRENGTH_POWER",
+       "name": "Strength",
+       "amount": 2,
+       "type": "Buff",
+       "description": "Increases attack damage by 2.",
+       "keywords": []
+      }
+     ],
+     "intents": [
+      {
+       "type": "Attack",
+       "label": "5x7",
+       "title": "Aggressive",
+       "description": "This enemy intends to Attack for 5 damage 7 times."
+      }
+     ]
+    }
+   ]
+  },
+  "run": {
+   "act": 2,
+   "floor": 27,
+   "ascension": 0
+  },
+  "state_type": "elite"
+ },
+ "logged_action": "play_card",
+ "logged_fields": {
+  "card_index": 0
+ }
+}

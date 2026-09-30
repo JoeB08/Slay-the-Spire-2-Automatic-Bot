@@ -1,0 +1,341 @@
+{
+ "raw": {
+  "player": {
+   "character": "The Silent",
+   "hp": 65,
+   "max_hp": 70,
+   "block": 0,
+   "energy": 3,
+   "max_energy": 3,
+   "hand": [
+    {
+     "id": "SURVIVOR",
+     "name": "Survivor",
+     "type": "Skill",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 10 Block. Discard 1 card.",
+     "rarity": "Basic",
+     "is_upgraded": false,
+     "keywords": [
+      {
+       "name": "Block",
+       "description": "Until next turn, prevents damage."
+      }
+     ],
+     "index": 0,
+     "target_type": "Self",
+     "can_play": true,
+     "unplayable_reason": null
+    },
+    {
+     "id": "STRIKE_SILENT",
+     "name": "Strike+",
+     "type": "Attack",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 9 damage.",
+     "rarity": "Basic",
+     "is_upgraded": true,
+     "keywords": [],
+     "index": 1,
+     "target_type": "AnyEnemy",
+     "can_play": true,
+     "unplayable_reason": null
+    },
+    {
+     "id": "DEFEND_SILENT",
+     "name": "Defend",
+     "type": "Skill",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 7 Block.",
+     "rarity": "Basic",
+     "is_upgraded": false,
+     "keywords": [
+      {
+       "name": "Block",
+       "description": "Until next turn, prevents damage."
+      }
+     ],
+     "index": 2,
+     "target_type": "Self",
+     "can_play": true,
+     "unplayable_reason": null
+    },
+    {
+     "id": "STRIKE_SILENT",
+     "name": "Strike",
+     "type": "Attack",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage.",
+     "rarity": "Basic",
+     "is_upgraded": false,
+     "keywords": [],
+     "index": 3,
+     "target_type": "AnyEnemy",
+     "can_play": true,
+     "unplayable_reason": null
+    },
+    {
+     "id": "TACTICIAN",
+     "name": "Tactician",
+     "type": "Skill",
+     "cost": "3",
+     "star_cost": null,
+     "description": "Sly. Gain [silent_energy_icon.png].",
+     "rarity": "Uncommon",
+     "is_upgraded": false,
+     "keywords": [
+      {
+       "name": "Energy",
+       "description": "Energy is used to play cards from your Hand."
+      },
+      {
+       "name": "Sly",
+       "description": "If this card is discarded from your Hand before the end of your turn, play it for free."
+      }
+     ],
+     "index": 4,
+     "target_type": "Self",
+     "can_play": true,
+     "unplayable_reason": null
+    }
+   ],
+   "draw_pile_count": 1,
+   "discard_pile_count": 12,
+   "exhaust_pile_count": 2,
+   "draw_pile": [
+    {
+     "name": "Ricochet",
+     "cost": "2",
+     "star_cost": null,
+     "description": "Sly. Deal 3 damage to a random enemy 4 times."
+    }
+   ],
+   "discard_pile": [
+    {
+     "name": "Backflip",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 7 Block. Draw 2 cards."
+    },
+    {
+     "name": "Defend",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 7 Block."
+    },
+    {
+     "name": "Assassinate+",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Innate. Deal 13 damage. Apply 2 Vulnerable. Exhaust."
+    },
+    {
+     "name": "Dash+",
+     "cost": "2",
+     "star_cost": null,
+     "description": "Gain 13 Block. Deal 13 damage."
+    },
+    {
+     "name": "Tactician+",
+     "cost": "3",
+     "star_cost": null,
+     "description": "Sly. Gain [silent_energy_icon.png][silent_energy_icon.png]."
+    },
+    {
+     "name": "Strike+",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 9 damage."
+    },
+    {
+     "name": "Defend",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 5 Block."
+    },
+    {
+     "name": "Strike",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage."
+    },
+    {
+     "name": "Defend",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 7 Block."
+    },
+    {
+     "name": "Defend",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 7 Block."
+    },
+    {
+     "name": "Leg Sweep",
+     "cost": "2",
+     "star_cost": null,
+     "description": "Apply 2 Weak. Gain 11 Block."
+    },
+    {
+     "name": "Neutralize",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 3 damage. Apply 1 Weak."
+    }
+   ],
+   "exhaust_pile": [
+    {
+     "name": "Piercing Wail",
+     "cost": "1",
+     "star_cost": null,
+     "description": "ALL enemies lose 6 Strength this turn. Exhaust."
+    },
+    {
+     "name": "Piercing Wail",
+     "cost": "1",
+     "star_cost": null,
+     "description": "ALL enemies lose 6 Strength this turn. Exhaust."
+    }
+   ],
+   "gold": 205,
+   "status": [
+    {
+     "id": "DEXTERITY_POWER",
+     "name": "Dexterity",
+     "amount": 2,
+     "type": "Buff",
+     "description": "Increases Block gained from cards by 2.",
+     "keywords": [
+      {
+       "name": "Block",
+       "description": "Until next turn, prevents damage."
+      }
+     ]
+    }
+   ],
+   "relics": [
+    {
+     "id": "RING_OF_THE_SNAKE",
+     "name": "Ring of the Snake",
+     "description": "At the start of each combat, draw 2 additional cards.",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "ARCANE_SCROLL",
+     "name": "Arcane Scroll",
+     "description": "Upon pickup, obtain a random Rare Card to add to your Deck.",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "WHETSTONE",
+     "name": "Whetstone",
+     "description": "Upon pickup, Upgrade 2 random Attacks.",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "LETTER_OPENER",
+     "name": "Letter Opener",
+     "description": "Every time you play 3 Skills in a single turn, deal 5 damage to ALL enemies.",
+     "counter": 0,
+     "keywords": []
+    },
+    {
+     "id": "RED_MASK",
+     "name": "Red Mask",
+     "description": "At the start of each combat, apply 1 Weak to ALL enemies.",
+     "counter": null,
+     "keywords": [
+      {
+       "name": "Weak",
+       "description": "Weakened creatures deal 25% less damage with Attacks."
+      }
+     ]
+    }
+   ],
+   "potions": [
+    {
+     "id": "DEXTERITY_POTION",
+     "name": "Dexterity Potion",
+     "description": "Gain 2 Dexterity.",
+     "slot": 1,
+     "can_use_in_combat": true,
+     "target_type": "AnyPlayer",
+     "keywords": [
+      {
+       "name": "Dexterity",
+       "description": "Dexterity improves Block gained from cards."
+      }
+     ]
+    }
+   ],
+   "max_potion_slots": 3
+  },
+  "battle": {
+   "round": 3,
+   "turn": "player",
+   "is_play_phase": true,
+   "enemies": [
+    {
+     "entity_id": "LAGAVULIN_MATRIARCH_0",
+     "combat_id": 1,
+     "name": "Lagavulin Matriarch",
+     "hp": 222,
+     "max_hp": 222,
+     "block": 11,
+     "status": [
+      {
+       "id": "PLATING_POWER",
+       "name": "Plating",
+       "amount": 11,
+       "type": "Buff",
+       "description": "At the end of your turn, gain 11 Block. Plating is reduced by 1 at the start of your turn.",
+       "keywords": [
+        {
+         "name": "Block",
+         "description": "Until next turn, prevents damage."
+        }
+       ]
+      },
+      {
+       "id": "ASLEEP_POWER",
+       "name": "Asleep",
+       "amount": 1,
+       "type": "Buff",
+       "description": "Awakens upon losing HP or next turn.",
+       "keywords": []
+      }
+     ],
+     "intents": [
+      {
+       "type": "Sleep",
+       "label": "",
+       "title": "Sleeping",
+       "description": "This enemy is doing nothing this turn."
+      }
+     ]
+    }
+   ]
+  },
+  "run": {
+   "act": 1,
+   "floor": 17,
+   "ascension": 0
+  },
+  "state_type": "boss"
+ },
+ "logged": {
+  "action": "play_card",
+  "fields": {
+   "card_index": 0
+  }
+ },
+ "note": "Set 4 run 3: Lagavulin Matriarch's last asleep turn (Asleep 1, 11 Block); the bot spent it on Survivor and two Defends with Strike+ and Strike in hand."
+}

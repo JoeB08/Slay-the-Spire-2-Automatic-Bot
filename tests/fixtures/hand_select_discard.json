@@ -1,0 +1,289 @@
+{
+  "state_type": "hand_select",
+  "hand_select": {
+    "mode": "simple_select",
+    "prompt": "Choose a card to Discard.",
+    "cards": [
+      {
+        "id": "SLIMED",
+        "name": "Slimed",
+        "type": "Status",
+        "cost": "1",
+        "star_cost": null,
+        "description": "Draw 1 card. Exhaust.",
+        "rarity": "Status",
+        "is_upgraded": false,
+        "keywords": [
+          {
+            "name": "Exhaust",
+            "description": "Removed until the end of combat."
+          }
+        ],
+        "index": 0
+      },
+      {
+        "id": "STRIKE_SILENT",
+        "name": "Strike",
+        "type": "Attack",
+        "cost": "1",
+        "star_cost": null,
+        "description": "Deal 6 damage.",
+        "rarity": "Basic",
+        "is_upgraded": false,
+        "keywords": [],
+        "index": 1
+      },
+      {
+        "id": "STRIKE_SILENT",
+        "name": "Strike",
+        "type": "Attack",
+        "cost": "1",
+        "star_cost": null,
+        "description": "Deal 6 damage.",
+        "rarity": "Basic",
+        "is_upgraded": false,
+        "keywords": [],
+        "index": 2
+      }
+    ],
+    "selected_cards": [
+      {
+        "index": 0,
+        "name": "Strike"
+      }
+    ],
+    "can_confirm": true
+  },
+  "battle": {
+    "round": 5,
+    "turn": "player",
+    "is_play_phase": true,
+    "enemies": [
+      {
+        "entity_id": "LEAF_SLIME_M_0",
+        "combat_id": 2,
+        "name": "Leaf Slime (M)",
+        "hp": 26,
+        "max_hp": 32,
+        "block": 0,
+        "status": [],
+        "intents": [
+          {
+            "type": "StatusCard",
+            "label": "2",
+            "title": "Strategic",
+            "description": "This enemy intends to give you 2 Status cards."
+          }
+        ]
+      }
+    ]
+  },
+  "run": {
+    "act": 1,
+    "floor": 2,
+    "ascension": 0
+  },
+  "player": {
+    "character": "The Silent",
+    "hp": 65,
+    "max_hp": 70,
+    "block": 8,
+    "energy": 2,
+    "max_energy": 3,
+    "hand": [
+      {
+        "id": "SLIMED",
+        "name": "Slimed",
+        "type": "Status",
+        "cost": "1",
+        "star_cost": null,
+        "description": "Draw 1 card. Exhaust.",
+        "rarity": "Status",
+        "is_upgraded": false,
+        "keywords": [
+          {
+            "name": "Exhaust",
+            "description": "Removed until the end of combat."
+          }
+        ],
+        "index": 0,
+        "target_type": "None",
+        "can_play": true,
+        "unplayable_reason": null
+      },
+      {
+        "id": "STRIKE_SILENT",
+        "name": "Strike",
+        "type": "Attack",
+        "cost": "1",
+        "star_cost": null,
+        "description": "Deal 6 damage.",
+        "rarity": "Basic",
+        "is_upgraded": false,
+        "keywords": [],
+        "index": 1,
+        "target_type": "AnyEnemy",
+        "can_play": true,
+        "unplayable_reason": null
+      },
+      {
+        "id": "STRIKE_SILENT",
+        "name": "Strike",
+        "type": "Attack",
+        "cost": "1",
+        "star_cost": null,
+        "description": "Deal 6 damage.",
+        "rarity": "Basic",
+        "is_upgraded": false,
+        "keywords": [],
+        "index": 2,
+        "target_type": "AnyEnemy",
+        "can_play": true,
+        "unplayable_reason": null
+      },
+      {
+        "id": "STRIKE_SILENT",
+        "name": "Strike",
+        "type": "Attack",
+        "cost": "1",
+        "star_cost": null,
+        "description": "Deal 6 damage.",
+        "rarity": "Basic",
+        "is_upgraded": false,
+        "keywords": [],
+        "index": 3,
+        "target_type": "AnyEnemy",
+        "can_play": true,
+        "unplayable_reason": null
+      }
+    ],
+    "draw_pile_count": 1,
+    "discard_pile_count": 14,
+    "exhaust_pile_count": 0,
+    "draw_pile": [
+      {
+        "name": "Strike",
+        "cost": "1",
+        "star_cost": null,
+        "description": "Deal 6 damage."
+      }
+    ],
+    "discard_pile": [
+      {
+        "name": "Strike",
+        "cost": "1",
+        "star_cost": null,
+        "description": "Deal 6 damage."
+      },
+      {
+        "name": "Defend",
+        "cost": "1",
+        "star_cost": null,
+        "description": "Gain 5 Block."
+      },
+      {
+        "name": "Defend",
+        "cost": "1",
+        "star_cost": null,
+        "description": "Gain 5 Block."
+      },
+      {
+        "name": "Neutralize",
+        "cost": "0",
+        "star_cost": null,
+        "description": "Deal 3 damage. Apply 1 Weak."
+      },
+      {
+        "name": "Defend",
+        "cost": "1",
+        "star_cost": null,
+        "description": "Gain 5 Block."
+      },
+      {
+        "name": "Slimed",
+        "cost": "1",
+        "star_cost": null,
+        "description": "Draw 1 card. Exhaust."
+      },
+      {
+        "name": "Slimed",
+        "cost": "1",
+        "star_cost": null,
+        "description": "Draw 1 card. Exhaust."
+      },
+      {
+        "name": "Defend",
+        "cost": "1",
+        "star_cost": null,
+        "description": "Gain 5 Block."
+      },
+      {
+        "name": "Defend",
+        "cost": "1",
+        "star_cost": null,
+        "description": "Gain 5 Block."
+      },
+      {
+        "name": "Leading Strike",
+        "cost": "1",
+        "star_cost": null,
+        "description": "Deal 3 damage. Add 2 Shivs into your Hand."
+      },
+      {
+        "name": "Slimed",
+        "cost": "1",
+        "star_cost": null,
+        "description": "Draw 1 card. Exhaust."
+      },
+      {
+        "name": "Slimed",
+        "cost": "1",
+        "star_cost": null,
+        "description": "Draw 1 card. Exhaust."
+      },
+      {
+        "name": "Shiv",
+        "cost": "0",
+        "star_cost": null,
+        "description": "Deal 4 damage. Exhaust."
+      },
+      {
+        "name": "Shiv",
+        "cost": "0",
+        "star_cost": null,
+        "description": "Deal 4 damage. Exhaust."
+      }
+    ],
+    "exhaust_pile": [],
+    "gold": 99,
+    "status": [],
+    "relics": [
+      {
+        "id": "RING_OF_THE_SNAKE",
+        "name": "Ring of the Snake",
+        "description": "At the start of each combat, draw 2 additional cards.",
+        "counter": null,
+        "keywords": []
+      },
+      {
+        "id": "LOST_COFFER",
+        "name": "Lost Coffer",
+        "description": "Upon pickup, gain 1 card reward and procure 1 random potion.",
+        "counter": null,
+        "keywords": []
+      }
+    ],
+    "potions": [
+      {
+        "id": "SWIFT_POTION",
+        "name": "Swift Potion",
+        "description": "Draw 3 cards.",
+        "slot": 0,
+        "can_use_in_combat": true,
+        "target_type": "AnyPlayer",
+        "keywords": []
+      }
+    ],
+    "max_potion_slots": 3
+  }
+}

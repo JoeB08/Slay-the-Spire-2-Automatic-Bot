@@ -1,0 +1,501 @@
+{
+ "raw": {
+  "player": {
+   "character": "The Silent",
+   "hp": 30,
+   "max_hp": 77,
+   "block": 2,
+   "energy": 3,
+   "max_energy": 3,
+   "hand": [
+    {
+     "id": "UNTOUCHABLE",
+     "name": "Untouchable",
+     "type": "Skill",
+     "cost": "2",
+     "star_cost": null,
+     "description": "Sly. Gain 9 Block.",
+     "rarity": "Common",
+     "is_upgraded": false,
+     "keywords": [
+      {
+       "name": "Block",
+       "description": "Until next turn, prevents damage."
+      },
+      {
+       "name": "Sly",
+       "description": "If this card is discarded from your Hand before the end of your turn, play it for free."
+      }
+     ],
+     "index": 0,
+     "target_type": "Self",
+     "can_play": true,
+     "unplayable_reason": null
+    },
+    {
+     "id": "STRIKE_SILENT",
+     "name": "Strike",
+     "type": "Attack",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage.",
+     "rarity": "Basic",
+     "is_upgraded": false,
+     "keywords": [],
+     "index": 1,
+     "target_type": "AnyEnemy",
+     "can_play": true,
+     "unplayable_reason": null
+    },
+    {
+     "id": "DEFEND_SILENT",
+     "name": "Defend",
+     "type": "Skill",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 8 Block.",
+     "rarity": "Basic",
+     "is_upgraded": false,
+     "keywords": [
+      {
+       "name": "Block",
+       "description": "Until next turn, prevents damage."
+      }
+     ],
+     "index": 2,
+     "target_type": "Self",
+     "can_play": true,
+     "unplayable_reason": null
+    },
+    {
+     "id": "STRIKE_SILENT",
+     "name": "Strike",
+     "type": "Attack",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage.",
+     "rarity": "Basic",
+     "is_upgraded": false,
+     "keywords": [],
+     "index": 3,
+     "target_type": "AnyEnemy",
+     "can_play": true,
+     "unplayable_reason": null
+    }
+   ],
+   "draw_pile_count": 5,
+   "discard_pile_count": 12,
+   "exhaust_pile_count": 13,
+   "draw_pile": [
+    {
+     "name": "Defend",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 5 Block."
+    },
+    {
+     "name": "Defend",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 5 Block."
+    },
+    {
+     "name": "Leading Strike",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 3 damage. Add 2 Shivs into your Hand."
+    },
+    {
+     "name": "Dash+",
+     "cost": "2",
+     "star_cost": null,
+     "description": "Gain 13 Block. Deal 13 damage."
+    },
+    {
+     "name": "Abrasive",
+     "cost": "3",
+     "star_cost": null,
+     "description": "Sly. Gain 1 Dexterity. Gain 4 Thorns."
+    }
+   ],
+   "discard_pile": [
+    {
+     "name": "Untouchable",
+     "cost": "2",
+     "star_cost": null,
+     "description": "Sly. Gain 6 Block."
+    },
+    {
+     "name": "Prepared",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Draw 1 card. Discard 1 card."
+    },
+    {
+     "name": "Cloak and Dagger",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 6 Block. Add 1 Shiv into your Hand."
+    },
+    {
+     "name": "Defend",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 6 Block."
+    },
+    {
+     "name": "Defend",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 6 Block."
+    },
+    {
+     "name": "Survivor",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 8 Block. Discard 1 card."
+    },
+    {
+     "name": "Shiv",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 4 damage to ALL enemies. Exhaust."
+    },
+    {
+     "name": "Cloak and Dagger",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 6 Block. Add 1 Shiv into your Hand."
+    },
+    {
+     "name": "Pounce",
+     "cost": "2",
+     "star_cost": null,
+     "description": "Deal 14 damage. The next Skill you play costs 0 [silent_energy_icon.png]."
+    },
+    {
+     "name": "Deadly Poison",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Apply 5 Poison."
+    },
+    {
+     "name": "Abrasive",
+     "cost": "3",
+     "star_cost": null,
+     "description": "Sly. Gain 1 Dexterity. Gain 4 Thorns."
+    },
+    {
+     "name": "Strike",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage."
+    }
+   ],
+   "exhaust_pile": [
+    {
+     "name": "Shiv",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 4 damage to ALL enemies. Exhaust."
+    },
+    {
+     "name": "Shiv",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 4 damage to ALL enemies. Exhaust."
+    },
+    {
+     "name": "Shiv",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 4 damage to ALL enemies. Exhaust."
+    },
+    {
+     "name": "Shiv",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 4 damage to ALL enemies. Exhaust."
+    },
+    {
+     "name": "Shiv",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 4 damage to ALL enemies. Exhaust."
+    },
+    {
+     "name": "Shiv",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 4 damage to ALL enemies. Exhaust."
+    },
+    {
+     "name": "Shiv",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 4 damage to ALL enemies. Exhaust."
+    },
+    {
+     "name": "Shiv",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 4 damage to ALL enemies. Exhaust."
+    },
+    {
+     "name": "Shiv",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 4 damage to ALL enemies. Exhaust."
+    },
+    {
+     "name": "Shiv",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 4 damage to ALL enemies. Exhaust."
+    },
+    {
+     "name": "Shiv",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 4 damage to ALL enemies. Exhaust."
+    },
+    {
+     "name": "Shiv",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 4 damage to ALL enemies. Exhaust."
+    },
+    {
+     "name": "Shiv",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 4 damage to ALL enemies. Exhaust."
+    }
+   ],
+   "gold": 47,
+   "status": [
+    {
+     "id": "DEXTERITY_POWER",
+     "name": "Dexterity",
+     "amount": 3,
+     "type": "Buff",
+     "description": "Increases Block gained from cards by 3.",
+     "keywords": [
+      {
+       "name": "Block",
+       "description": "Until next turn, prevents damage."
+      }
+     ]
+    },
+    {
+     "id": "AFTERIMAGE_POWER",
+     "name": "Afterimage",
+     "amount": 1,
+     "type": "Buff",
+     "description": "Whenever you play a card, gain 1 Block.",
+     "keywords": [
+      {
+       "name": "Block",
+       "description": "Until next turn, prevents damage."
+      }
+     ]
+    },
+    {
+     "id": "NOXIOUS_FUMES_POWER",
+     "name": "Noxious Fumes",
+     "amount": 2,
+     "type": "Buff",
+     "description": "At the start of your turn, apply 2 Poison to ALL enemies.",
+     "keywords": [
+      {
+       "name": "Poison",
+       "description": "Poisoned creatures lose HP at the start of their turn. Each turn, Poison is reduced by 1."
+      }
+     ]
+    },
+    {
+     "id": "INFINITE_BLADES_POWER",
+     "name": "Infinite Blades",
+     "amount": 2,
+     "type": "Buff",
+     "description": "At the start of your turn, add 2 Shivs into your Hand.",
+     "keywords": [
+      {
+       "name": "Shiv",
+       "description": "Deal 4 damage. Exhaust."
+      }
+     ]
+    },
+    {
+     "id": "FAN_OF_KNIVES_POWER",
+     "name": "Fan of Knives",
+     "amount": 1,
+     "type": "Buff",
+     "description": "Shivs hit ALL enemies.",
+     "keywords": []
+    }
+   ],
+   "relics": [
+    {
+     "id": "RING_OF_THE_SNAKE",
+     "name": "Ring of the Snake",
+     "description": "At the start of each combat, draw 2 additional cards.",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "LAVA_ROCK",
+     "name": "Lava Rock",
+     "description": "The Act 1 Boss drops 2 Relics.",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "BONE_TEA",
+     "name": "Bone Tea",
+     "description": "At the start of the next 0 combats, Upgrade your starting hand.",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "STRAWBERRY",
+     "name": "Strawberry",
+     "description": "Upon pickup, raise your Max HP by 7.",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "ANCHOR",
+     "name": "Anchor",
+     "description": "Start each combat with 10 Block.",
+     "counter": null,
+     "keywords": [
+      {
+       "name": "Block",
+       "description": "Until next turn, prevents damage."
+      }
+     ]
+    },
+    {
+     "id": "CENTENNIAL_PUZZLE",
+     "name": "Centennial Puzzle",
+     "description": "The first time you lose HP each combat, draw 3 cards.",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "PENDULUM",
+     "name": "Pendulum",
+     "description": "Every 3 turns, draw 1 card.",
+     "counter": 1,
+     "keywords": []
+    },
+    {
+     "id": "ODDLY_SMOOTH_STONE",
+     "name": "Oddly Smooth Stone",
+     "description": "Start each combat with 1 Dexterity.",
+     "counter": null,
+     "keywords": [
+      {
+       "name": "Dexterity",
+       "description": "Dexterity improves Block gained from cards."
+      }
+     ]
+    },
+    {
+     "id": "PAELS_WING",
+     "name": "Pael's Wing",
+     "description": "You may sacrifice card rewards to Pael. Every 2 sacrifices, obtain a Relic.",
+     "counter": 0,
+     "keywords": []
+    },
+    {
+     "id": "BAG_OF_MARBLES",
+     "name": "Bag of Marbles",
+     "description": "At the start of each combat, apply 1 Vulnerable to ALL enemies.",
+     "counter": null,
+     "keywords": [
+      {
+       "name": "Vulnerable",
+       "description": "Vulnerable creatures take 50% more damage from Attacks."
+      }
+     ]
+    },
+    {
+     "id": "DRAGON_FRUIT",
+     "name": "Dragon Fruit",
+     "description": "Whenever you gain Gold, raise your Max HP by 1.",
+     "counter": null,
+     "keywords": []
+    }
+   ],
+   "potions": [],
+   "max_potion_slots": 3
+  },
+  "battle": {
+   "round": 7,
+   "turn": "player",
+   "is_play_phase": true,
+   "enemies": [
+    {
+     "entity_id": "LOUSE_PROGENITOR_0",
+     "combat_id": 1,
+     "name": "Louse Progenitor",
+     "hp": 65,
+     "max_hp": 134,
+     "block": 0,
+     "status": [
+      {
+       "id": "POISON_POWER",
+       "name": "Poison",
+       "amount": 7,
+       "type": "Debuff",
+       "description": "At the start of its turn, loses 7 HP, then reduce Poison by 1.",
+       "keywords": []
+      },
+      {
+       "id": "STRENGTH_POWER",
+       "name": "Strength",
+       "amount": 10,
+       "type": "Buff",
+       "description": "Increases attack damage by 10.",
+       "keywords": []
+      },
+      {
+       "id": "WEAK_POWER",
+       "name": "Weak",
+       "amount": 1,
+       "type": "Debuff",
+       "description": "Attacks deal 25% less damage for 1 turn.",
+       "keywords": []
+      }
+     ],
+     "intents": [
+      {
+       "type": "Attack",
+       "label": "14",
+       "title": "Aggressive",
+       "description": "This enemy intends to Attack for 14 damage."
+      },
+      {
+       "type": "Debuff",
+       "label": "",
+       "title": "Strategic",
+       "description": "This enemy intends to apply a Debuff to you."
+      }
+     ]
+    }
+   ]
+  },
+  "run": {
+   "act": 2,
+   "floor": 30,
+   "ascension": 0
+  },
+  "state_type": "monster"
+ },
+ "logged_action": "play_card",
+ "logged_fields": {
+  "card_index": 0
+ }
+}

@@ -1,0 +1,435 @@
+{
+ "raw": {
+  "player": {
+   "character": "The Silent",
+   "hp": 32,
+   "max_hp": 70,
+   "block": 0,
+   "energy": 3,
+   "max_energy": 3,
+   "hand": [
+    {
+     "id": "DEFEND_SILENT",
+     "name": "Defend",
+     "type": "Skill",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Sly. Gain 7 Block.",
+     "rarity": "Basic",
+     "is_upgraded": false,
+     "keywords": [
+      {
+       "name": "Block",
+       "description": "Until next turn, prevents damage."
+      },
+      {
+       "name": "Sly",
+       "description": "If this card is discarded from your Hand before the end of your turn, play it for free."
+      }
+     ],
+     "index": 0,
+     "target_type": "Self",
+     "can_play": true,
+     "unplayable_reason": null
+    },
+    {
+     "id": "RICOCHET",
+     "name": "Ricochet+",
+     "type": "Attack",
+     "cost": "2",
+     "star_cost": null,
+     "description": "Sly. Deal 3 damage to a random enemy 5 times.",
+     "rarity": "Common",
+     "is_upgraded": true,
+     "keywords": [
+      {
+       "name": "Sly",
+       "description": "If this card is discarded from your Hand before the end of your turn, play it for free."
+      }
+     ],
+     "index": 1,
+     "target_type": "RandomEnemy",
+     "can_play": true,
+     "unplayable_reason": null
+    },
+    {
+     "id": "STRIKE_SILENT",
+     "name": "Strike",
+     "type": "Attack",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage.",
+     "rarity": "Basic",
+     "is_upgraded": false,
+     "keywords": [],
+     "index": 2,
+     "target_type": "AnyEnemy",
+     "can_play": true,
+     "unplayable_reason": null
+    },
+    {
+     "id": "STRIKE_SILENT",
+     "name": "Strike",
+     "type": "Attack",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage.",
+     "rarity": "Basic",
+     "is_upgraded": false,
+     "keywords": [],
+     "index": 3,
+     "target_type": "AnyEnemy",
+     "can_play": true,
+     "unplayable_reason": null
+    },
+    {
+     "id": "DEFEND_SILENT",
+     "name": "Defend",
+     "type": "Skill",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Sly. Gain 7 Block.",
+     "rarity": "Basic",
+     "is_upgraded": false,
+     "keywords": [
+      {
+       "name": "Block",
+       "description": "Until next turn, prevents damage."
+      },
+      {
+       "name": "Sly",
+       "description": "If this card is discarded from your Hand before the end of your turn, play it for free."
+      }
+     ],
+     "index": 4,
+     "target_type": "Self",
+     "can_play": true,
+     "unplayable_reason": null
+    }
+   ],
+   "draw_pile_count": 6,
+   "discard_pile_count": 5,
+   "exhaust_pile_count": 6,
+   "draw_pile": [
+    {
+     "name": "Defend",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 5 Block."
+    },
+    {
+     "name": "Neutralize",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 3 damage. Apply 1 Weak."
+    },
+    {
+     "name": "Strike",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage."
+    },
+    {
+     "name": "Backflip",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Sly. Gain 7 Block. Draw 2 cards."
+    },
+    {
+     "name": "Prepared",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Sly. Draw 1 card. Discard 1 card."
+    },
+    {
+     "name": "Escape Plan",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Sly. Draw 1 card. If you draw a Skill, gain 5 Block."
+    }
+   ],
+   "discard_pile": [
+    {
+     "name": "Defend+",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Sly. Gain 10 Block."
+    },
+    {
+     "name": "Survivor",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Sly. Gain 10 Block. Discard 1 card."
+    },
+    {
+     "name": "Strike",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage."
+    },
+    {
+     "name": "Strike",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage."
+    },
+    {
+     "name": "Defend",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Sly. Gain 5 Block."
+    }
+   ],
+   "exhaust_pile": [
+    {
+     "name": "Blade Dance",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Add 3 Shivs into your Hand. Exhaust."
+    },
+    {
+     "name": "Shiv",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 4 damage. Exhaust."
+    },
+    {
+     "name": "Shiv",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 4 damage. Exhaust."
+    },
+    {
+     "name": "Shiv",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 4 damage. Exhaust."
+    },
+    {
+     "name": "Expose",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Remove all Artifact and Block from the enemy. Apply 2 Vulnerable. Exhaust."
+    },
+    {
+     "name": "Piercing Wail+",
+     "cost": "1",
+     "star_cost": null,
+     "description": "ALL enemies lose 8 Strength this turn. Exhaust."
+    }
+   ],
+   "gold": 129,
+   "status": [
+    {
+     "id": "OUTBREAK_POWER",
+     "name": "Outbreak",
+     "amount": 0,
+     "type": "Buff",
+     "description": "Every 3 times you apply Poison, deal 11 damage to ALL enemies.",
+     "keywords": [
+      {
+       "name": "Poison",
+       "description": "Poisoned creatures lose HP at the start of their turn. Each turn, Poison is reduced by 1."
+      }
+     ]
+    },
+    {
+     "id": "DEXTERITY_POWER",
+     "name": "Dexterity",
+     "amount": 2,
+     "type": "Buff",
+     "description": "Increases Block gained from cards by 2.",
+     "keywords": [
+      {
+       "name": "Block",
+       "description": "Until next turn, prevents damage."
+      }
+     ]
+    },
+    {
+     "id": "MASTER_PLANNER_POWER",
+     "name": "Master Planner",
+     "amount": 1,
+     "type": "Buff",
+     "description": "When you play a Skill, it gains Sly.",
+     "keywords": []
+    }
+   ],
+   "relics": [
+    {
+     "id": "RING_OF_THE_SNAKE",
+     "name": "Ring of the Snake",
+     "description": "At the start of each combat, draw 2 additional cards.",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "LOST_COFFER",
+     "name": "Lost Coffer",
+     "description": "Upon pickup, gain 1 card reward and procure 1 random potion.",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "WAR_PAINT",
+     "name": "War Paint",
+     "description": "Upon pickup, Upgrade 2 random Skills.",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "VAMBRACE",
+     "name": "Vambrace",
+     "description": "The first time you gain Block from a card each combat, double the amount gained.",
+     "counter": null,
+     "keywords": [
+      {
+       "name": "Block",
+       "description": "Until next turn, prevents damage."
+      }
+     ]
+    }
+   ],
+   "potions": [],
+   "max_potion_slots": 3
+  },
+  "battle": {
+   "round": 8,
+   "turn": "player",
+   "is_play_phase": true,
+   "enemies": [
+    {
+     "entity_id": "PHANTASMAL_GARDENER_0",
+     "combat_id": 1,
+     "name": "Phantasmal Gardener",
+     "hp": 7,
+     "max_hp": 31,
+     "block": 0,
+     "status": [
+      {
+       "id": "SKITTISH_POWER",
+       "name": "Skittish",
+       "amount": 6,
+       "type": "Buff",
+       "description": "The first time Phantasmal Gardener is hit each turn, it gains 6 Block.",
+       "keywords": [
+        {
+         "name": "Block",
+         "description": "Until next turn, prevents damage."
+        }
+       ]
+      },
+      {
+       "id": "STRENGTH_POWER",
+       "name": "Strength",
+       "amount": 4,
+       "type": "Buff",
+       "description": "Increases attack damage by 4.",
+       "keywords": []
+      }
+     ],
+     "intents": [
+      {
+       "type": "Attack",
+       "label": "11",
+       "title": "Aggressive",
+       "description": "This enemy intends to Attack for 11 damage."
+      }
+     ]
+    },
+    {
+     "entity_id": "PHANTASMAL_GARDENER_1",
+     "combat_id": 3,
+     "name": "Phantasmal Gardener",
+     "hp": 19,
+     "max_hp": 28,
+     "block": 0,
+     "status": [
+      {
+       "id": "SKITTISH_POWER",
+       "name": "Skittish",
+       "amount": 6,
+       "type": "Buff",
+       "description": "The first time Phantasmal Gardener is hit each turn, it gains 6 Block.",
+       "keywords": [
+        {
+         "name": "Block",
+         "description": "Until next turn, prevents damage."
+        }
+       ]
+      },
+      {
+       "id": "STRENGTH_POWER",
+       "name": "Strength",
+       "amount": 4,
+       "type": "Buff",
+       "description": "Increases attack damage by 4.",
+       "keywords": []
+      }
+     ],
+     "intents": [
+      {
+       "type": "Attack",
+       "label": "9",
+       "title": "Aggressive",
+       "description": "This enemy intends to Attack for 9 damage."
+      }
+     ]
+    },
+    {
+     "entity_id": "PHANTASMAL_GARDENER_2",
+     "combat_id": 4,
+     "name": "Phantasmal Gardener",
+     "hp": 21,
+     "max_hp": 27,
+     "block": 0,
+     "status": [
+      {
+       "id": "SKITTISH_POWER",
+       "name": "Skittish",
+       "amount": 6,
+       "type": "Buff",
+       "description": "The first time Phantasmal Gardener is hit each turn, it gains 6 Block.",
+       "keywords": [
+        {
+         "name": "Block",
+         "description": "Until next turn, prevents damage."
+        }
+       ]
+      },
+      {
+       "id": "STRENGTH_POWER",
+       "name": "Strength",
+       "amount": 4,
+       "type": "Buff",
+       "description": "Increases attack damage by 4.",
+       "keywords": []
+      }
+     ],
+     "intents": [
+      {
+       "type": "Attack",
+       "label": "5x3",
+       "title": "Aggressive",
+       "description": "This enemy intends to Attack for 5 damage 3 times."
+      }
+     ]
+    }
+   ]
+  },
+  "run": {
+   "act": 1,
+   "floor": 14,
+   "ascension": 0
+  },
+  "state_type": "elite"
+ },
+ "logged": {
+  "action": "play_card",
+  "fields": {
+   "card_index": 2,
+   "target": "PHANTASMAL_GARDENER_0"
+  }
+ },
+ "note": "Set 3 run 2, floor 14 round 8: Gardener on 7 with Skittish 6, two Strikes planned; the first raises 6 Block."
+}

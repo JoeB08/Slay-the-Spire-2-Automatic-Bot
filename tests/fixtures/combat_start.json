@@ -1,0 +1,5 @@
+{
+  "error": "Failed to read game state: Method not found: 'Boolean MegaCrit.Sts2.Core.Combat.CombatManager.get_IsPlayPhase()'.",
+  "exception_type": "System.MissingMethodException",
+  "stack_trace": "   at MonoMod.Core.Interop.CoreCLR.V60.InvokeCompileMethod(IntPtr functionPtr, IntPtr thisPtr, IntPtr corJitInfo, CORINFO_METHOD_INFO* methodInfo, UInt32 flags, Byte** nativeEntry, UInt32* nativeSizeOfCode)\r\n   at MonoMod.Core.Platforms.Runtimes.Core60Runtime.JitHookDelegateHolder.CompileMethodHook(IntPtr jit, IntPtr corJitInfo, CORINFO_METHOD_INFO* methodInfo, UInt32 flags, Byte** nativeEntry, UInt32* nativeSizeOfCode)\r\n   at STS2_MCP.McpMod.BuildBattleState(RunState runState, CombatRoom combatRoom)\r\n   at STS2_MCP.McpMod.BuildGameState()\r\n   at STS2_MCP.McpMod.<>c.<HandleGetState>b__62_0()\r\n   at STS2_MCP.McpMod.<>c__DisplayClass55_0`1.<RunOnMainThread>b__0()\r\n--- End of stack trace from previous location ---\r\n   at STS2_MCP.McpMod.HandleGetState(HttpListenerRequest request, HttpListenerResponse response)"
+}

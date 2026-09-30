@@ -1,0 +1,9 @@
+# The bot only writes when recording is turned on -- see bot/recording.py.
+logs/
+stats/
+RECORD_RUNS
+
+__pycache__/
+*.pyc
+.pytest_cache/
+.public-export

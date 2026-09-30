@@ -1,0 +1,348 @@
+{
+ "raw": {
+  "player": {
+   "character": "The Silent",
+   "hp": 38,
+   "max_hp": 70,
+   "block": 0,
+   "energy": 3,
+   "max_energy": 3,
+   "hand": [
+    {
+     "id": "POUNCE",
+     "name": "Pounce",
+     "type": "Attack",
+     "cost": "2",
+     "star_cost": null,
+     "description": "Deal 14 damage. The next Skill you play costs 0 [silent_energy_icon.png].",
+     "rarity": "Uncommon",
+     "is_upgraded": false,
+     "keywords": [],
+     "index": 0,
+     "target_type": "AnyEnemy",
+     "can_play": true,
+     "unplayable_reason": null
+    },
+    {
+     "id": "STRIKE_SILENT",
+     "name": "Strike",
+     "type": "Attack",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage.",
+     "rarity": "Basic",
+     "is_upgraded": false,
+     "keywords": [],
+     "index": 1,
+     "target_type": "AnyEnemy",
+     "can_play": true,
+     "unplayable_reason": null
+    },
+    {
+     "id": "SNAKEBITE",
+     "name": "Snakebite",
+     "type": "Skill",
+     "cost": "2",
+     "star_cost": null,
+     "description": "Retain. Apply 7 Poison.",
+     "rarity": "Common",
+     "is_upgraded": false,
+     "keywords": [
+      {
+       "name": "Poison",
+       "description": "Poisoned creatures lose HP at the start of their turn. Each turn, Poison is reduced by 1."
+      },
+      {
+       "name": "Retain",
+       "description": "Retained cards are not discarded at the end of turn."
+      }
+     ],
+     "index": 2,
+     "target_type": "AnyEnemy",
+     "can_play": true,
+     "unplayable_reason": null
+    },
+    {
+     "id": "REFLEX",
+     "name": "Reflex",
+     "type": "Skill",
+     "cost": "3",
+     "star_cost": null,
+     "description": "Sly. Draw 2 cards.",
+     "rarity": "Uncommon",
+     "is_upgraded": false,
+     "keywords": [
+      {
+       "name": "Sly",
+       "description": "If this card is discarded from your Hand before the end of your turn, play it for free."
+      }
+     ],
+     "index": 3,
+     "target_type": "Self",
+     "can_play": true,
+     "unplayable_reason": null
+    },
+    {
+     "id": "DEFEND_SILENT",
+     "name": "Defend",
+     "type": "Skill",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 7 Block.",
+     "rarity": "Basic",
+     "is_upgraded": false,
+     "keywords": [
+      {
+       "name": "Block",
+       "description": "Until next turn, prevents damage."
+      }
+     ],
+     "index": 4,
+     "target_type": "Self",
+     "can_play": true,
+     "unplayable_reason": null
+    }
+   ],
+   "draw_pile_count": 6,
+   "discard_pile_count": 8,
+   "exhaust_pile_count": 2,
+   "draw_pile": [
+    {
+     "name": "Defend",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 7 Block."
+    },
+    {
+     "name": "Defend",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 7 Block."
+    },
+    {
+     "name": "Neutralize",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 3 damage. Apply 1 Weak."
+    },
+    {
+     "name": "Strike",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage."
+    },
+    {
+     "name": "Prepared",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Draw 1 card. Discard 1 card."
+    },
+    {
+     "name": "Adrenaline+",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Gain [silent_energy_icon.png][silent_energy_icon.png]. Draw 2 cards. Exhaust."
+    }
+   ],
+   "discard_pile": [
+    {
+     "name": "Blur",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 5 Block. Block is not removed at the start of your next turn."
+    },
+    {
+     "name": "Acrobatics",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Draw 3 cards. Discard 1 card."
+    },
+    {
+     "name": "Deadly Poison",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Apply 5 Poison."
+    },
+    {
+     "name": "Strike",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage."
+    },
+    {
+     "name": "Defend",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 5 Block."
+    },
+    {
+     "name": "Strike",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage."
+    },
+    {
+     "name": "Defend",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 5 Block."
+    },
+    {
+     "name": "Survivor",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 8 Block. Discard 1 card."
+    }
+   ],
+   "exhaust_pile": [
+    {
+     "name": "Backstab",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Innate. Retain. Deal 11 damage. Exhaust."
+    },
+    {
+     "name": "Piercing Wail",
+     "cost": "1",
+     "star_cost": null,
+     "description": "ALL enemies lose 6 Strength this turn. Exhaust."
+    }
+   ],
+   "gold": 192,
+   "status": [
+    {
+     "id": "DEXTERITY_POWER",
+     "name": "Dexterity",
+     "amount": 2,
+     "type": "Buff",
+     "description": "Increases Block gained from cards by 2.",
+     "keywords": [
+      {
+       "name": "Block",
+       "description": "Until next turn, prevents damage."
+      }
+     ]
+    }
+   ],
+   "relics": [
+    {
+     "id": "RING_OF_THE_SNAKE",
+     "name": "Ring of the Snake",
+     "description": "At the start of each combat, draw 2 additional cards.",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "NEW_LEAF",
+     "name": "New Leaf",
+     "description": "Upon pickup, Transform 1 card.",
+     "counter": null,
+     "keywords": [
+      {
+       "name": "Transform",
+       "description": "Transformed cards become a random card of any rarity."
+      }
+     ]
+    },
+    {
+     "id": "BELT_BUCKLE",
+     "name": "Belt Buckle",
+     "description": "While you have no potions, you have 2 additional Dexterity.",
+     "counter": null,
+     "keywords": [
+      {
+       "name": "Dexterity",
+       "description": "Dexterity improves Block gained from cards."
+      }
+     ]
+    },
+    {
+     "id": "ORICHALCUM",
+     "name": "Orichalcum",
+     "description": "If you end your turn without Block, gain 6 Block.",
+     "counter": null,
+     "keywords": [
+      {
+       "name": "Block",
+       "description": "Until next turn, prevents damage."
+      }
+     ]
+    },
+    {
+     "id": "PAPER_KRANE",
+     "name": "Paper Krane",
+     "description": "Enemies with Weak deal 40% less damage to you rather than 25%.",
+     "counter": null,
+     "keywords": [
+      {
+       "name": "Weak",
+       "description": "Weakened creatures deal 25% less damage with Attacks."
+      }
+     ]
+    }
+   ],
+   "potions": [],
+   "max_potion_slots": 3
+  },
+  "battle": {
+   "round": 4,
+   "turn": "player",
+   "is_play_phase": true,
+   "enemies": [
+    {
+     "entity_id": "WATERFALL_GIANT_0",
+     "combat_id": 1,
+     "name": "Waterfall Giant",
+     "hp": 177,
+     "max_hp": 240,
+     "block": 0,
+     "status": [
+      {
+       "id": "POISON_POWER",
+       "name": "Poison",
+       "amount": 9,
+       "type": "Debuff",
+       "description": "At the start of its turn, loses 9 HP, then reduce Poison by 1.",
+       "keywords": []
+      },
+      {
+       "id": "STEAM_ERUPTION_POWER",
+       "name": "Steam Eruption",
+       "amount": 21,
+       "type": "Buff",
+       "description": "When killed, deals 21 damage at the end of your next turn.",
+       "keywords": []
+      }
+     ],
+     "intents": [
+      {
+       "type": "Heal",
+       "label": "",
+       "title": "Heal",
+       "description": "This enemy intends to Heal."
+      },
+      {
+       "type": "Buff",
+       "label": "",
+       "title": "Empower",
+       "description": "This enemy intends to use a Buff."
+      }
+     ]
+    }
+   ]
+  },
+  "run": {
+   "act": 1,
+   "floor": 17,
+   "ascension": 0
+  },
+  "state_type": "boss"
+ },
+ "logged": {
+  "action": "play_card",
+  "fields": {
+   "card_index": 3
+  }
+ },
+ "note": "Set 3 run 3, Waterfall Giant round 4 (Heal/Buff): paid 3 for Reflex (Sly. Draw 2) with Pounce + Strike in hand."
+}

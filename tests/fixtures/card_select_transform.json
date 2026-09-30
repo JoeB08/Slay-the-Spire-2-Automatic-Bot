@@ -1,0 +1,334 @@
+{
+  "state_type": "card_select",
+  "card_select": {
+    "screen_type": "transform",
+    "prompt": "Choose a card to Transform.",
+    "cards": [
+      {
+        "id": "STRIKE_SILENT",
+        "name": "Strike",
+        "type": "Attack",
+        "cost": "1",
+        "star_cost": null,
+        "description": "Deal 6 damage.",
+        "rarity": "Basic",
+        "is_upgraded": false,
+        "keywords": [],
+        "index": 0
+      },
+      {
+        "id": "STRIKE_SILENT",
+        "name": "Strike",
+        "type": "Attack",
+        "cost": "1",
+        "star_cost": null,
+        "description": "Deal 6 damage.",
+        "rarity": "Basic",
+        "is_upgraded": false,
+        "keywords": [],
+        "index": 1
+      },
+      {
+        "id": "STRIKE_SILENT",
+        "name": "Strike",
+        "type": "Attack",
+        "cost": "1",
+        "star_cost": null,
+        "description": "Deal 6 damage.",
+        "rarity": "Basic",
+        "is_upgraded": false,
+        "keywords": [],
+        "index": 2
+      },
+      {
+        "id": "STRIKE_SILENT",
+        "name": "Strike",
+        "type": "Attack",
+        "cost": "1",
+        "star_cost": null,
+        "description": "Deal 6 damage.",
+        "rarity": "Basic",
+        "is_upgraded": false,
+        "keywords": [],
+        "index": 3
+      },
+      {
+        "id": "STRIKE_SILENT",
+        "name": "Strike",
+        "type": "Attack",
+        "cost": "1",
+        "star_cost": null,
+        "description": "Deal 6 damage.",
+        "rarity": "Basic",
+        "is_upgraded": false,
+        "keywords": [],
+        "index": 4
+      },
+      {
+        "id": "DEFEND_SILENT",
+        "name": "Defend",
+        "type": "Skill",
+        "cost": "1",
+        "star_cost": null,
+        "description": "Gain 5 Block.",
+        "rarity": "Basic",
+        "is_upgraded": false,
+        "keywords": [
+          {
+            "name": "Block",
+            "description": "Until next turn, prevents damage."
+          }
+        ],
+        "index": 5
+      },
+      {
+        "id": "DEFEND_SILENT",
+        "name": "Defend",
+        "type": "Skill",
+        "cost": "1",
+        "star_cost": null,
+        "description": "Gain 5 Block.",
+        "rarity": "Basic",
+        "is_upgraded": false,
+        "keywords": [
+          {
+            "name": "Block",
+            "description": "Until next turn, prevents damage."
+          }
+        ],
+        "index": 6
+      },
+      {
+        "id": "DEFEND_SILENT",
+        "name": "Defend",
+        "type": "Skill",
+        "cost": "1",
+        "star_cost": null,
+        "description": "Gain 5 Block.",
+        "rarity": "Basic",
+        "is_upgraded": false,
+        "keywords": [
+          {
+            "name": "Block",
+            "description": "Until next turn, prevents damage."
+          }
+        ],
+        "index": 7
+      },
+      {
+        "id": "DEFEND_SILENT",
+        "name": "Defend",
+        "type": "Skill",
+        "cost": "1",
+        "star_cost": null,
+        "description": "Gain 5 Block.",
+        "rarity": "Basic",
+        "is_upgraded": false,
+        "keywords": [
+          {
+            "name": "Block",
+            "description": "Until next turn, prevents damage."
+          }
+        ],
+        "index": 8
+      },
+      {
+        "id": "DEFEND_SILENT",
+        "name": "Defend",
+        "type": "Skill",
+        "cost": "1",
+        "star_cost": null,
+        "description": "Gain 5 Block.",
+        "rarity": "Basic",
+        "is_upgraded": false,
+        "keywords": [
+          {
+            "name": "Block",
+            "description": "Until next turn, prevents damage."
+          }
+        ],
+        "index": 9
+      },
+      {
+        "id": "NEUTRALIZE",
+        "name": "Neutralize",
+        "type": "Attack",
+        "cost": "0",
+        "star_cost": null,
+        "description": "Deal 3 damage. Apply 1 Weak.",
+        "rarity": "Basic",
+        "is_upgraded": false,
+        "keywords": [
+          {
+            "name": "Weak",
+            "description": "Weakened creatures deal 25% less damage with Attacks."
+          }
+        ],
+        "index": 10
+      },
+      {
+        "id": "SURVIVOR",
+        "name": "Survivor",
+        "type": "Skill",
+        "cost": "1",
+        "star_cost": null,
+        "description": "Gain 8 Block. Discard 1 card.",
+        "rarity": "Basic",
+        "is_upgraded": false,
+        "keywords": [
+          {
+            "name": "Block",
+            "description": "Until next turn, prevents damage."
+          }
+        ],
+        "index": 11
+      },
+      {
+        "id": "LEADING_STRIKE",
+        "name": "Leading Strike",
+        "type": "Attack",
+        "cost": "1",
+        "star_cost": null,
+        "description": "Deal 3 damage. Add 2 Shivs into your Hand.",
+        "rarity": "Common",
+        "is_upgraded": false,
+        "keywords": [
+          {
+            "name": "Shiv",
+            "description": "Deal 4 damage. Exhaust."
+          }
+        ],
+        "index": 12
+      },
+      {
+        "id": "BACKSTAB",
+        "name": "Backstab",
+        "type": "Attack",
+        "cost": "0",
+        "star_cost": null,
+        "description": "Innate. Deal 11 damage. Exhaust.",
+        "rarity": "Uncommon",
+        "is_upgraded": false,
+        "keywords": [
+          {
+            "name": "Exhaust",
+            "description": "Removed until the end of combat."
+          },
+          {
+            "name": "Innate",
+            "description": "Start each combat with this card in your Hand."
+          }
+        ],
+        "index": 13
+      },
+      {
+        "id": "LEADING_STRIKE",
+        "name": "Leading Strike",
+        "type": "Attack",
+        "cost": "1",
+        "star_cost": null,
+        "description": "Deal 3 damage. Add 2 Shivs into your Hand.",
+        "rarity": "Common",
+        "is_upgraded": false,
+        "keywords": [
+          {
+            "name": "Shiv",
+            "description": "Deal 4 damage. Exhaust."
+          }
+        ],
+        "index": 14
+      },
+      {
+        "id": "PIERCING_WAIL",
+        "name": "Piercing Wail",
+        "type": "Skill",
+        "cost": "1",
+        "star_cost": null,
+        "description": "ALL enemies lose 6 Strength this turn. Exhaust.",
+        "rarity": "Common",
+        "is_upgraded": false,
+        "keywords": [
+          {
+            "name": "Strength",
+            "description": "Strength adds additional damage to Attacks."
+          },
+          {
+            "name": "Exhaust",
+            "description": "Removed until the end of combat."
+          }
+        ],
+        "index": 15
+      },
+      {
+        "id": "PREPARED",
+        "name": "Prepared",
+        "type": "Skill",
+        "cost": "0",
+        "star_cost": null,
+        "description": "Draw 1 card. Discard 1 card.",
+        "rarity": "Common",
+        "is_upgraded": false,
+        "keywords": [],
+        "index": 16
+      }
+    ],
+    "preview_showing": false,
+    "can_cancel": false,
+    "can_confirm": false
+  },
+  "run": {
+    "act": 1,
+    "floor": 6,
+    "ascension": 0
+  },
+  "player": {
+    "character": "The Silent",
+    "hp": 42,
+    "max_hp": 70,
+    "block": 0,
+    "gold": 148,
+    "status": [],
+    "relics": [
+      {
+        "id": "RING_OF_THE_SNAKE",
+        "name": "Ring of the Snake",
+        "description": "At the start of each combat, draw 2 additional cards.",
+        "counter": null,
+        "keywords": []
+      },
+      {
+        "id": "LOST_COFFER",
+        "name": "Lost Coffer",
+        "description": "Upon pickup, gain 1 card reward and procure 1 random potion.",
+        "counter": null,
+        "keywords": []
+      }
+    ],
+    "potions": [
+      {
+        "id": "SWIFT_POTION",
+        "name": "Swift Potion",
+        "description": "Draw 3 cards.",
+        "slot": 0,
+        "can_use_in_combat": true,
+        "target_type": "AnyPlayer",
+        "keywords": []
+      },
+      {
+        "id": "ENERGY_POTION",
+        "name": "Energy Potion",
+        "description": "Gain [silent_energy_icon.png][silent_energy_icon.png].",
+        "slot": 1,
+        "can_use_in_combat": true,
+        "target_type": "AnyPlayer",
+        "keywords": [
+          {
+            "name": "Energy",
+            "description": "Energy is used to play cards from your Hand."
+          }
+        ]
+      }
+    ],
+    "max_potion_slots": 3
+  }
+}

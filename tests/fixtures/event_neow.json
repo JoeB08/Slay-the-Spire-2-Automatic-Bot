@@ -1,0 +1,74 @@
+{
+  "state_type": "event",
+  "event": {
+    "event_id": "NEOW",
+    "event_name": "Neow",
+    "is_ancient": true,
+    "in_dialogue": false,
+    "body": null,
+    "options": [
+      {
+        "index": 0,
+        "title": "New Leaf",
+        "description": "Transform 1 card.",
+        "is_locked": false,
+        "is_proceed": false,
+        "was_chosen": false,
+        "relic_name": "New Leaf",
+        "relic_description": "Upon pickup, Transform 1 card.",
+        "keywords": [
+          {
+            "name": "Transform",
+            "description": "Transformed cards become a random card of any rarity."
+          }
+        ]
+      },
+      {
+        "index": 1,
+        "title": "Lost Coffer",
+        "description": "Gain 1 card reward and procure 1 random Potion.",
+        "is_locked": false,
+        "is_proceed": false,
+        "was_chosen": false,
+        "relic_name": "Lost Coffer",
+        "relic_description": "Upon pickup, gain 1 card reward and procure 1 random potion.",
+        "keywords": []
+      },
+      {
+        "index": 2,
+        "title": "Silver Crucible",
+        "description": "The first 3 card rewards you see are Upgraded. The first Treasure Chest you open is empty.",
+        "is_locked": false,
+        "is_proceed": false,
+        "was_chosen": false,
+        "relic_name": "Silver Crucible",
+        "relic_description": "The first 3 card rewards you see are Upgraded. The first Treasure Chest you open is empty.",
+        "keywords": []
+      }
+    ]
+  },
+  "run": {
+    "act": 1,
+    "floor": 1,
+    "ascension": 0
+  },
+  "player": {
+    "character": "The Silent",
+    "hp": 70,
+    "max_hp": 70,
+    "block": 0,
+    "gold": 99,
+    "status": [],
+    "relics": [
+      {
+        "id": "RING_OF_THE_SNAKE",
+        "name": "Ring of the Snake",
+        "description": "At the start of each combat, draw 2 additional cards.",
+        "counter": null,
+        "keywords": []
+      }
+    ],
+    "potions": [],
+    "max_potion_slots": 3
+  }
+}

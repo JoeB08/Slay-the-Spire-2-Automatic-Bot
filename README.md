@@ -55,6 +55,9 @@ action ahead of a fresh state fetch.
 
 ## Setup
 
+Windows only in practice: the launchers are `.bat` and PowerShell, and the
+freeze recovery uses `taskkill` and `steam://` URLs to restart a hung game.
+
 1. **Game + mod**: Slay the Spire 2 must be installed with the STS2MCP mod's
    `STS2_MCP.dll` / `STS2_MCP.json` in `<game_install>/mods/`, and mods enabled in
    the game's settings.
@@ -118,8 +121,8 @@ Recording is how this project measures itself, and it is a lot of output per run
 -- a decision log of every state and action (~3 MB), a summary line, a readable
 story, an entry in the relic history. Turn it on with either:
 
-* a file named `RECORD_RUNS` in `sts2_bot/` -- what the development copy has, so
-  it records by default; or
+* a file named `RECORD_RUNS` beside the `bot/` package -- what the development
+  copy has, so it records by default; or
 * `STS2_RECORD=1` in the environment, for one process.
 
 `STS2_RECORD=0` forces it off again. The switch only decides whether what
@@ -276,3 +279,11 @@ first.
 The per-decision logs capture (state summary, action, outcome delta) rather
 than free text, so if a self-improving version gets built on top of this
 rules-based one later, these logs double as its training traces.
+
+## License
+
+MIT. See the LICENSE file.
+
+Slay the Spire 2 is not mine; this project is unaffiliated with its developers
+and with the STS2MCP mod. The card data in `silent_cards.json` was seeded from
+public pick-rate data at sts2.untapped.gg.

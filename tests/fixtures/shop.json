@@ -1,0 +1,270 @@
+{
+ "state_type": "shop",
+ "shop": {
+  "items": [
+   {
+    "index": 0,
+    "category": "card",
+    "price": 76,
+    "is_stocked": true,
+    "can_afford": true,
+    "on_sale": false,
+    "card_id": "FLECHETTES",
+    "card_name": "Flechettes",
+    "card_type": "Attack",
+    "card_cost": "1",
+    "card_star_cost": null,
+    "card_rarity": "Uncommon",
+    "card_description": "Deal 5 damage for each Skill in your Hand.",
+    "keywords": []
+   },
+   {
+    "index": 1,
+    "category": "card",
+    "price": 50,
+    "is_stocked": true,
+    "can_afford": true,
+    "on_sale": false,
+    "card_id": "FLICK_FLACK",
+    "card_name": "Flick-Flack",
+    "card_type": "Attack",
+    "card_cost": "1",
+    "card_star_cost": null,
+    "card_rarity": "Common",
+    "card_description": "Sly. Deal 6 damage to ALL enemies.",
+    "keywords": [
+     {
+      "name": "Sly",
+      "description": "If this card is discarded from your Hand before the end of your turn, play it for free."
+     }
+    ]
+   },
+   {
+    "index": 2,
+    "category": "card",
+    "price": 72,
+    "is_stocked": true,
+    "can_afford": true,
+    "on_sale": false,
+    "card_id": "TACTICIAN",
+    "card_name": "Tactician",
+    "card_type": "Skill",
+    "card_cost": "3",
+    "card_star_cost": null,
+    "card_rarity": "Uncommon",
+    "card_description": "Sly. Gain [silent_energy_icon.png].",
+    "keywords": [
+     {
+      "name": "Energy",
+      "description": "Energy is used to play cards from your Hand."
+     },
+     {
+      "name": "Sly",
+      "description": "If this card is discarded from your Hand before the end of your turn, play it for free."
+     }
+    ]
+   },
+   {
+    "index": 3,
+    "category": "card",
+    "price": 48,
+    "is_stocked": true,
+    "can_afford": true,
+    "on_sale": false,
+    "card_id": "PIERCING_WAIL",
+    "card_name": "Piercing Wail",
+    "card_type": "Skill",
+    "card_cost": "1",
+    "card_star_cost": null,
+    "card_rarity": "Common",
+    "card_description": "ALL enemies lose 6 Strength this turn. Exhaust.",
+    "keywords": [
+     {
+      "name": "Strength",
+      "description": "Strength adds additional damage to Attacks."
+     },
+     {
+      "name": "Exhaust",
+      "description": "Removed until the end of combat."
+     }
+    ]
+   },
+   {
+    "index": 4,
+    "category": "card",
+    "price": 38,
+    "is_stocked": true,
+    "can_afford": true,
+    "on_sale": true,
+    "card_id": "OUTBREAK",
+    "card_name": "Outbreak",
+    "card_type": "Power",
+    "card_cost": "1",
+    "card_star_cost": null,
+    "card_rarity": "Uncommon",
+    "card_description": "Every 3 times you apply Poison, deal 11 damage to ALL enemies.",
+    "keywords": [
+     {
+      "name": "Poison",
+      "description": "Poisoned creatures lose HP at the start of their turn. Each turn, Poison is reduced by 1."
+     }
+    ]
+   },
+   {
+    "index": 5,
+    "category": "card",
+    "price": 87,
+    "is_stocked": true,
+    "can_afford": true,
+    "on_sale": false,
+    "card_id": "EQUILIBRIUM",
+    "card_name": "Equilibrium",
+    "card_type": "Skill",
+    "card_cost": "2",
+    "card_star_cost": null,
+    "card_rarity": "Uncommon",
+    "card_description": "Gain 13 Block. Retain your Hand this turn.",
+    "keywords": [
+     {
+      "name": "Retain",
+      "description": "Retained cards are not discarded at the end of turn."
+     },
+     {
+      "name": "Block",
+      "description": "Until next turn, prevents damage."
+     }
+    ]
+   },
+   {
+    "index": 6,
+    "category": "card",
+    "price": 168,
+    "is_stocked": true,
+    "can_afford": false,
+    "on_sale": false,
+    "card_id": "GOLD_AXE",
+    "card_name": "Gold Axe",
+    "card_type": "Attack",
+    "card_cost": "1",
+    "card_star_cost": null,
+    "card_rarity": "Rare",
+    "card_description": "Deal damage equal to the number of cards played this combat.",
+    "keywords": []
+   },
+   {
+    "index": 7,
+    "category": "relic",
+    "price": 208,
+    "is_stocked": true,
+    "can_afford": false,
+    "relic_id": "ETERNAL_FEATHER",
+    "relic_name": "Eternal Feather",
+    "relic_description": "For every 5 cards in your Deck, heal 3 HP whenever you enter a Rest Site.",
+    "keywords": []
+   },
+   {
+    "index": 8,
+    "category": "relic",
+    "price": 251,
+    "is_stocked": true,
+    "can_afford": false,
+    "relic_id": "PERMAFROST",
+    "relic_name": "Permafrost",
+    "relic_description": "The first time you play a Power each combat, gain 7 Block.",
+    "keywords": []
+   },
+   {
+    "index": 9,
+    "category": "relic",
+    "price": 189,
+    "is_stocked": true,
+    "can_afford": false,
+    "relic_id": "WING_CHARM",
+    "relic_name": "Wing Charm",
+    "relic_description": "A random card in each card reward is Enchanted with Swift 1.",
+    "keywords": [
+     {
+      "name": "Swift",
+      "description": "The first time you play this card, draw 1 card."
+     }
+    ]
+   },
+   {
+    "index": 10,
+    "category": "potion",
+    "price": 50,
+    "is_stocked": true,
+    "can_afford": true,
+    "potion_id": "FIRE_POTION",
+    "potion_name": "Fire Potion",
+    "potion_description": "Deal 20 damage.",
+    "keywords": []
+   },
+   {
+    "index": 11,
+    "category": "potion",
+    "price": 77,
+    "is_stocked": true,
+    "can_afford": true,
+    "potion_id": "STABLE_SERUM",
+    "potion_name": "Stable Serum",
+    "potion_description": "Retain your Hand for 2 turns.",
+    "keywords": [
+     {
+      "name": "Retain",
+      "description": "Retained cards are not discarded at the end of turn."
+     }
+    ]
+   },
+   {
+    "index": 12,
+    "category": "potion",
+    "price": 77,
+    "is_stocked": true,
+    "can_afford": true,
+    "potion_id": "CURE_ALL",
+    "potion_name": "Cure All",
+    "potion_description": "Gain [silent_energy_icon.png]. Draw 2 cards.",
+    "keywords": [
+     {
+      "name": "Energy",
+      "description": "Energy is used to play cards from your Hand."
+     }
+    ]
+   },
+   {
+    "index": 13,
+    "category": "card_removal",
+    "price": 75,
+    "is_stocked": true,
+    "can_afford": true
+   }
+  ],
+  "can_proceed": false
+ },
+ "run": {
+  "act": 1,
+  "floor": 3
+ },
+ "player": {
+  "hp": 47,
+  "max_hp": 70,
+  "gold": 114,
+  "potions": [],
+  "max_potion_slots": 3,
+  "hand": [],
+  "draw_pile": [
+   {
+    "name": "Strike"
+   },
+   {
+    "name": "Defend"
+   },
+   {
+    "name": "Strike"
+   }
+  ],
+  "discard_pile": [],
+  "exhaust_pile": []
+ }
+}

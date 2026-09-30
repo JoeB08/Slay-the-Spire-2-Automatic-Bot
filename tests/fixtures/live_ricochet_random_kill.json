@@ -1,0 +1,302 @@
+{
+ "raw": {
+  "player": {
+   "character": "The Silent",
+   "hp": 56,
+   "max_hp": 70,
+   "block": 0,
+   "energy": 3,
+   "max_energy": 3,
+   "hand": [
+    {
+     "id": "STRIKE_SILENT",
+     "name": "Strike",
+     "type": "Attack",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage.",
+     "rarity": "Basic",
+     "is_upgraded": false,
+     "keywords": [],
+     "index": 0,
+     "target_type": "AnyEnemy",
+     "can_play": true,
+     "unplayable_reason": null
+    },
+    {
+     "id": "SURVIVOR",
+     "name": "Survivor",
+     "type": "Skill",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 10 Block. Discard 1 card.",
+     "rarity": "Basic",
+     "is_upgraded": false,
+     "keywords": [
+      {
+       "name": "Block",
+       "description": "Until next turn, prevents damage."
+      }
+     ],
+     "index": 1,
+     "target_type": "Self",
+     "can_play": true,
+     "unplayable_reason": null
+    },
+    {
+     "id": "DEFEND_SILENT",
+     "name": "Defend",
+     "type": "Skill",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 7 Block.",
+     "rarity": "Basic",
+     "is_upgraded": false,
+     "keywords": [
+      {
+       "name": "Block",
+       "description": "Until next turn, prevents damage."
+      }
+     ],
+     "index": 2,
+     "target_type": "Self",
+     "can_play": true,
+     "unplayable_reason": null
+    },
+    {
+     "id": "RICOCHET",
+     "name": "Ricochet",
+     "type": "Attack",
+     "cost": "2",
+     "star_cost": null,
+     "description": "Sly. Deal 3 damage to a random enemy 4 times.",
+     "rarity": "Common",
+     "is_upgraded": false,
+     "keywords": [
+      {
+       "name": "Sly",
+       "description": "If this card is discarded from your Hand before the end of your turn, play it for free."
+      }
+     ],
+     "index": 3,
+     "target_type": "RandomEnemy",
+     "can_play": true,
+     "unplayable_reason": null
+    },
+    {
+     "id": "STRIKE_SILENT",
+     "name": "Strike",
+     "type": "Attack",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage.",
+     "rarity": "Basic",
+     "is_upgraded": false,
+     "keywords": [],
+     "index": 4,
+     "target_type": "AnyEnemy",
+     "can_play": true,
+     "unplayable_reason": null
+    }
+   ],
+   "draw_pile_count": 9,
+   "discard_pile_count": 0,
+   "exhaust_pile_count": 0,
+   "draw_pile": [
+    {
+     "name": "Defend",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 7 Block."
+    },
+    {
+     "name": "Defend",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 7 Block."
+    },
+    {
+     "name": "Defend",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 7 Block."
+    },
+    {
+     "name": "Defend",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 7 Block."
+    },
+    {
+     "name": "Neutralize",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 3 damage. Apply 1 Weak."
+    },
+    {
+     "name": "Strike",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage."
+    },
+    {
+     "name": "Strike",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage."
+    },
+    {
+     "name": "Strike",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage."
+    },
+    {
+     "name": "Blur",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 7 Block. Block is not removed at the start of your next turn."
+    }
+   ],
+   "discard_pile": [],
+   "exhaust_pile": [],
+   "gold": 140,
+   "status": [
+    {
+     "id": "DEXTERITY_POWER",
+     "name": "Dexterity",
+     "amount": 2,
+     "type": "Buff",
+     "description": "Increases Block gained from cards by 2.",
+     "keywords": [
+      {
+       "name": "Block",
+       "description": "Until next turn, prevents damage."
+      }
+     ]
+    }
+   ],
+   "relics": [
+    {
+     "id": "RING_OF_THE_SNAKE",
+     "name": "Ring of the Snake",
+     "description": "At the start of each combat, draw 2 additional cards.",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "SMALL_CAPSULE",
+     "name": "Small Capsule",
+     "description": "Upon pickup, obtain a random Relic.",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "ETERNAL_FEATHER",
+     "name": "Eternal Feather",
+     "description": "For every 5 cards in your Deck, heal 3 HP whenever you enter a Rest Site.",
+     "counter": null,
+     "keywords": []
+    }
+   ],
+   "potions": [],
+   "max_potion_slots": 3
+  },
+  "battle": {
+   "round": 5,
+   "turn": "player",
+   "is_play_phase": true,
+   "enemies": [
+    {
+     "entity_id": "CALCIFIED_CULTIST_0",
+     "combat_id": 1,
+     "name": "Calcified Cultist",
+     "hp": 13,
+     "max_hp": 40,
+     "block": 0,
+     "status": [
+      {
+       "id": "RITUAL_POWER",
+       "name": "Ritual",
+       "amount": 2,
+       "type": "Buff",
+       "description": "At the end of its turn, gains 2 Strength.",
+       "keywords": [
+        {
+         "name": "Strength",
+         "description": "Strength adds additional damage to Attacks."
+        }
+       ]
+      },
+      {
+       "id": "STRENGTH_POWER",
+       "name": "Strength",
+       "amount": 6,
+       "type": "Buff",
+       "description": "Increases attack damage by 6.",
+       "keywords": []
+      }
+     ],
+     "intents": [
+      {
+       "type": "Attack",
+       "label": "15",
+       "title": "Aggressive",
+       "description": "This enemy intends to Attack for 15 damage."
+      }
+     ]
+    },
+    {
+     "entity_id": "DAMP_CULTIST_0",
+     "combat_id": 2,
+     "name": "Damp Cultist",
+     "hp": 41,
+     "max_hp": 53,
+     "block": 0,
+     "status": [
+      {
+       "id": "RITUAL_POWER",
+       "name": "Ritual",
+       "amount": 5,
+       "type": "Buff",
+       "description": "At the end of its turn, gains 5 Strength.",
+       "keywords": [
+        {
+         "name": "Strength",
+         "description": "Strength adds additional damage to Attacks."
+        }
+       ]
+      },
+      {
+       "id": "STRENGTH_POWER",
+       "name": "Strength",
+       "amount": 15,
+       "type": "Buff",
+       "description": "Increases attack damage by 15.",
+       "keywords": []
+      }
+     ],
+     "intents": [
+      {
+       "type": "Attack",
+       "label": "16",
+       "title": "Aggressive",
+       "description": "This enemy intends to Attack for 16 damage."
+      }
+     ]
+    }
+   ]
+  },
+  "run": {
+   "act": 1,
+   "floor": 5,
+   "ascension": 0
+  },
+  "state_type": "monster"
+ },
+ "logged_action": "play_card",
+ "logged_fields": {
+  "card_index": 0,
+  "target": "CALCIFIED_CULTIST_0"
+ }
+}

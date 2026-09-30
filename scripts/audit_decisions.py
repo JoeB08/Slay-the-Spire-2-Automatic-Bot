@@ -41,10 +41,10 @@ from bot.strategy import combat as C  # noqa: E402
 
 
 def _latest_log() -> Path | None:
-    # Importing `bot.loop` opens a fresh decision log as a side effect, so
-    # analysis scripts leave a trail of empty files behind them. Picking the
-    # newest by mtime therefore lands on an empty log and silently reports
-    # "nothing found" -- skip anything with no rows.
+    # Skip zero-byte logs. Building a BotLoop opens one, so anything that did
+    # that without redirecting LOG_DIR left a stub behind -- three quarters of
+    # the files in the archive are stubs. The newest by mtime would otherwise
+    # land on one of those and report "nothing found".
     logs = [p for p in log_io.log_paths(ROOT, "logs/run_*.jsonl")
             if p.stat().st_size > 0]
     logs.sort(key=lambda p: p.stat().st_mtime)

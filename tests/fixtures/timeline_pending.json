@@ -1,0 +1,20 @@
+{
+  "state_type": "menu",
+  "menu_screen": "timeline",
+  "message": "Timeline screen.",
+  "options": [
+    {"name": "advance", "enabled": true},
+    {"name": "back", "enabled": true}
+  ],
+  "epochs": [
+    {"id": "NEOW_EPOCH", "name": "NEOW_EPOCH", "state": "Revealed", "obtained": 1787841526},
+    {"id": "SILENT1_EPOCH", "name": "SILENT1_EPOCH", "state": "Revealed", "obtained": 1787841546},
+    {"id": "REGENT1_EPOCH", "name": "REGENT1_EPOCH", "state": "Obtained", "obtained": 1787900000}
+  ],
+  "total_slots": 23,
+  "completed_count": 6,
+  "revealed_count": 5,
+  "obtained_unrevealed_count": 1,
+  "locked_count": 17,
+  "no_slot_count": 0
+}

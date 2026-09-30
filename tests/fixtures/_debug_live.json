@@ -1,0 +1,64 @@
+{
+  "state_type": "game_over",
+  "game_over": {
+    "message": "Run ended.",
+    "options": [
+      "main_menu"
+    ]
+  },
+  "run": {
+    "act": 1,
+    "floor": 8,
+    "ascension": 0
+  },
+  "player": {
+    "character": "The Silent",
+    "hp": 0,
+    "max_hp": 70,
+    "block": 0,
+    "gold": 161,
+    "status": [],
+    "relics": [
+      {
+        "id": "RING_OF_THE_SNAKE",
+        "name": "Ring of the Snake",
+        "description": "At the start of each combat, draw 2 additional cards.",
+        "counter": null,
+        "keywords": []
+      },
+      {
+        "id": "LOST_COFFER",
+        "name": "Lost Coffer",
+        "description": "Upon pickup, gain 1 card reward and procure 1 random potion.",
+        "counter": null,
+        "keywords": []
+      }
+    ],
+    "potions": [
+      {
+        "id": "SWIFT_POTION",
+        "name": "Swift Potion",
+        "description": "Draw 3 cards.",
+        "slot": 0,
+        "can_use_in_combat": true,
+        "target_type": "AnyPlayer",
+        "keywords": []
+      },
+      {
+        "id": "ENERGY_POTION",
+        "name": "Energy Potion",
+        "description": "Gain [silent_energy_icon.png][silent_energy_icon.png].",
+        "slot": 1,
+        "can_use_in_combat": true,
+        "target_type": "AnyPlayer",
+        "keywords": [
+          {
+            "name": "Energy",
+            "description": "Energy is used to play cards from your Hand."
+          }
+        ]
+      }
+    ],
+    "max_potion_slots": 3
+  }
+}

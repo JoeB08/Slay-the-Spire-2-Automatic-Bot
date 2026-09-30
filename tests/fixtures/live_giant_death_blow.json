@@ -1,0 +1,433 @@
+{
+ "raw": {
+  "player": {
+   "character": "The Silent",
+   "hp": 13,
+   "max_hp": 70,
+   "block": 0,
+   "energy": 3,
+   "max_energy": 3,
+   "hand": [
+    {
+     "id": "THRUMMING_HATCHET",
+     "name": "Thrumming Hatchet",
+     "type": "Attack",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 12 damage. At the start of your next turn, return this to your Hand.",
+     "rarity": "Uncommon",
+     "is_upgraded": false,
+     "keywords": [],
+     "index": 0,
+     "target_type": "AnyEnemy",
+     "can_play": true,
+     "unplayable_reason": null
+    },
+    {
+     "id": "LEADING_STRIKE",
+     "name": "Leading Strike+",
+     "type": "Attack",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 7 damage. Add 2 Shivs into your Hand.",
+     "rarity": "Common",
+     "is_upgraded": true,
+     "keywords": [
+      {
+       "name": "Shiv",
+       "description": "Deal 4 damage. Exhaust."
+      }
+     ],
+     "index": 1,
+     "target_type": "AnyEnemy",
+     "can_play": true,
+     "unplayable_reason": null
+    },
+    {
+     "id": "DEFEND_SILENT",
+     "name": "Defend",
+     "type": "Skill",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 5 Block.",
+     "rarity": "Basic",
+     "is_upgraded": false,
+     "keywords": [
+      {
+       "name": "Block",
+       "description": "Until next turn, prevents damage."
+      }
+     ],
+     "index": 2,
+     "target_type": "Self",
+     "can_play": true,
+     "unplayable_reason": null
+    },
+    {
+     "id": "DEFEND_SILENT",
+     "name": "Defend",
+     "type": "Skill",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 5 Block.",
+     "rarity": "Basic",
+     "is_upgraded": false,
+     "keywords": [
+      {
+       "name": "Block",
+       "description": "Until next turn, prevents damage."
+      }
+     ],
+     "index": 3,
+     "target_type": "Self",
+     "can_play": true,
+     "unplayable_reason": null
+    },
+    {
+     "id": "HAZE",
+     "name": "Haze",
+     "type": "Skill",
+     "cost": "3",
+     "star_cost": null,
+     "description": "Sly. Apply 4 Poison to ALL enemies.",
+     "rarity": "Uncommon",
+     "is_upgraded": false,
+     "keywords": [
+      {
+       "name": "Poison",
+       "description": "Poisoned creatures lose HP at the start of their turn. Each turn, Poison is reduced by 1."
+      },
+      {
+       "name": "Sly",
+       "description": "If this card is discarded from your Hand before the end of your turn, play it for free."
+      }
+     ],
+     "index": 4,
+     "target_type": "AllEnemies",
+     "can_play": true,
+     "unplayable_reason": null
+    },
+    {
+     "id": "STRIKE_SILENT",
+     "name": "Strike",
+     "type": "Attack",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 7 damage.",
+     "rarity": "Basic",
+     "is_upgraded": false,
+     "keywords": [],
+     "index": 5,
+     "target_type": "AnyEnemy",
+     "can_play": true,
+     "unplayable_reason": null
+    }
+   ],
+   "draw_pile_count": 6,
+   "discard_pile_count": 9,
+   "exhaust_pile_count": 12,
+   "draw_pile": [
+    {
+     "name": "Defend",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 5 Block."
+    },
+    {
+     "name": "Strike",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage."
+    },
+    {
+     "name": "Strike",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 7 damage."
+    },
+    {
+     "name": "Survivor",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 8 Block. Discard 1 card."
+    },
+    {
+     "name": "Backflip",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 5 Block. Draw 2 cards."
+    },
+    {
+     "name": "Dagger Throw",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 9 damage. Draw 1 card. Discard 1 card."
+    }
+   ],
+   "discard_pile": [
+    {
+     "name": "Backflip",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 5 Block. Draw 2 cards."
+    },
+    {
+     "name": "Neutralize",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 4 damage. Apply 1 Weak."
+    },
+    {
+     "name": "Strike",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage."
+    },
+    {
+     "name": "Cloak and Dagger",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 6 Block. Add 1 Shiv into your Hand."
+    },
+    {
+     "name": "Untouchable",
+     "cost": "2",
+     "star_cost": null,
+     "description": "Sly. Gain 6 Block."
+    },
+    {
+     "name": "Strike",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage."
+    },
+    {
+     "name": "Defend",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 5 Block."
+    },
+    {
+     "name": "Defend",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 5 Block."
+    },
+    {
+     "name": "Ricochet",
+     "cost": "2",
+     "star_cost": null,
+     "description": "Sly. Deal 4 damage to a random enemy 4 times."
+    }
+   ],
+   "exhaust_pile": [
+    {
+     "name": "Shiv",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 4 damage to ALL enemies. Exhaust."
+    },
+    {
+     "name": "Shiv",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 5 damage to ALL enemies. Exhaust."
+    },
+    {
+     "name": "Shiv",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 5 damage to ALL enemies. Exhaust."
+    },
+    {
+     "name": "Shiv",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 5 damage to ALL enemies. Exhaust."
+    },
+    {
+     "name": "Shiv",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 4 damage to ALL enemies. Exhaust."
+    },
+    {
+     "name": "Shiv",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 5 damage to ALL enemies. Exhaust."
+    },
+    {
+     "name": "Shiv",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 5 damage to ALL enemies. Exhaust."
+    },
+    {
+     "name": "Shiv",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 5 damage to ALL enemies. Exhaust."
+    },
+    {
+     "name": "Shiv",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 5 damage to ALL enemies. Exhaust."
+    },
+    {
+     "name": "Shiv",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 5 damage to ALL enemies. Exhaust."
+    },
+    {
+     "name": "Shiv",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 4 damage to ALL enemies. Exhaust."
+    },
+    {
+     "name": "Shiv",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 5 damage to ALL enemies. Exhaust."
+    }
+   ],
+   "gold": 120,
+   "status": [
+    {
+     "id": "STRENGTH_POWER",
+     "name": "Strength",
+     "amount": 1,
+     "type": "Buff",
+     "description": "Increases attack damage by 1.",
+     "keywords": []
+    },
+    {
+     "id": "TRACKING_POWER",
+     "name": "Tracking",
+     "amount": 2,
+     "type": "Buff",
+     "description": "Weak enemies take 2 times more damage from Attacks.",
+     "keywords": [
+      {
+       "name": "Weak",
+       "description": "Weakened creatures deal 25% less damage with Attacks."
+      }
+     ]
+    },
+    {
+     "id": "FAN_OF_KNIVES_POWER",
+     "name": "Fan of Knives",
+     "amount": 1,
+     "type": "Buff",
+     "description": "Shivs hit ALL enemies.",
+     "keywords": []
+    },
+    {
+     "id": "TOOLS_OF_THE_TRADE_POWER",
+     "name": "Tools of the Trade",
+     "amount": 1,
+     "type": "Buff",
+     "description": "At the start of your turn, draw 1 card and discard 1 card.",
+     "keywords": []
+    }
+   ],
+   "relics": [
+    {
+     "id": "RING_OF_THE_SNAKE",
+     "name": "Ring of the Snake",
+     "description": "At the start of each combat, draw 2 additional cards.",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "LEAD_PAPERWEIGHT",
+     "name": "Lead Paperweight",
+     "description": "Upon pickup, choose 1 of 2 Colorless cards to add to your Deck.",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "BOWLER_HAT",
+     "name": "Bowler Hat",
+     "description": "Gain 25% additional Gold.",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "THE_ABACUS",
+     "name": "The Abacus",
+     "description": "Whenever you shuffle your Draw Pile, gain 6 Block.",
+     "counter": null,
+     "keywords": [
+      {
+       "name": "Block",
+       "description": "Until next turn, prevents damage."
+      }
+     ]
+    },
+    {
+     "id": "VAJRA",
+     "name": "Vajra",
+     "description": "Start each combat with 1 Strength.",
+     "counter": null,
+     "keywords": [
+      {
+       "name": "Strength",
+       "description": "Strength adds additional damage to Attacks."
+      }
+     ]
+    }
+   ],
+   "potions": [
+    {
+     "id": "COLORLESS_POTION",
+     "name": "Colorless Potion",
+     "description": "Choose 1 of 3 random Colorless cards to add into your Hand. It's free to play this turn.",
+     "slot": 0,
+     "can_use_in_combat": true,
+     "target_type": "Self",
+     "keywords": []
+    }
+   ],
+   "max_potion_slots": 3
+  },
+  "battle": {
+   "round": 15,
+   "turn": "player",
+   "is_play_phase": true,
+   "enemies": [
+    {
+     "entity_id": "WATERFALL_GIANT_0",
+     "combat_id": 1,
+     "name": "Waterfall Giant",
+     "hp": 999999983,
+     "max_hp": 999999999,
+     "block": 0,
+     "status": [],
+     "intents": [
+      {
+       "type": "DeathBlow",
+       "label": "51",
+       "title": "Death Blow",
+       "description": "This creature is trying to take you down with it. It will attack you for 51 damage before being destroyed."
+      }
+     ]
+    }
+   ]
+  },
+  "run": {
+   "act": 1,
+   "floor": 17,
+   "ascension": 0
+  },
+  "state_type": "boss"
+ },
+ "logged_action": "play_card",
+ "logged_fields": {
+  "card_index": 1,
+  "target": "WATERFALL_GIANT_0"
+ }
+}

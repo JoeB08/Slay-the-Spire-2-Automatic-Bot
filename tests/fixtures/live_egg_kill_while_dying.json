@@ -1,0 +1,501 @@
+{
+ "raw": {
+  "player": {
+   "character": "The Silent",
+   "hp": 6,
+   "max_hp": 70,
+   "block": 24,
+   "energy": 1,
+   "max_energy": 3,
+   "hand": [
+    {
+     "id": "STRIKE_SILENT",
+     "name": "Strike",
+     "type": "Attack",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage.",
+     "rarity": "Basic",
+     "is_upgraded": false,
+     "keywords": [],
+     "index": 0,
+     "target_type": "AnyEnemy",
+     "can_play": true,
+     "unplayable_reason": null
+    },
+    {
+     "id": "RICOCHET",
+     "name": "Ricochet",
+     "type": "Attack",
+     "cost": "2",
+     "star_cost": null,
+     "description": "Sly. Deal 3 damage to a random enemy 4 times.",
+     "rarity": "Common",
+     "is_upgraded": false,
+     "keywords": [
+      {
+       "name": "Sly",
+       "description": "If this card is discarded from your Hand before the end of your turn, play it for free."
+      }
+     ],
+     "index": 1,
+     "target_type": "RandomEnemy",
+     "can_play": false,
+     "unplayable_reason": "EnergyCostTooHigh"
+    },
+    {
+     "id": "DEFEND_SILENT",
+     "name": "Defend",
+     "type": "Skill",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 14 Block.",
+     "rarity": "Basic",
+     "is_upgraded": false,
+     "keywords": [
+      {
+       "name": "Block",
+       "description": "Until next turn, prevents damage."
+      }
+     ],
+     "index": 2,
+     "target_type": "Self",
+     "can_play": true,
+     "unplayable_reason": null
+    },
+    {
+     "id": "STRIKE_SILENT",
+     "name": "Strike",
+     "type": "Attack",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage.",
+     "rarity": "Basic",
+     "is_upgraded": false,
+     "keywords": [],
+     "index": 3,
+     "target_type": "AnyEnemy",
+     "can_play": true,
+     "unplayable_reason": null
+    }
+   ],
+   "draw_pile_count": 9,
+   "discard_pile_count": 6,
+   "exhaust_pile_count": 3,
+   "draw_pile": [
+    {
+     "name": "Defend",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 6 Block."
+    },
+    {
+     "name": "Defend",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 5 Block."
+    },
+    {
+     "name": "Defend",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 6 Block."
+    },
+    {
+     "name": "Strike",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage."
+    },
+    {
+     "name": "Survivor",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 9 Block. Discard 1 card."
+    },
+    {
+     "name": "Dagger Throw+",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 12 damage. Draw 1 card. Discard 1 card."
+    },
+    {
+     "name": "Dagger Throw",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 9 damage. Draw 1 card. Discard 1 card."
+    },
+    {
+     "name": "Bouncing Flask",
+     "cost": "2",
+     "star_cost": null,
+     "description": "Apply 3 Poison to a random enemy 3 times."
+    },
+    {
+     "name": "Leg Sweep",
+     "cost": "2",
+     "star_cost": null,
+     "description": "Apply 2 Weak. Gain 11 Block."
+    }
+   ],
+   "discard_pile": [
+    {
+     "name": "Neutralize",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 3 damage. Apply 1 Weak."
+    },
+    {
+     "name": "Finesse",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Gain 5 Block. Draw 1 card."
+    },
+    {
+     "name": "Strike",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage."
+    },
+    {
+     "name": "Strike",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage."
+    },
+    {
+     "name": "Defend",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 7 Block."
+    },
+    {
+     "name": "Untouchable",
+     "cost": "2",
+     "star_cost": null,
+     "description": "Sly. Gain 6 Block."
+    }
+   ],
+   "exhaust_pile": [
+    {
+     "name": "Calculated Gamble",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Discard your Hand, then draw that many cards. Exhaust."
+    },
+    {
+     "name": "Adrenaline+",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Gain [silent_energy_icon.png][silent_energy_icon.png]. Draw 2 cards. Exhaust."
+    },
+    {
+     "name": "Malaise",
+     "cost": "X",
+     "star_cost": null,
+     "description": "Enemy loses X Strength. Apply X Weak. Exhaust."
+    }
+   ],
+   "gold": 35,
+   "status": [
+    {
+     "id": "TRACKING_POWER",
+     "name": "Tracking",
+     "amount": 2,
+     "type": "Buff",
+     "description": "Weak enemies take 2 times more damage from Attacks.",
+     "keywords": [
+      {
+       "name": "Weak",
+       "description": "Weakened creatures deal 25% less damage with Attacks."
+      }
+     ]
+    },
+    {
+     "id": "OUTBREAK_POWER",
+     "name": "Outbreak",
+     "amount": 0,
+     "type": "Buff",
+     "description": "Every 3 times you apply Poison, deal 11 damage to ALL enemies.",
+     "keywords": [
+      {
+       "name": "Poison",
+       "description": "Poisoned creatures lose HP at the start of their turn. Each turn, Poison is reduced by 1."
+      }
+     ]
+    },
+    {
+     "id": "DEXTERITY_POWER",
+     "name": "Dexterity",
+     "amount": 2,
+     "type": "Buff",
+     "description": "Increases Block gained from cards by 2.",
+     "keywords": [
+      {
+       "name": "Block",
+       "description": "Until next turn, prevents damage."
+      }
+     ]
+    },
+    {
+     "id": "VULNERABLE_POWER",
+     "name": "Vulnerable",
+     "amount": 1,
+     "type": "Debuff",
+     "description": "Receive 50% more damage from Attacks for 1 turn.",
+     "keywords": []
+    }
+   ],
+   "relics": [
+    {
+     "id": "RING_OF_THE_SNAKE",
+     "name": "Ring of the Snake",
+     "description": "At the start of each combat, draw 2 additional cards.",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "LEAD_PAPERWEIGHT",
+     "name": "Lead Paperweight",
+     "description": "Upon pickup, choose 1 of 2 Colorless cards to add to your Deck.",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "BONE_TEA",
+     "name": "Bone Tea",
+     "description": "At the start of the next 0 combats, Upgrade your starting hand.",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "KUNAI",
+     "name": "Kunai",
+     "description": "Every time you play 3 Attacks in a single turn, gain 1 Dexterity.",
+     "counter": 0,
+     "keywords": [
+      {
+       "name": "Dexterity",
+       "description": "Dexterity improves Block gained from cards."
+      }
+     ]
+    },
+    {
+     "id": "JUZU_BRACELET",
+     "name": "Juzu Bracelet",
+     "description": "Regular enemy combats are no longer encountered in ? rooms.",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "SNECKO_SKULL",
+     "name": "Snecko Skull",
+     "description": "Whenever you apply Poison, apply an additional 1 Poison.",
+     "counter": null,
+     "keywords": [
+      {
+       "name": "Poison",
+       "description": "Poisoned creatures lose HP at the start of their turn. Each turn, Poison is reduced by 1."
+      }
+     ]
+    },
+    {
+     "id": "PAELS_LEGION",
+     "name": "Pael's Legion",
+     "description": "Doubles Block gained from a card, then goes to sleep for 2 turns.",
+     "counter": null,
+     "keywords": [
+      {
+       "name": "Block",
+       "description": "Until next turn, prevents damage."
+      }
+     ]
+    },
+    {
+     "id": "REGAL_PILLOW",
+     "name": "Regal Pillow",
+     "description": "Whenever you Rest, heal an additional 15 HP.",
+     "counter": null,
+     "keywords": []
+    }
+   ],
+   "potions": [],
+   "max_potion_slots": 3
+  },
+  "battle": {
+   "round": 11,
+   "turn": "player",
+   "is_play_phase": true,
+   "enemies": [
+    {
+     "entity_id": "TOUGH_EGG_0",
+     "combat_id": 7,
+     "name": "Hatchling",
+     "hp": 17,
+     "max_hp": 20,
+     "block": 0,
+     "status": [
+      {
+       "id": "MINION_POWER",
+       "name": "Minion",
+       "amount": 1,
+       "type": "Buff",
+       "description": "Minions abandon combat without their leader.",
+       "keywords": []
+      }
+     ],
+     "intents": [
+      {
+       "type": "Attack",
+       "label": "6",
+       "title": "Aggressive",
+       "description": "This enemy intends to Attack for 6 damage."
+      }
+     ]
+    },
+    {
+     "entity_id": "TOUGH_EGG_1",
+     "combat_id": 11,
+     "name": "Tough Egg",
+     "hp": 18,
+     "max_hp": 18,
+     "block": 0,
+     "status": [
+      {
+       "id": "HATCH_POWER",
+       "name": "Hatch",
+       "amount": 1,
+       "type": "Buff",
+       "description": "Hatches after 1 turn.",
+       "keywords": []
+      },
+      {
+       "id": "MINION_POWER",
+       "name": "Minion",
+       "amount": 1,
+       "type": "Buff",
+       "description": "Minions abandon combat without their leader.",
+       "keywords": []
+      }
+     ],
+     "intents": [
+      {
+       "type": "Summon",
+       "label": "",
+       "title": "Summon",
+       "description": "This enemy intends to summon Monsters."
+      }
+     ]
+    },
+    {
+     "entity_id": "TOUGH_EGG_2",
+     "combat_id": 10,
+     "name": "Tough Egg",
+     "hp": 4,
+     "max_hp": 14,
+     "block": 0,
+     "status": [
+      {
+       "id": "HATCH_POWER",
+       "name": "Hatch",
+       "amount": 1,
+       "type": "Buff",
+       "description": "Hatches after 1 turn.",
+       "keywords": []
+      },
+      {
+       "id": "MINION_POWER",
+       "name": "Minion",
+       "amount": 1,
+       "type": "Buff",
+       "description": "Minions abandon combat without their leader.",
+       "keywords": []
+      }
+     ],
+     "intents": [
+      {
+       "type": "Summon",
+       "label": "",
+       "title": "Summon",
+       "description": "This enemy intends to summon Monsters."
+      }
+     ]
+    },
+    {
+     "entity_id": "TOUGH_EGG_3",
+     "combat_id": 9,
+     "name": "Tough Egg",
+     "hp": 15,
+     "max_hp": 15,
+     "block": 0,
+     "status": [
+      {
+       "id": "HATCH_POWER",
+       "name": "Hatch",
+       "amount": 1,
+       "type": "Buff",
+       "description": "Hatches after 1 turn.",
+       "keywords": []
+      },
+      {
+       "id": "MINION_POWER",
+       "name": "Minion",
+       "amount": 1,
+       "type": "Buff",
+       "description": "Minions abandon combat without their leader.",
+       "keywords": []
+      }
+     ],
+     "intents": [
+      {
+       "type": "Summon",
+       "label": "",
+       "title": "Summon",
+       "description": "This enemy intends to summon Monsters."
+      }
+     ]
+    },
+    {
+     "entity_id": "OVICOPTER_0",
+     "combat_id": 1,
+     "name": "Ovicopter",
+     "hp": 90,
+     "max_hp": 126,
+     "block": 0,
+     "status": [
+      {
+       "id": "STRENGTH_POWER",
+       "name": "Strength",
+       "amount": 2,
+       "type": "Buff",
+       "description": "Increases attack damage by 2.",
+       "keywords": []
+      }
+     ],
+     "intents": [
+      {
+       "type": "Attack",
+       "label": "27",
+       "title": "Aggressive",
+       "description": "This enemy intends to Attack for 27 damage."
+      }
+     ]
+    }
+   ]
+  },
+  "run": {
+   "act": 2,
+   "floor": 22,
+   "ascension": 0
+  },
+  "state_type": "monster"
+ },
+ "logged": {
+  "action": "play_card",
+  "fields": {
+   "card_index": 0,
+   "target": "TOUGH_EGG_2"
+  }
+ },
+ "note": "Set 3 run 15, floor 22 round 11: 6 HP, 24 Block, 33 incoming; the lethal step spent the last energy on Strike to finish a Tough Egg whose intent was Summon, holding Defend."
+}

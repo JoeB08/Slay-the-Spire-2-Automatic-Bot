@@ -1,0 +1,473 @@
+{
+ "raw": {
+  "player": {
+   "character": "The Silent",
+   "hp": 66,
+   "max_hp": 70,
+   "block": 0,
+   "energy": 3,
+   "max_energy": 3,
+   "hand": [
+    {
+     "id": "ECHOING_SLASH",
+     "name": "Echoing Slash+",
+     "type": "Attack",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 18 damage to ALL enemies. Repeat this effect for each enemy killed.",
+     "rarity": "Rare",
+     "is_upgraded": true,
+     "keywords": [],
+     "index": 0,
+     "target_type": "AllEnemies",
+     "can_play": true,
+     "unplayable_reason": null
+    },
+    {
+     "id": "DEFEND_SILENT",
+     "name": "Defend",
+     "type": "Skill",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 5 Block.",
+     "rarity": "Basic",
+     "is_upgraded": false,
+     "keywords": [
+      {
+       "name": "Block",
+       "description": "Until next turn, prevents damage."
+      }
+     ],
+     "index": 1,
+     "target_type": "Self",
+     "can_play": true,
+     "unplayable_reason": null
+    },
+    {
+     "id": "MURDER",
+     "name": "Murder+",
+     "type": "Attack",
+     "cost": "2",
+     "star_cost": null,
+     "description": "Deal 60 damage. Deals 1 additional damage for each card drawn this combat.",
+     "rarity": "Rare",
+     "is_upgraded": true,
+     "keywords": [],
+     "index": 2,
+     "target_type": "AnyEnemy",
+     "can_play": true,
+     "unplayable_reason": null
+    },
+    {
+     "id": "STRIKE_SILENT",
+     "name": "Strike+",
+     "type": "Attack",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 14 damage.",
+     "rarity": "Basic",
+     "is_upgraded": true,
+     "keywords": [],
+     "index": 3,
+     "target_type": "AnyEnemy",
+     "can_play": true,
+     "unplayable_reason": null
+    },
+    {
+     "id": "ESCAPE_PLAN",
+     "name": "Escape Plan",
+     "type": "Skill",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Draw 1 card. If you draw a Skill, gain 3 Block.",
+     "rarity": "Uncommon",
+     "is_upgraded": false,
+     "keywords": [
+      {
+       "name": "Block",
+       "description": "Until next turn, prevents damage."
+      }
+     ],
+     "index": 4,
+     "target_type": "Self",
+     "can_play": true,
+     "unplayable_reason": null
+    }
+   ],
+   "draw_pile_count": 10,
+   "discard_pile_count": 0,
+   "exhaust_pile_count": 11,
+   "draw_pile": [
+    {
+     "name": "Defend+",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 8 Block."
+    },
+    {
+     "name": "Defend",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 5 Block."
+    },
+    {
+     "name": "Defend",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 5 Block."
+    },
+    {
+     "name": "Strike",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 10 damage."
+    },
+    {
+     "name": "Strike",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage."
+    },
+    {
+     "name": "Survivor+",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 11 Block. Discard 1 card."
+    },
+    {
+     "name": "Backflip",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 5 Block. Draw 2 cards."
+    },
+    {
+     "name": "Acrobatics",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Draw 3 cards. Discard 1 card."
+    },
+    {
+     "name": "Acrobatics+",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Draw 4 cards. Discard 1 card."
+    },
+    {
+     "name": "Echoing Slash",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 10 damage to ALL enemies. Repeat this effect for each enemy killed."
+    }
+   ],
+   "discard_pile": [],
+   "exhaust_pile": [
+    {
+     "name": "Escape Plan",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Draw 1 card. If you draw a Skill, gain 3 Block."
+    },
+    {
+     "name": "Assassinate+",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Innate. Deal 14 damage. Apply 2 Vulnerable. Exhaust."
+    },
+    {
+     "name": "Backstab+",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Innate. Deal 24 damage. Exhaust."
+    },
+    {
+     "name": "Neutralize",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 3 damage. Apply 1 Weak."
+    },
+    {
+     "name": "Leading Strike",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 3 damage. Add 2 Shivs into your Hand."
+    },
+    {
+     "name": "Blade Dance",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Add 3 Shivs into your Hand. Exhaust."
+    },
+    {
+     "name": "Shiv",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 7 damage. Exhaust."
+    },
+    {
+     "name": "Shiv",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 7 damage. Exhaust."
+    },
+    {
+     "name": "Shiv",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 7 damage. Exhaust."
+    },
+    {
+     "name": "Well-Laid Plans",
+     "cost": "1",
+     "star_cost": null,
+     "description": "At the end of your turn, Retain up to 1 card."
+    },
+    {
+     "name": "Strike+",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 9 damage."
+    }
+   ],
+   "gold": 12,
+   "status": [
+    {
+     "id": "STRENGTH_POWER",
+     "name": "Strength",
+     "amount": 5,
+     "type": "Buff",
+     "description": "Increases attack damage by 5.",
+     "keywords": []
+    },
+    {
+     "id": "VULNERABLE_POWER",
+     "name": "Vulnerable",
+     "amount": 1,
+     "type": "Debuff",
+     "description": "Receive 50% more damage from Attacks for 1 turn.",
+     "keywords": []
+    }
+   ],
+   "relics": [
+    {
+     "id": "RING_OF_THE_SNAKE",
+     "name": "Ring of the Snake",
+     "description": "At the start of each combat, draw 2 additional cards.",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "PHIAL_HOLSTER",
+     "name": "Phial Holster",
+     "description": "Upon pickup, gain 1 potion slot and procure 2 random potions.",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "CANDELABRA",
+     "name": "Candelabra",
+     "description": "At the start of your 2nd turn, gain [silent_energy_icon.png][silent_energy_icon.png].",
+     "counter": null,
+     "keywords": [
+      {
+       "name": "Energy",
+       "description": "Energy is used to play cards from your Hand."
+      }
+     ]
+    },
+    {
+     "id": "PENDULUM",
+     "name": "Pendulum",
+     "description": "Every 3 turns, draw 1 card.",
+     "counter": 1,
+     "keywords": []
+    },
+    {
+     "id": "GAMBLING_CHIP",
+     "name": "Gambling Chip",
+     "description": "At the start of each combat, discard any number of cards then draw that many.",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "TOASTY_MITTENS",
+     "name": "Toasty Mittens",
+     "description": "At the start of your turn, Exhaust the top card of your Draw Pile and gain 1 Strength.",
+     "counter": null,
+     "keywords": [
+      {
+       "name": "Exhaust",
+       "description": "Removed until the end of combat."
+      },
+      {
+       "name": "Strength",
+       "description": "Strength adds additional damage to Attacks."
+      }
+     ]
+    },
+    {
+     "id": "BELLOWS",
+     "name": "Bellows",
+     "description": "The first Hand you draw each combat is Upgraded.",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "MEMBERSHIP_CARD",
+     "name": "Membership Card",
+     "description": "50% discount on all products!",
+     "counter": null,
+     "keywords": []
+    }
+   ],
+   "potions": [
+    {
+     "id": "POWER_POTION",
+     "name": "Power Potion",
+     "description": "Choose 1 of 3 random Power cards to add into your Hand. It's free to play this turn.",
+     "slot": 0,
+     "can_use_in_combat": true,
+     "target_type": "Self",
+     "keywords": []
+    }
+   ],
+   "max_potion_slots": 4
+  },
+  "battle": {
+   "round": 5,
+   "turn": "player",
+   "is_play_phase": true,
+   "enemies": [
+    {
+     "entity_id": "TOUGH_EGG_0",
+     "combat_id": 7,
+     "name": "Tough Egg",
+     "hp": 18,
+     "max_hp": 18,
+     "block": 0,
+     "status": [
+      {
+       "id": "HATCH_POWER",
+       "name": "Hatch",
+       "amount": 1,
+       "type": "Buff",
+       "description": "Hatches after 1 turn.",
+       "keywords": []
+      },
+      {
+       "id": "MINION_POWER",
+       "name": "Minion",
+       "amount": 1,
+       "type": "Buff",
+       "description": "Minions abandon combat without their leader.",
+       "keywords": []
+      }
+     ],
+     "intents": [
+      {
+       "type": "Summon",
+       "label": "",
+       "title": "Summon",
+       "description": "This enemy intends to summon Monsters."
+      }
+     ]
+    },
+    {
+     "entity_id": "TOUGH_EGG_1",
+     "combat_id": 6,
+     "name": "Tough Egg",
+     "hp": 17,
+     "max_hp": 17,
+     "block": 0,
+     "status": [
+      {
+       "id": "HATCH_POWER",
+       "name": "Hatch",
+       "amount": 1,
+       "type": "Buff",
+       "description": "Hatches after 1 turn.",
+       "keywords": []
+      },
+      {
+       "id": "MINION_POWER",
+       "name": "Minion",
+       "amount": 1,
+       "type": "Buff",
+       "description": "Minions abandon combat without their leader.",
+       "keywords": []
+      }
+     ],
+     "intents": [
+      {
+       "type": "Summon",
+       "label": "",
+       "title": "Summon",
+       "description": "This enemy intends to summon Monsters."
+      }
+     ]
+    },
+    {
+     "entity_id": "TOUGH_EGG_2",
+     "combat_id": 5,
+     "name": "Tough Egg",
+     "hp": 16,
+     "max_hp": 16,
+     "block": 0,
+     "status": [
+      {
+       "id": "HATCH_POWER",
+       "name": "Hatch",
+       "amount": 1,
+       "type": "Buff",
+       "description": "Hatches after 1 turn.",
+       "keywords": []
+      },
+      {
+       "id": "MINION_POWER",
+       "name": "Minion",
+       "amount": 1,
+       "type": "Buff",
+       "description": "Minions abandon combat without their leader.",
+       "keywords": []
+      }
+     ],
+     "intents": [
+      {
+       "type": "Summon",
+       "label": "",
+       "title": "Summon",
+       "description": "This enemy intends to summon Monsters."
+      }
+     ]
+    },
+    {
+     "entity_id": "OVICOPTER_0",
+     "combat_id": 1,
+     "name": "Ovicopter",
+     "hp": 73,
+     "max_hp": 124,
+     "block": 0,
+     "status": [],
+     "intents": [
+      {
+       "type": "Attack",
+       "label": "24",
+       "title": "Aggressive",
+       "description": "This enemy intends to Attack for 24 damage."
+      }
+     ]
+    }
+   ]
+  },
+  "run": {
+   "act": 2,
+   "floor": 23,
+   "ascension": 0
+  },
+  "state_type": "monster"
+ },
+ "logged_action": "play_card",
+ "logged_fields": {
+  "card_index": 2,
+  "target": "OVICOPTER_0"
+ }
+}

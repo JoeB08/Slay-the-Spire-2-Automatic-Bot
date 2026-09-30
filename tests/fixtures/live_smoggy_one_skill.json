@@ -1,0 +1,324 @@
+{
+ "raw": {
+  "player": {
+   "character": "The Silent",
+   "hp": 23,
+   "max_hp": 70,
+   "block": 0,
+   "energy": 3,
+   "max_energy": 3,
+   "hand": [
+    {
+     "id": "DEFEND_SILENT",
+     "name": "Defend",
+     "type": "Skill",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 5 Block.",
+     "rarity": "Basic",
+     "is_upgraded": false,
+     "keywords": [
+      {
+       "name": "Block",
+       "description": "Until next turn, prevents damage."
+      }
+     ],
+     "index": 0,
+     "target_type": "Self",
+     "can_play": true,
+     "unplayable_reason": null
+    },
+    {
+     "id": "GRAND_FINALE",
+     "name": "Grand Finale",
+     "type": "Attack",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Can only be played if there are no cards in your Draw Pile. Deal 60 damage to ALL enemies.",
+     "rarity": "Rare",
+     "is_upgraded": false,
+     "keywords": [],
+     "index": 1,
+     "target_type": "AllEnemies",
+     "can_play": false,
+     "unplayable_reason": "BlockedByCardLogic"
+    },
+    {
+     "id": "GREED",
+     "name": "Greed",
+     "type": "Curse",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Unplayable. Eternal.",
+     "rarity": "Curse",
+     "is_upgraded": false,
+     "keywords": [
+      {
+       "name": "Eternal",
+       "description": "Cannot be removed or transformed from your Deck."
+      },
+      {
+       "name": "Unplayable",
+       "description": "Unplayable cards cannot be played."
+      }
+     ],
+     "index": 2,
+     "target_type": "None",
+     "can_play": false,
+     "unplayable_reason": "HasUnplayableKeyword"
+    },
+    {
+     "id": "DEFEND_SILENT",
+     "name": "Defend",
+     "type": "Skill",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 5 Block.",
+     "rarity": "Basic",
+     "is_upgraded": false,
+     "keywords": [
+      {
+       "name": "Block",
+       "description": "Until next turn, prevents damage."
+      }
+     ],
+     "index": 3,
+     "target_type": "Self",
+     "can_play": true,
+     "unplayable_reason": null
+    },
+    {
+     "id": "STRIKE_SILENT",
+     "name": "Strike",
+     "type": "Attack",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage.",
+     "rarity": "Basic",
+     "is_upgraded": false,
+     "keywords": [],
+     "index": 4,
+     "target_type": "AnyEnemy",
+     "can_play": true,
+     "unplayable_reason": null
+    }
+   ],
+   "draw_pile_count": 6,
+   "discard_pile_count": 5,
+   "exhaust_pile_count": 0,
+   "draw_pile": [
+    {
+     "name": "Neutralize",
+     "cost": "0",
+     "star_cost": null,
+     "description": "Deal 3 damage. Apply 1 Weak."
+    },
+    {
+     "name": "Strike",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage."
+    },
+    {
+     "name": "Strike",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage."
+    },
+    {
+     "name": "Strike",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage."
+    },
+    {
+     "name": "Blur",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 5 Block. Block is not removed at the start of your next turn."
+    },
+    {
+     "name": "Pinpoint",
+     "cost": "3",
+     "star_cost": null,
+     "description": "Deal 15 damage. Costs 1 less [silent_energy_icon.png] for each Skill played this turn."
+    }
+   ],
+   "discard_pile": [
+    {
+     "name": "Defend",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 5 Block."
+    },
+    {
+     "name": "Strike",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Deal 6 damage."
+    },
+    {
+     "name": "Survivor",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 8 Block. Discard 1 card."
+    },
+    {
+     "name": "Defend",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 5 Block."
+    },
+    {
+     "name": "Defend",
+     "cost": "1",
+     "star_cost": null,
+     "description": "Gain 5 Block."
+    }
+   ],
+   "exhaust_pile": [],
+   "gold": 49,
+   "status": [
+    {
+     "id": "SMOGGY_POWER",
+     "name": "Smoggy",
+     "amount": 1,
+     "type": "Debuff",
+     "description": "You can only play 1 Skill per turn.",
+     "keywords": []
+    }
+   ],
+   "relics": [
+    {
+     "id": "RING_OF_THE_SNAKE",
+     "name": "Ring of the Snake",
+     "description": "At the start of each combat, draw 2 additional cards.",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "CURSED_PEARL",
+     "name": "Cursed Pearl",
+     "description": "Upon pickup, receive Greed. Gain 333 Gold.",
+     "counter": null,
+     "keywords": [
+      {
+       "name": "Greed",
+       "description": "Unplayable. Eternal."
+      },
+      {
+       "name": "Eternal",
+       "description": "Cannot be removed or transformed from your Deck."
+      },
+      {
+       "name": "Unplayable",
+       "description": "Unplayable cards cannot be played."
+      }
+     ]
+    },
+    {
+     "id": "BAG_OF_PREPARATION",
+     "name": "Bag of Preparation",
+     "description": "At the start of each combat, draw 2 additional cards.",
+     "counter": null,
+     "keywords": []
+    },
+    {
+     "id": "HELICAL_DART",
+     "name": "Helical Dart",
+     "description": "Whenever you play a Shiv, gain 1 Dexterity this turn.",
+     "counter": null,
+     "keywords": [
+      {
+       "name": "Shiv",
+       "description": "Deal 4 damage. Exhaust."
+      },
+      {
+       "name": "Exhaust",
+       "description": "Removed until the end of combat."
+      },
+      {
+       "name": "Dexterity",
+       "description": "Dexterity improves Block gained from cards."
+      }
+     ]
+    }
+   ],
+   "potions": [
+    {
+     "id": "SWIFT_POTION",
+     "name": "Swift Potion",
+     "description": "Draw 3 cards.",
+     "slot": 0,
+     "can_use_in_combat": true,
+     "target_type": "AnyPlayer",
+     "keywords": []
+    }
+   ],
+   "max_potion_slots": 3
+  },
+  "battle": {
+   "round": 7,
+   "turn": "player",
+   "is_play_phase": true,
+   "enemies": [
+    {
+     "entity_id": "GAS_BOMB_0",
+     "combat_id": 4,
+     "name": "Gas Bomb",
+     "hp": 7,
+     "max_hp": 7,
+     "block": 0,
+     "status": [
+      {
+       "id": "MINION_POWER",
+       "name": "Minion",
+       "amount": 1,
+       "type": "Buff",
+       "description": "Minions abandon combat without their leader.",
+       "keywords": []
+      }
+     ],
+     "intents": [
+      {
+       "type": "DeathBlow",
+       "label": "8",
+       "title": "Death Blow",
+       "description": "This creature is trying to take you down with it. It will attack you for 8 damage before being destroyed."
+      }
+     ]
+    },
+    {
+     "entity_id": "LIVING_FOG_0",
+     "combat_id": 1,
+     "name": "Living Fog",
+     "hp": 44,
+     "max_hp": 80,
+     "block": 0,
+     "status": [],
+     "intents": [
+      {
+       "type": "Attack",
+       "label": "8",
+       "title": "Aggressive",
+       "description": "This enemy intends to Attack for 8 damage."
+      }
+     ]
+    }
+   ]
+  },
+  "run": {
+   "act": 1,
+   "floor": 7,
+   "ascension": 0
+  },
+  "state_type": "monster"
+ },
+ "logged": {
+  "action": "play_card",
+  "fields": {
+   "card_index": 0
+  }
+ },
+ "note": "Set 3 run 10, floor 7 round 7: Smoggy allows one Skill; 16 incoming."
+}
