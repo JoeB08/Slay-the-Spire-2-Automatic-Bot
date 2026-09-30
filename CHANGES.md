@@ -5,8 +5,7 @@ afterwards. Every entry says what the evidence was, because the recurring
 failure mode on this project has been acting on a single observation and
 over-correcting.
 
-Companion files: `KNOWLEDGE.md` (how the game and API actually behave,
-permanent), `CURRENT_WORK.md` (session state / where things stand).
+Companion file: `KNOWLEDGE.md` -- how the game and API actually behave.
 
 Two orthogonal labels are used, and they are **not** the same thing:
 

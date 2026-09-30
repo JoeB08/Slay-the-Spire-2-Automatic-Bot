@@ -3,9 +3,6 @@
 > Changes needed / in progress / done live in **`CHANGES.md`**, kept up to
 > date with each edit. This file is for how the game and API behave.
 
-> **In-flight work:** see [HANDOFF.md](HANDOFF.md) for the current state, the
-> user's working rules, and the open work.
-
 Everything learned about the game, the API, and this bot's own behavior that
 isn't obvious from reading the code once. Update this file whenever a live
 run turns up something new — that's how most of this was found.

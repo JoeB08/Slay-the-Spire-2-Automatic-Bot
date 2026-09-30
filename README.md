@@ -3,8 +3,13 @@
 A rules-based bot that autonomously plays Slay the Spire 2 as the Silent, via the
 [STS2MCP](https://github.com/Gennadiyev/STS2MCP) mod's local HTTP API.
 
-This is the public copy of the project: the same bot, without the recorded runs.
-It writes nothing at all unless you ask it to -- see **[What it writes](#what-it-writes)**.
+No machine learning: the per-turn decision is a pipeline of named rules, and nearly
+every rule exists because one play in a real run looked wrong and turned out to be a
+defect. Changes are measured over sets of 15-20 runs with 95% confidence intervals,
+and the ones that measured worse were reverted -- [CHANGES.md](CHANGES.md) keeps the
+numbers that killed each one.
+
+It writes nothing unless you ask it to -- see **[What it writes](#what-it-writes)**.
 
 See [KNOWLEDGE.md](KNOWLEDGE.md) for everything learned from real live runs — API
 field-name quirks, Silent strategy notes, every bug found and fixed, and how the
