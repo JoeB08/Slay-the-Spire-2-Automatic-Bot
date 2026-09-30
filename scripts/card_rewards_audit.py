@@ -33,10 +33,14 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
+
+from bot import log_io  # noqa: E402
 
 
 def _latest_log() -> Path | None:
-    logs = sorted(ROOT.glob("logs/run_*.jsonl"), key=lambda p: p.stat().st_mtime)
+    logs = sorted(log_io.log_paths(ROOT, "logs/run_*.jsonl"),
+                  key=lambda p: p.stat().st_mtime)
     return logs[-1] if logs else None
 
 
@@ -45,7 +49,8 @@ def _stype(row: dict) -> str | None:
 
 
 def audit(path: Path) -> dict:
-    rows = [json.loads(l) for l in open(path, encoding="utf-8") if l.strip()]
+    with log_io.open_log(path) as fh:
+        rows = [json.loads(l) for l in fh if l.strip()]
     taken = sum(1 for r in rows if r.get("action") == "select_card_reward")
     skips, abandoned, cleanup = [], [], 0
 

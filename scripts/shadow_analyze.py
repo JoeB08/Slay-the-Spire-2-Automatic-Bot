@@ -36,6 +36,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
+from bot import log_io  # noqa: E402
+
 COMBAT = ("monster", "elite", "boss")
 
 # A known difference in philosophy, not a defect: the human ends the turn
@@ -47,7 +49,8 @@ STYLISTIC = "stylistic:leftover-play-vs-hold"
 
 
 def _load(path: Path) -> list[dict]:
-    return [json.loads(l) for l in open(path, encoding="utf-8") if l.strip()]
+    with log_io.open_log(path) as fh:
+        return [json.loads(l) for l in fh if l.strip()]
 
 
 def _raw(rec: dict) -> dict:

@@ -23,6 +23,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
+from bot import log_io  # noqa: E402
 from bot.strategy import cards as card_db  # noqa: E402
 
 NO_ELITE = "(no elite reached)"
@@ -81,7 +82,7 @@ def _archetype_at_first_elite(run: list[dict]) -> str:
 
 def main() -> None:
     root = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("logs")
-    decision_logs = sorted(root.glob("run_*.jsonl"))
+    decision_logs = log_io.log_paths(root, "run_*.jsonl")
     summary_path = root / "runs.jsonl"
     if not decision_logs:
         print(f"No decision logs under {root}.")
@@ -94,7 +95,7 @@ def main() -> None:
     runs: list[list[dict]] = []
     for path in decision_logs:
         records = []
-        for line in open(path, encoding="utf-8", errors="ignore"):
+        for line in log_io.open_log(path):
             line = line.strip()
             if line:
                 try:

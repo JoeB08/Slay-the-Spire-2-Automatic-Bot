@@ -15,6 +15,8 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Any, Optional
 
+from . import recording
+
 STATS_DIR = Path(__file__).parent.parent / "stats"
 HISTORY_FILE = STATS_DIR / "relic_history.jsonl"
 
@@ -42,6 +44,8 @@ def record_run(
     separately -- pooling them compares options that were never on the same
     screen.
     """
+    if not recording.enabled():
+        return
     try:
         STATS_DIR.mkdir(exist_ok=True)
         entry = {

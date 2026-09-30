@@ -35,6 +35,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
+from bot import log_io  # noqa: E402
 from bot.game_state import GameState  # noqa: E402
 from bot.strategy import combat as C  # noqa: E402
 
@@ -44,13 +45,14 @@ def _latest_log() -> Path | None:
     # analysis scripts leave a trail of empty files behind them. Picking the
     # newest by mtime therefore lands on an empty log and silently reports
     # "nothing found" -- skip anything with no rows.
-    logs = [p for p in ROOT.glob("logs/run_*.jsonl") if p.stat().st_size > 0]
+    logs = [p for p in log_io.log_paths(ROOT, "logs/run_*.jsonl")
+            if p.stat().st_size > 0]
     logs.sort(key=lambda p: p.stat().st_mtime)
     return logs[-1] if logs else None
 
 
 def _rows(path: Path):
-    for line in open(path, encoding="utf-8"):
+    for line in log_io.open_log(path):
         line = line.strip()
         if line:
             try:
@@ -209,7 +211,7 @@ def main() -> None:
         return
     findings = audit(path)
     total = sum(len(v) for v in findings.values())
-    print(f"{path.name} - {total} suspicious decisions\n")
+    print(f"{log_io.display_name(path)} - {total} suspicious decisions\n")
     if not total:
         print("  Nothing flagged.")
         return

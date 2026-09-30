@@ -66,6 +66,10 @@ RELAUNCH_LOG = Path(__file__).parent.parent / "stats" / "relaunch_log.txt"
 
 
 def _note_relaunch(reason: str) -> None:
+    from . import recording  # local: recovery is imported before the package settles
+
+    if not recording.enabled():
+        return
     try:
         RELAUNCH_LOG.parent.mkdir(exist_ok=True)
         caller = " | ".join(

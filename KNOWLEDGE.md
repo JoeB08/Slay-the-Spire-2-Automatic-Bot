@@ -3,8 +3,8 @@
 > Changes needed / in progress / done live in **`CHANGES.md`**, kept up to
 > date with each edit. This file is for how the game and API behave.
 
-> **In-flight work:** see [CURRENT_WORK.md](CURRENT_WORK.md) for what's running
-> right now and the outstanding user-reported issues not yet acted on.
+> **In-flight work:** see [HANDOFF.md](HANDOFF.md) for the current state, the
+> user's working rules, and the open work.
 
 Everything learned about the game, the API, and this bot's own behavior that
 isn't obvious from reading the code once. Update this file whenever a live
@@ -32,6 +32,57 @@ run turns up something new — that's how most of this was found.
 - The full floor map graph (`map.nodes`) is handed over up front, not just
   the next step — `map_nav.py` does real lookahead scoring toward the boss
   instead of a greedy next-node pick.
+- **Waterfall Giant (act 1 boss) wins by dying.** At 0 HP it becomes a
+  999,999,999 HP husk with a `DeathBlow` intent -- "It will attack you for N
+  damage before being destroyed" -- where N is its Steam Eruption stack,
+  which grows +3 a turn (15 on round 2, 51 by round 15, 69 by round 21). All
+  8 recorded Giant deaths came on that final turn, and every one was already
+  unwinnable there. Wins killed it by round 5-8 (blow 27-36). The fight is
+  lost on HP entering it and on how long it lasts, not on the last turn. On
+  that last turn damage is worthless; the bot spends it on Block (`_is_spent`).
+  Gas Bomb has the same DeathBlow intent but real HP -- it is still killable.
+  Steam Eruption itself reads "When killed, deals N damage at the end of your
+  next turn": the blow lands a full turn after the kill, so that turn -- and
+  every Block, Energy and card potion -- belongs to it. Set 3 drank those on
+  round 1 while the Giant only buffed (6 of 7 recorded losses did); they now
+  wait (`potions._death_blow_ahead`).
+- **Enemy statuses that change who to hit:** `Illusion` ("When this dies, it
+  revives next turn at full HP" -- Fogmog's Eye with Teeth; killing it on our
+  turn still stops its 3 Status cards that turn), `Minion`
+  ("Minions abandon combat without their leader" -- also Ovicopter's Tough
+  Eggs), and `Reattach` ("If other segments are still alive, revives in 2
+  turns with 25 HP" -- each Decimillipede segment; `combat._reattach_hp`:
+  chip evens the segments out, and a kill the revive would undo is skipped).
+- **Skittish** (Phantasmal Gardener): "The first time Phantasmal Gardener is
+  hit each turn, it gains 6 Block." The payload almost never shows that Block
+  (17 of 178 logged hits), so the bot counts it from its own hits this turn
+  (`combat._turn_hits`). Small hits do full damage only on a Gardener not yet
+  hit this turn.
+- **Smoggy** (Living Fog): "You can only play 1 Skill per turn." Its Gas Bombs
+  (7 HP, DeathBlow 8) explode on their own turn; damage that does not finish
+  one is thrown away.
+- **Pael's Tooth** (Pael, act 2 event): "Remove 5 cards from your Deck. After
+  each combat, randomly add 1 back Upgraded." Feeding it the best cards is
+  right -- they come back upgraded.
+- **Normality** is a Curse *in hand*, not a status: "You cannot play more than
+  3 cards this turn. (N cards left)". The count updates as cards are played.
+- **The Gambit** (colorless, offered by Lead Paperweight): "Gain 50 Block. If
+  you take unblocked attack damage this combat, die." Not in the card data.
+- **Infested Prism (act 2 elite), Vital Spark:** "ALL Skills are Tainted N".
+  Each Skill played adds Tainted -- "Take N additional damage from Attacks
+  this turn" -- once per attack hit, stacking (2, 4 ... 16 in a turn). The
+  game rewrites every Skill's text to end "Gain N Tainted."
+- **Echoing Slash:** "Deal 10 damage to ALL enemies. Repeat this effect for
+  each enemy killed." Each kill buys a full extra wave, so it can clear a
+  board of small enemies and hit the big one once per kill.
+- **Ringing + Tools of the Trade (observed, n=2).** Ceremonial Beast applies
+  Ringing ("You can only play 1 card this turn"). In every Ringing turn on
+  record without Tools of the Trade a card was playable and was played; in
+  both with it ("At the start of your turn, draw 1 card and discard 1 card")
+  the payload marked every card `BlockedByHook` from the first decision --
+  the start-of-turn discard appears to spend the one play. Run 21 lost two
+  whole turns of the Ceremonial Beast fight to it and died with the boss on
+  29 HP.
 
 ## The STS2MCP mod / API
 
@@ -65,6 +116,12 @@ run turns up something new — that's how most of this was found.
     target your best.
   - `game_over`'s options are nested under `game_over.options`, not the
     top-level `options` the menu screens use.
+  - **`fake_merchant`** is its own state type ("The Merchant???", act 2
+    event): `fake_merchant.shop.items` of fake "???" relics and no options
+    list. The mod accepts `shop_purchase` (`index`) or `proceed`, and
+    `proceed` works even while `shop.can_proceed` reads false (verified live,
+    set 4). Unhandled, the bot polled it as a freeze and relaunched the game
+    in a loop -- each relaunch "continued" straight back into it.
   - The `timeline` meta-progression screen needs `obtained_unrevealed_count`
     checked explicitly (`advance` while >0, then `back`) — this is also a
     known upstream pain point, STS2MCP issues #92/#93.
@@ -469,6 +526,15 @@ Gotchas the importer has to handle, all found by inspecting the output:
 | The test suite polluted the real stats file | `scripts/relic_report.py` reported "40 runs, avg floor 6.4" when real runs averaged ~13. `RunRecorder` calls `relic_stats.record_run` on every `game_over`; those tests pass `tmp_path` for the recorder's own logs but the stats path is a module constant, so **54 synthetic rows** had accumulated against 21 real runs | Autouse fixture in `conftest.py` monkeypatches `relic_stats.STATS_DIR`/`HISTORY_FILE` to `tmp_path`. Synthetic rows are identifiable exactly (`relics == ["Ring of the Snake"]`) |
 | Never retained a card | One run was offered "Choose a card to Retain." **41 times and retained nothing all 41** | `can_confirm` means "confirming is legal", not "enough is selected" -- on an *optional* prompt it is true the moment the screen opens, and the handler read that as done. `decide_hand_select` now checks an `_optional_pick_limit` first. Retain ranking deliberately does **not** lead with `score_card` (a deck-building metric, on which a starter Defend at 30 outranks Nightmare at 28): skip starters, take the most expensive, prefer Sly, then deck score. Note Sly reads "discarded **before the end of your turn**", so the end-of-turn discard does *not* trigger it -- retaining a Sly card preserves the free play |
 | Sly pitches ranked by pick rate | Forced to discard, it pitched a Sly attack whose damage the enemy's Block absorbed entirely, keeping a Sly *block* card that would have covered the incoming hit. Both are Sly, so both landed in the same tier and the tie-break knew nothing about the board | `_sly_realised_value()` scores what the free play actually does *this turn*: damage capped by enemy Block, block capped by unblocked incoming, poison counted in full (it ignores Block) |
+| A fix landed in the wrong copy | Died on Waterfall Giant's final turn holding a potion; the "DeathBlow read as 0" bug was recorded as fixed | There were **two** incoming-damage functions. The fix went into `_enemy_attack_damage`; the survival math and potions read `_incoming_damage`, which still whitelisted `type == "Attack"`. Back Attack had the same fate. 305 of 19,445 logged turns disagreed. `_incoming_damage` now delegates -- **when fixing a calculation, grep for every other place that computes the same thing** |
+| Minions chased while the leader was in reach | Run 10 spent ten rounds killing Ovicopter's eggs with Ovicopter at 51 and Strikes hitting for 20+ | Leader priority: within 2 turns of the leader's death its minions are not chased; non-lethal damage goes to the leader only when it is in reach, summoning, or none of its minions is attacking (a far-off Kin Priest with attacking Followers draws nothing -- aiming at it regardless was a regression). **Minion kills are not worthless** -- Eye with Teeth killed on our turn adds no Status cards (0.31 vs 2.5 per turn over 220 logged turns), which is why a first "never target Illusions" fix was reverted |
+| Loop ended turns with cards in hand | "Ending turns too early": a Shiv (or two, or a whole hand) left unplayed, 7 times in one set | The cycle detector keyed on the decision alone, and each Shiv lands in the same slot. It now keys on (decision, state) |
+| Card potions held until death | A Power and a Skill Potion through all 19 rounds of a boss; Entropic Brew for 18 floors | Potion rules only knew damage/Block/heal/draw. "…into your Hand" potions now count in elite/boss fights and at low HP; Entropic Brew is drunk with a slot free |
+| Paid for Sly cards | Untouchable for 2 energy where Defend + two Strikes took 4 and dealt 12 | `_keep_sly_for_discard`: take up to 5 chip rather than pay for a Sly Block card |
+| Storm of Steel written off as a dud | Died 8 HP short of an Entomancer, paying 3 energy for Haze with Storm of Steel in hand | The "wait until the energy is spent" rule for hand-discards removed Storm from the playable hand whenever another card was affordable. `_discard_is_the_payoff` exempts it when a Sly card would be discarded or its Shivs can kill. **A card missing from `_playable_hand` is invisible to every step, lethal included** |
+| Eggs taken for leaders | At 12 HP vs a 24-damage Ovicopter, spent The Hunt killing a Tough Egg | The summoner heuristic matched the eggs' "Summon" intent. Enemies carry a `Minion` status ("Minions abandon combat without their leader"); `_is_leader` reads it first |
+| Biggest Block card, not most Block | Untouchable (2 energy, 6) over two Defends (10) with 15 incoming | `_best_block_plan`: best affordable *set*, respecting Normality's play cap |
+| The Gambit ignored | 13 Block vs 14 incoming, played a Strike over the last Defend, died at 69/70 HP | While its status is up, chip damage is never acceptable; never picked over an alternative |
 
 ## Running / testing
 

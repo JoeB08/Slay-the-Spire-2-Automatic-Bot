@@ -110,8 +110,20 @@ def _pick_worst(hand_cards: list[dict[str, Any]], deck_names: list[str]) -> dict
 
 
 def _pick_best(hand_cards: list[dict[str, Any]], deck_names: list[str]) -> dict[str, Any]:
+    from . import combat as combat_mod
+
     counts = card_db.deck_tag_counts(deck_names)
-    return max(hand_cards, key=lambda c: card_db.score_card(c.get("name", ""), counts))
+    # Never volunteer for a card that can kill us outright. The Gambit ("Gain
+    # 50 Block. If you take unblocked attack damage this combat, die.") is not
+    # in the card data, so it scored the same 30 as Stratagem beside it and
+    # won on being listed first -- then ended a 69/70 HP run on floor 3.
+    return max(
+        hand_cards,
+        key=lambda c: (
+            not combat_mod._kills_us_on_any_chip(c),
+            card_db.score_card(c.get("name", ""), counts),
+        ),
+    )
 
 
 # Quest cards ("Spoils Map") are unplayable too, so in combat they are

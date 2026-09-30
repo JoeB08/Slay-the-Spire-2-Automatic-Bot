@@ -37,7 +37,13 @@ param(
     # instead of the best-scoring one, to widen the relic sample. These runs
     # are tagged `neow_explore` and must NOT be used to judge a code change --
     # deliberately taking weaker relics lowers the average floor.
-    [switch]$Explore
+    [switch]$Explore,
+
+    # Continue a run already in progress instead of abandoning it. Start-up
+    # normally throws such a run away so a set measures one build only; use
+    # this to resume a paused run. Resume from the main menu, where the bot
+    # picks "continue".
+    [switch]$KeepRun
 )
 
 $ErrorActionPreference = "Stop"
@@ -156,6 +162,11 @@ function Start-Bot {
         Write-Host "EXPLORE MODE: sampling under-tested relics; these runs are not performance runs." -ForegroundColor Magenta
     } else {
         $env:STS2_EXPLORE_RELICS = "0"
+    }
+    # Read by loop._abandon_preexisting_run: continue a run in progress.
+    $env:STS2_KEEP_RUN = if ($KeepRun) { "1" } else { "0" }
+    if ($KeepRun) {
+        Write-Host "KEEP RUN: a run in progress will be continued, not abandoned." -ForegroundColor Magenta
     }
 
     Start-Process -FilePath $python `

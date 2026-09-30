@@ -35,6 +35,14 @@ _HEAL_HINTS = ("heal", " hp")
 _BLOCK_HINTS = ("block", "plating", "metallicize", "intangible", "barricade", "armor", "armour")
 _OFFENSIVE_HINTS = ("damage", "poison", "weak", "vulnerable", "attack")
 _UTILITY_HINTS = ("draw", "energy")
+# Potions that hand us cards ("Choose 1 of 3 random Power cards to add into
+# your Hand. It's free to play this turn.") or refill the belt ("Fill all your
+# empty potion slots with random potions."). Neither matches a damage, Block,
+# heal or draw hint, so nothing short of the last-ditch branch could pick
+# them: a live run carried a Skill Potion and a Power Potion through all 19
+# rounds of the act 1 boss, and Entropic Brew from floor 6 to floor 24.
+_ADDS_CARDS_RE = re.compile(r"into your hand", re.IGNORECASE)
+_REFILLS_BELT_RE = re.compile(r"fill all your empty potion slots", re.IGNORECASE)
 
 _GAIN_STRENGTH_RE = re.compile(r"gain (\d+) strength", re.IGNORECASE)
 _GAIN_DEXTERITY_RE = re.compile(r"gain (\d+) dexterity", re.IGNORECASE)
@@ -168,6 +176,45 @@ def _with_target(potion: dict[str, Any], enemies: list[dict[str, Any]]) -> dict[
 def _matches(potion: dict[str, Any], hints: tuple[str, ...]) -> bool:
     desc = (potion.get("description") or "").lower()
     return any(h in desc for h in hints)
+
+
+# The Waterfall Giant wins by dying: Steam Eruption reads "When killed, deals
+# N damage at the end of your next turn", N growing 3 a round. Set 3 drank an
+# Energy Potion (run 3) and a Skill Potion (run 5) on round 1 of that fight
+# while the Giant only buffed; the death blow later came 2 and 10 Block short.
+# Across 11 recorded Giant fights, 6 of the 7 losses spent a potion on round 1.
+_DEATH_BLOW_STATUS_RE = re.compile(r"when killed, deals \d+ damage", re.IGNORECASE)
+# Round 1 comes before the status: the Giant's opening Buff is what applies
+# Steam Eruption, and round 1 is exactly when the potions were drunk.
+_DEATH_BLOW_ENEMIES = ("waterfall giant",)
+# The husk the Giant leaves has this much HP; its blow is the hit coming now.
+_HUSK_MIN_HP = 100_000_000
+
+
+def _death_blow_ahead(enemies: list[dict[str, Any]]) -> bool:
+    """An enemy whose death is itself the big hit, not yet dead."""
+    for e in enemies:
+        if (e.get("hp") or 0) >= _HUSK_MIN_HP:
+            continue
+        name = (e.get("name") or "").lower()
+        if any(n in name for n in _DEATH_BLOW_ENEMIES):
+            return True
+        if any(_DEATH_BLOW_STATUS_RE.search(s.get("description") or "") for s in e.get("status") or []):
+            return True
+    return False
+
+
+def _adds_cards(potion: dict[str, Any], gs: GameState) -> bool:
+    """A potion that puts cards in hand -- and there is room for them."""
+    from . import combat as combat_mod
+
+    return bool(_ADDS_CARDS_RE.search(potion.get("description") or "")) and (
+        len(gs.hand) < combat_mod.HAND_LIMIT
+    )
+
+
+def _refills_belt(potion: dict[str, Any]) -> bool:
+    return bool(_REFILLS_BELT_RE.search(potion.get("description") or ""))
 
 
 def _temp_strength(potion: dict[str, Any]) -> int:
@@ -552,6 +599,17 @@ def suggest_potion_use(gs: GameState) -> Optional[tuple[str, dict[str, Any]]]:
     incoming = combat_mod._mitigated_incoming(gs, enemies, _incoming_damage(enemies))
     unblocked = max(0, incoming - current_block)
 
+    # The Waterfall Giant's death blow is still ahead -- see
+    # `_death_blow_ahead`. Before it, only potions that shorten the fight
+    # (damage) or add HP for it (healing) are spent, unless this turn's hit
+    # would kill us first. One-turn buffs are included in the hold: the Energy
+    # Potion run 3 drank on round 1 is one.
+    if _death_blow_ahead(enemies) and unblocked < gs.hp:
+        potions = [
+            p for p in potions
+            if _damage_value(p) > 0 or _matches(p, _OFFENSIVE_HINTS) or _is_healing(p)
+        ]
+
     # One-turn buffs are handled separately below -- they must never be swept
     # up by the "spend freely" branches, which would burn them on turn 1 of an
     # elite for nothing.
@@ -577,6 +635,15 @@ def suggest_potion_use(gs: GameState) -> Optional[tuple[str, dict[str, Any]]]:
 
     # A fight worth spending on: the ones that actually end runs.
     high_stakes = is_elite_or_boss or is_low
+
+    # 0. Entropic Brew refills every empty slot, its own included, so it is
+    # worth most drunk with room to fill -- the potions it makes are then
+    # spent by every rule below. With one other slot empty it already turns
+    # one potion into two.
+    empty_slots = gs.max_potion_slots - len(gs.potions)
+    for potion in potions:
+        if _refills_belt(potion) and empty_slots >= 1:
+            return "use_potion", _with_target(potion, enemies)
 
     # 1. Emergency -- about to die, or already critical. Block first (it stops
     # the hit outright), then healing, then anything at all.
@@ -628,6 +695,12 @@ def suggest_potion_use(gs: GameState) -> Optional[tuple[str, dict[str, Any]]]:
             best = max(offensive, key=_damage_value)
             return "use_potion", _with_target(best, enemies)
 
+        # The Waterfall Giant wins by dying -- see `_death_blow_ahead`. Until
+        # its blow is the hit coming, everything else waits for that turn;
+        # the emergency branch above still spends it if we are dying first.
+        if _death_blow_ahead(enemies):
+            return None
+
         if unblocked > 0:
             blockers = [p for p in potions if _block_value(p) > 0 or _matches(p, _BLOCK_HINTS)]
             if blockers:
@@ -643,7 +716,8 @@ def suggest_potion_use(gs: GameState) -> Optional[tuple[str, dict[str, Any]]]:
         # playing a draw card at the hand cap.
         utility = [
             p for p in potions
-            if _matches(p, _UTILITY_HINTS) and not _draw_would_be_wasted(p, gs)
+            if (_matches(p, _UTILITY_HINTS) or _adds_cards(p, gs))
+            and not _draw_would_be_wasted(p, gs)
         ]
         if utility:
             return "use_potion", _with_target(utility[0], enemies)
@@ -661,6 +735,14 @@ def suggest_potion_use(gs: GameState) -> Optional[tuple[str, dict[str, Any]]]:
         healers = _useful_healers(potions, gs)
         if healers:
             return "use_potion", _with_target(healers[0], enemies)
+
+        # Cards from a potion are free this turn. Low, and still being hit,
+        # they are worth more now than saved -- a live run slid from 46 to 14
+        # HP against Hunter Killer holding an Attack Potion.
+        if unblocked > 0:
+            card_potions = [p for p in potions if _adds_cards(p, gs)]
+            if card_potions:
+                return "use_potion", _with_target(card_potions[0], enemies)
 
     # 4. Taking a serious hit even in a normal fight -- don't just eat it.
     if nearly_lethal and unblocked > 0 and not threat_is_handled:

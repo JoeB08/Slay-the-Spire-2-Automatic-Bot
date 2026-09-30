@@ -11,6 +11,7 @@ free-text.
 from __future__ import annotations
 
 import json
+import os
 import re
 import time
 from collections import deque
@@ -20,7 +21,7 @@ from typing import Any, Optional
 
 import requests
 
-from . import deck_memory
+from . import deck_memory, recording
 from .api_client import ApiClient, ApiError
 from .game_state import GameState
 from .recovery import MAX_CONSECUTIVE_RECOVERIES, RELAUNCH_WAIT_ATTEMPTS, RELAUNCH_WAIT_DELAY, StuckDetector, kill_and_relaunch
@@ -101,6 +102,12 @@ def _raw_for_replay(gs: GameState) -> Optional[dict[str, Any]]:
     It is also the difference between training data and prose, which matters
     for anything learned from these logs later.
     """
+    # Map screens too: without the node graph no routing decision can be
+    # replayed -- set 4's fix for walking past a rest site at 12 HP could not
+    # be checked against the real choice.
+    if gs.state_type == "map":
+        return {"map": gs.raw.get("map"), "player": gs.raw.get("player"),
+                "run": gs.raw.get("run"), "state_type": "map"}
     if not gs.is_combat:
         return None
     return {"player": gs.raw.get("player"), "battle": gs.raw.get("battle"),
@@ -384,6 +391,12 @@ def _dispatch(gs: GameState, prefer_abandon: bool = False) -> tuple[str, dict[st
         return rest.decide_rest(gs)
     if st == "shop":
         return shop.decide_shop(gs)
+    if st == "fake_merchant":
+        # "The Merchant???" (act 2 event): a shop of "???" relics with no
+        # options list; the mod accepts only shop_purchase or proceed.
+        # Unhandled, the bot polled it as a freeze and relaunched the game in
+        # a loop. See `shop.decide_fake_merchant`.
+        return shop.decide_fake_merchant(gs)
     if st == "treasure":
         return misc_screens.decide_treasure(gs)
     if st == "card_select":
@@ -405,9 +418,14 @@ class BotLoop:
     def __init__(self, client: Optional[ApiClient] = None, max_actions: Optional[int] = None):
         self.client = client or ApiClient()
         self.max_actions = max_actions
-        LOG_DIR.mkdir(exist_ok=True)
+        # Whether anything gets written down at all -- off in a fresh clone.
+        # See bot/recording.py. The decisions themselves never consult this.
+        self._recording = recording.enabled()
         self._log_path = LOG_DIR / f"run_{datetime.now():%Y%m%d_%H%M%S}.jsonl"
-        self._log_file = open(self._log_path, "a", encoding="utf-8")
+        self._log_file = None
+        if self._recording:
+            LOG_DIR.mkdir(exist_ok=True)
+            self._log_file = open(self._log_path, "a", encoding="utf-8")
         self._prev_summary: Optional[dict[str, Any]] = None
         self._stuck = StuckDetector()
         self._consecutive_recoveries = 0
@@ -428,8 +446,9 @@ class BotLoop:
 
     def _log(self, record: dict[str, Any]) -> None:
         record["ts"] = time.time()
-        self._log_file.write(json.dumps(record) + "\n")
-        self._log_file.flush()
+        if self._log_file is not None:
+            self._log_file.write(json.dumps(record) + "\n")
+            self._log_file.flush()
         event = record.get("event")
         if event:
             self._recorder.note_event(event)
@@ -549,6 +568,12 @@ class BotLoop:
         in_a_run = gs.floor > 0 and gs.state_type not in ("menu", "game_over")
         if not in_a_run:
             return
+        # `bot_control.ps1 -KeepRun`: continue a paused run instead. Set 4's
+        # restart nearly threw away a run the user had asked to keep.
+        if os.environ.get("STS2_KEEP_RUN") == "1":
+            print(f"[bot] continuing the run in progress (act {gs.act} floor {gs.floor}) -- STS2_KEEP_RUN")
+            self._log({"event": "keeping_preexisting_run", "state": _summary(gs)})
+            return
 
         print(f"[bot] a run was already in progress (act {gs.act} floor {gs.floor}) -- abandoning it; it will not be counted")
         self._log({"event": "abandoning_preexisting_run", "state": _summary(gs)})
@@ -591,7 +616,10 @@ class BotLoop:
         self._force_abandon = False
 
     def run(self) -> None:
-        print(f"[bot] logging to {self._log_path}")
+        if self._recording:
+            print(f"[bot] logging to {self._log_path}")
+        else:
+            print(f"[bot] {recording.why()}")
         # Restore the deck a previous process learned, so a mid-run restart
         # doesn't leave shop/campfire/reward decisions blind until the next
         # combat repopulates the piles.
@@ -721,10 +749,19 @@ class BotLoop:
                 self._same_decision_streak = 0
                 self._recent_decisions.clear()
 
-            # Cycle escape: a full window of decisions made up of only a
-            # couple of distinct ones is a ping-pong making no progress, even
+            # Cycle escape: a full window made up of only a couple of distinct
+            # (decision, state) pairs is a ping-pong making no progress, even
             # though each individual step "works" and the state does change.
-            self._recent_decisions.append((gs.state_type, action, tuple(sorted(fields.items()))))
+            #
+            # The state is part of the pair. Keyed on the decision alone, a
+            # hand of Shivs read as a loop: each Shiv slides into the same
+            # slot, so "play card 2" repeats eight times while the hand shrinks
+            # and enemy HP falls -- real progress. It forced an end_turn with
+            # playable cards 7 times in one set, once at the act 2 boss. A true
+            # ping-pong still repeats its states, so it is still caught.
+            self._recent_decisions.append(
+                (gs.state_type, action, tuple(sorted(fields.items())), decision_fp)
+            )
             if (
                 len(self._recent_decisions) == CYCLE_WINDOW
                 and len(set(self._recent_decisions)) <= CYCLE_DISTINCT_MAX
@@ -734,7 +771,7 @@ class BotLoop:
                     {
                         "event": "cycle_detected",
                         "state_type": gs.state_type,
-                        "decisions": [list(d) for d in set(self._recent_decisions)],
+                        "decisions": [list(d[:3]) for d in set(self._recent_decisions)],
                     }
                 )
                 action, fields = ("end_turn", {}) if gs.is_combat else ("proceed", {})
@@ -760,7 +797,13 @@ class BotLoop:
                 # the handler probes candidates -- remember whichever the game
                 # actually accepted.
                 misc_screens.note_crystal_sphere_result(action, True)
-                self._consecutive_recoveries = 0  # real progress -- forgive past freezes
+                # Real progress forgives past freezes -- but a main-menu click is
+                # not progress: "continue" succeeds and then loads straight back
+                # into whatever froze. Resetting on it kept every recovery at 1,
+                # so the abandon escalation never fired and set 4's start looped
+                # on the unhandled fake merchant, relaunching again and again.
+                if gs.state_type != "menu":
+                    self._consecutive_recoveries = 0
                 if action == "menu_select" and fields.get("option") == "abandon_run":
                     # abandon_run only opens a yes/no confirmation, and that
                     # popup is short-lived: verified live that a delayed reply
@@ -793,4 +836,5 @@ class BotLoop:
             actions_taken += 1
 
     def close(self) -> None:
-        self._log_file.close()
+        if self._log_file is not None:
+            self._log_file.close()

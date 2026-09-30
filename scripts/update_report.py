@@ -22,7 +22,11 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
 TARGET_RUNS = 20
-PREVIOUS = "**20.9** (+/-3.8) over 15 runs, best 33, act 2 in 5/15, dmg/floor 5.72"
+ACT1_BOSS_FLOOR = 17
+PREVIOUS = (
+    "**19.2** (+/-3.9) over 20 runs, best 48, reached act 1 boss 15/20, "
+    "act 2 in 6/20, dmg/floor 5.78"
+)
 
 
 def _runs():
@@ -77,6 +81,8 @@ def build_section() -> str:
 
     floors = [r.get("floor_reached", 0) for r in rows]
     act2 = sum(1 for r in rows if r.get("act_reached", 1) >= 2)
+    # Consistency before depth: does the run at least reach the act 1 boss?
+    boss = sum(1 for f in floors if f >= ACT1_BOSS_FLOOR)
     lines = []
     for i, r in enumerate(rows, 1):
         kb = r.get("killed_by") or {}
@@ -112,7 +118,7 @@ def build_section() -> str:
 **{len(rows)} of {TARGET_RUNS} complete.**
 
     floors: {', '.join(map(str, floors))}
-    average {sum(floors)/len(floors):.1f}{moe}   best {max(floors)}   act 2 reached {act2}/{len(rows)}
+    average {sum(floors)/len(floors):.1f}{moe}   best {max(floors)}   reached act 1 boss {boss}/{len(rows)}   act 2 reached {act2}/{len(rows)}
 
 {chr(10).join(lines)}
 {repeat_line}

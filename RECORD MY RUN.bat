@@ -6,5 +6,5 @@ powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0sts2_bot\scripts\bot_c
 echo.
 echo Now play your run. Press Ctrl-C in this window when you are done.
 echo.
-"%LOCALAPPDATA%\Programs\Python\Python312\python.exe" "%~dp0sts2_bot\scripts\shadow_record.py"
+python "%~dp0sts2_bot\scripts\shadow_record.py"
 pause
