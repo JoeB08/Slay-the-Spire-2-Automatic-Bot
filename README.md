@@ -115,7 +115,7 @@ freeze recovery uses `taskkill` and `steam://` URLs to restart a hung game.
 ## What it writes
 
 Nothing, unless you ask it to. A fresh clone plays the game and leaves no files
-behind.
+behind. 
 
 Recording is how this project measures itself, and it is a lot of output per run
 -- a decision log of every state and action (~3 MB), a summary line, a readable
