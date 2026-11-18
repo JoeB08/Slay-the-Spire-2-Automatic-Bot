@@ -120,7 +120,7 @@ freeze recovery uses `taskkill` and `steam://` URLs to restart a hung game.
 ## What it writes
 
 Nothing, unless you ask it to. A fresh clone plays the game and leaves no files
-behind. 
+behind.
 
 Recording is how this project measures itself, and it is a lot of output per run
 -- a decision log of every state and action (~3 MB), a summary line, a readable
@@ -263,15 +263,18 @@ cards a mutual synergy bonus on top of their base pick-rate.
 `misc_screens.py`, are still built on defensive field-name guesses -- no live
 fixture has cleanly captured one yet.
 
-`crystal_sphere` (the Crystal Sphere divination minigame) **has** been captured
-since -- see `tests/fixtures/crystal_sphere.json`. It cost a floor-31 run to
-find: the handler sent `crystal_sphere_proceed` unconditionally, the game
-rejects that while `can_proceed` is false, and the freeze recovery relaunched
-the game rather than leaving the screen. The reveal-cell action name is still
-unverified, so the handler probes candidates and remembers whichever is
-accepted. `loop.py` logs the full raw payload for
-these automatically (`screen_raw`) so the next real occurrence is fixable
-straight from the log. See [KNOWLEDGE.md](KNOWLEDGE.md) for the full list of
+`crystal_sphere` (the Crystal Sphere divination minigame) is **no longer a
+gap** -- see `tests/fixtures/crystal_sphere.json` for the payload and
+`KNOWLEDGE.md` for the protocol. It cost two runs to get there: the handler
+first sent `crystal_sphere_proceed` unconditionally, which the game rejects
+while `can_proceed` is false, and then probed four candidate action names, none
+of which the mod has. The real ones are `crystal_sphere_set_tool(tool)`
+followed by `crystal_sphere_click_cell(x, y)`, taken from the mod's own help
+text -- `mods/STS2_MCP.dll` is a managed assembly, so decoding it as UTF-16LE
+prints every action and field name it knows. The remaining gaps above can be
+closed the same way rather than by losing a run to each. `loop.py` also logs
+the full raw payload for these screens (`screen_raw`) so a live occurrence is
+fixable straight from the log. See [KNOWLEDGE.md](KNOWLEDGE.md) for the full list of
 gaps closed so far and how each one was actually found.
 
 Each degrades to a safe, loggable default rather than crashing the run --

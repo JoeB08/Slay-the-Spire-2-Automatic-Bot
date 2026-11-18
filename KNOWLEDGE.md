@@ -130,11 +130,35 @@ run turns up something new — that's how most of this was found.
     ever confirming; never trust "confirm enabled" as a proxy.
   - `shop` and `bundle_select` are now **verified** against real payloads
     (fixtures `shop.json`, `bundle_select.json`) -- both had guessed field
-    names that silently failed. Rest-site options, treasure, and
-    crystal_sphere are still **unverified** — no live fixture ever captured
-    one cleanly. `loop.py` logs the full raw payload for these screens every
-    time one comes up (`screen_raw` field), specifically so the next real
-    occurrence is fixable from the log alone.
+    names that silently failed. Rest-site options and treasure are still
+    **unverified** — no live fixture ever captured one cleanly. `loop.py` logs
+    the full raw payload for these screens every time one comes up
+    (`screen_raw` field), specifically so the next real occurrence is fixable
+    from the log alone.
+  - `crystal_sphere`: **fully verified, 2026-11-13.** The payload (11x11
+    `cells` with `is_hidden`/`is_clickable`/`is_highlighted`/`is_hovered`,
+    `grid_width`, `grid_height`, a derived `clickable_cells`, `tool`,
+    `can_use_big_tool`/`can_use_small_tool`, `divinations_left_text`,
+    `can_proceed`, an `instructions_title` of "How to Divine") and now the
+    protocol, which is the mod's own help text:
+
+        Use `crystal_sphere_set_tool(tool)` with `big` or `small`, then
+        `crystal_sphere_click_cell(x, y)`.
+
+    `crystal_sphere_proceed` is accepted only once `can_proceed` is true, and
+    spending the divinations is what makes it true. **Not one of the four
+    names the bot spent a night probing exists in the mod** -- `_click`,
+    `_select`, `_reveal` and `_select_cell` each come back "Unknown action",
+    and no tool was ever selected, so no ordering of them could have worked.
+    Two runs died on this screen before that was known (a floor-31 one, and a
+    floor-39 act 3 one on 11-13 that cost 3h35m and 52 relaunches).
+
+    **Where it came from, because it is worth repeating:** the mod is a single
+    managed assembly at `<game>/mods/STS2_MCP.dll`, and .NET keeps string
+    literals as UTF-16. Decoding the file as UTF-16LE and grepping it prints
+    the mod's own per-screen help, every action name and every field name it
+    knows. Any screen still marked "unverified" below can be settled the same
+    way in about a minute, instead of by losing a run to it.
 - **Screen transitions are not instant.** A successful action can leave the
   next poll or two still showing the old screen (confirmed live: a
   `game_over` -> `menu_select main_menu` took ~2 real seconds to actually
@@ -518,6 +542,7 @@ Gotchas the importer has to handle, all found by inspecting the output:
 | Invalid `proceed` on menus | Transitional menu screens with no options got `proceed`, which isn't valid there, producing bursts of errors | `menu.py` fallbacks return `state` (poll) instead |
 | Block waived too aggressively | A "would I survive the turn?" safety floor let it take an 11-damage hit at 44/70 rather than play a Defend it was holding, and end turns at 8 HP with two playable Defends | Block is now waived only for genuine chip damage (`max(3, 5% of max HP)`), never merely because the turn is survivable -- HP is a run-long resource. Added a leftover-energy step so it never ends a turn holding block with energy to spare and real incoming damage |
 
+| An outside restart resets the bot's own escalation | The bot escalates a repeated freeze: resume once, abandon on the second (`ABANDON_AFTER_N_RECOVERIES`). On 11-13 that counter read **1 all sixty times**, so the abandon never fired and one unplayable screen ran for 3h35m across 52 relaunches. `kill_and_relaunch` takes the game down for ~2 minutes while Steam works, the overnight watchdog read the unreachable API as a crash, and restarting the bot process zeroed the counter -- each supervisor undoing the other's recovery. The watchdog now waits several polls and requires the decision log to have stopped growing before it intervenes | Anything supervising the bot must leave its own recovery alone: a brief API outage with the bot process alive is the bot working. Escalation state lives in the process, so killing the process discards it |
 | **The test suite force-killed the real game** | Slay the Spire 2 shut down and relaunched itself every few minutes, *including with no bot process running* -- it looked like an outside cause, and a 3-minute process watch caught nothing. Steam's `logs/console_log.txt` showed the mechanism: a burst of ~7 `steam://rungameid/2868840` requests in 1-2s, then `Game process removed`, then a fresh process. Asking Steam to launch an already-running game makes it kill the running instance first (`WaitingPrevProcess`) | `test_loop.py` drives `BotLoop.run()` from **seven** places and none stubbed `kill_and_relaunch`; those tests reach `_abandon_preexisting_run`, which really does `taskkill` the game and `os.startfile("steam://...")`. They also monkeypatch `time.sleep` to a no-op, erasing the 3s gap -- so one pytest run fired seven relaunches in three seconds. `tests/conftest.py` now has an autouse fixture neutralising `kill_and_relaunch` in both `bot.recovery` and `bot.loop` and making `os.startfile` raise. **Verified 0 relaunches per test run, was 7.** Any new side-effecting call needs the same treatment |
 | Upgraded cards invisible to the card database | Upgraded cards arrive with the upgrade in the **name** (`Strike+`, `Afterimage+`), and every lookup in `cards.py` is keyed on the base name -- so `Afterimage+` scored **0.0 instead of 89.0**. The bot went progressively blind to its own best cards as a run upgraded them: rating them as junk to remove, ignoring them when reading the deck's archetype, and (every candidate tying at 0) picking the *first card offered* as an upgrade target. Seen live removing `Strike+` and `Neutralize+` while a `Normality` curse sat in the deck | `cards.base_name()` strips the suffix and `card_info()` normalises through it; every raw `STARTERS_BY_NAME` membership test goes through it too. Also: `pick_upgrade_target` skips already-upgraded cards (upgrading again gains nothing), `removal_priority` detects curses/status via `rarity` as well as `type` (live screens don't always send `type`), and between two identical starters the un-upgraded copy is cut first |
 | The test suite polluted the real stats file | `scripts/relic_report.py` reported "40 runs, avg floor 6.4" when real runs averaged ~13. `RunRecorder` calls `relic_stats.record_run` on every `game_over`; those tests pass `tmp_path` for the recorder's own logs but the stats path is a module constant, so **54 synthetic rows** had accumulated against 21 real runs | Autouse fixture in `conftest.py` monkeypatches `relic_stats.STATS_DIR`/`HISTORY_FILE` to `tmp_path`. Synthetic rows are identifiable exactly (`relics == ["Ring of the Snake"]`) |

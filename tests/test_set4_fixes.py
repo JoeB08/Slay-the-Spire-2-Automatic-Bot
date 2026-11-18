@@ -39,6 +39,13 @@ IN_RUN = {"state_type": "map", "ready_for_command": True, "run": {"act": 1, "flo
 def test_a_main_menu_click_does_not_forgive_a_freeze(tmp_path, monkeypatch):
     # Set 4's start: "continue" succeeded, loaded straight back into a screen
     # the bot could not handle, and the reset kept every recovery at 1.
+    #
+    # A menu save is abandoned at startup now (test_startup_abandon.py), so
+    # `continue` is only clicked when the run was explicitly kept -- which is
+    # what this sets up. The property under test is unchanged and independent
+    # of it: clicking something on the menu is not progress, so it must not
+    # forgive a freeze.
+    monkeypatch.setenv("STS2_KEEP_RUN", "1")
     monkeypatch.setattr("bot.loop.LOG_DIR", tmp_path)
     monkeypatch.setattr("time.sleep", lambda *_: None)
     client = _OkClient(MENU)

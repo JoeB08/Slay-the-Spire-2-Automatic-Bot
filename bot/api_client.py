@@ -1,6 +1,7 @@
 """Thin HTTP client for the STS2MCP mod's local REST API."""
 from __future__ import annotations
 
+import json
 import time
 from typing import Any
 
@@ -11,6 +12,29 @@ BASE_URL = "http://localhost:15526/api/v1"
 
 class ApiError(RuntimeError):
     pass
+
+
+def _error_detail(data: dict[str, Any]) -> str:
+    """Everything the mod said about a rejected action.
+
+    `message` used to be read on its own, and the mod does not always use that
+    key: every rejection on the Crystal Sphere screen logged `-> None` while
+    the reply itself carried the reason. That screen has now cost two runs --
+    a floor-31 one, and a floor-39 one that burned 3h35m on 11-13 -- and its
+    correct action name is still unknown, because the one message that would
+    name it was being thrown away. Report the whole body rather than nothing.
+    """
+    for key in ("message", "error", "reason", "detail", "description"):
+        value = data.get(key)
+        if isinstance(value, str) and value.strip():
+            return value
+    body = {k: v for k, v in data.items() if k != "status"}
+    if not body:
+        return "no detail in the reply"
+    try:
+        return json.dumps(body, sort_keys=True, default=str)[:400]
+    except (TypeError, ValueError):
+        return str(body)[:400]
 
 
 class ApiClient:
@@ -30,7 +54,7 @@ class ApiClient:
         resp.raise_for_status()
         data = resp.json()
         if data.get("status") == "error":
-            raise ApiError(f"{action}({fields}) -> {data.get('message')}")
+            raise ApiError(f"{action}({fields}) -> {_error_detail(data)}")
         return data
 
     def wait_until_ready(self, attempts: int = 30, delay: float = 2.0) -> dict[str, Any]:

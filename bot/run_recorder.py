@@ -22,6 +22,12 @@ from .game_state import GameState
 
 RUNS_FILE = "runs.jsonl"
 
+# The act bosses, as global floor numbers. These are the floors where every
+# run that is still alive has had the same number of floors to shape a deck,
+# which is what makes a deck measured here comparable between runs -- unlike
+# the deck at death, which a run that died on floor 8 never got to build.
+MILESTONE_FLOORS = (17, 33, 50)
+
 
 class RunRecorder:
     def __init__(self, log_dir: Path, decision_log_name: str):
@@ -53,6 +59,8 @@ class RunRecorder:
         self.last_known_deck: list[str] = []
         # Deck as read before any card was played -- see GameState.true_deck_names.
         self.true_deck: list[str] = []
+        # The deck as it stood on each act-boss floor, keyed "a1f17".
+        self.deck_at_floor: dict[str, list[str]] = {}
         self.last_known_relics: list[str] = []
         # Which act each relic was acquired in. The act-start relic choices
         # (Neow in act 1, Tezcatara in act 2, ...) are separate decisions with
@@ -62,6 +70,19 @@ class RunRecorder:
         # rolled. Winning unlocked a second one with a different pool,
         # and the two overlap heavily -- see `act_variant`.
         self.act1_enemies: set[str] = set()
+
+    def _note_milestone_deck(self, gs: GameState, deck: list[str]) -> None:
+        """Keep the deck the run took into an act boss.
+
+        First clean reading on the floor wins: later polls in the same fight
+        can still be clean once the discard pile empties, and by then the deck
+        may have changed. A run that *loses* the boss never reaches
+        `game_over` holding this deck, which is the whole reason it has to be
+        captured on the way past.
+        """
+        if gs.floor not in MILESTONE_FLOORS:
+            return
+        self.deck_at_floor.setdefault("a%sf%s" % (gs.act, gs.floor), sorted(deck))
 
     def _bump(self, key: str, amount: int = 1) -> None:
         self.counts[key] = self.counts.get(key, 0) + amount
@@ -105,6 +126,7 @@ class RunRecorder:
             deck = gs.true_deck_names()
             if deck:
                 self.true_deck = deck
+                self._note_milestone_deck(gs, deck)
             fallback = gs.full_deck_names()
             if fallback:
                 self.last_known_deck = fallback
@@ -175,6 +197,7 @@ class RunRecorder:
             "deck": sorted(self.true_deck or gs.full_deck_names() or self.last_known_deck),
             "deck_size": len(self.true_deck or gs.full_deck_names() or self.last_known_deck),
             "deck_includes_tokens": not self.true_deck,
+            "deck_at_floor": self.deck_at_floor,
             "relics": [r.get("name") for r in gs.relics] or self.last_known_relics,
             "potions": [p.get("name") for p in gs.potions],
             "counts": self.counts,

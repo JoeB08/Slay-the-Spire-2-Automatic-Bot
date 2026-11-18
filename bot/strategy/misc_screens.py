@@ -759,21 +759,57 @@ def decide_bundle_select(gs: GameState) -> tuple[str, dict[str, Any]]:
 # relaunched the game, abandoning a floor-31 run. `crystal_sphere` was flagged
 # "unverified, no live fixture ever captured" in KNOWLEDGE.md; there is one now.
 #
-# The action name for revealing a cell is still unknown, so candidates are
-# tried in turn and the one that works is remembered for the rest of the
-# session. Everything falls back to leaving the screen rather than looping.
-_CRYSTAL_CLICK_ACTIONS = (
-    "crystal_sphere_click",
-    "crystal_sphere_select",
-    "crystal_sphere_reveal",
-    "crystal_sphere_select_cell",
-)
-_crystal_state: dict[str, Any] = {"action": None, "tried": 0}
+# The protocol is the mod's own, not a guess. From the help text in
+# `mods/STS2_MCP.dll`, read on 2026-11-13:
+#
+#     Use `crystal_sphere_set_tool(tool)` with `big` or `small`, then
+#     `crystal_sphere_click_cell(x, y)`.
+#
+# The four names the bot used to probe -- `crystal_sphere_click`, `_select`,
+# `_reveal`, `_select_cell` -- are all rejected as "Unknown action", and a tool
+# was never selected at all, so no ordering of them could ever have worked.
+# That is what the 11-13 stall was: 3h35m and 52 relaunches spent cycling four
+# actions the mod does not have.
+CRYSTAL_ACTION_SET_TOOL = "crystal_sphere_set_tool"
+CRYSTAL_ACTION_CLICK_CELL = "crystal_sphere_click_cell"
+
+# Big Divination reveals more per divination and there are only three of them.
+# The screen warns that "revealing some items may be dangerous" and gives no
+# way to tell which tile is which, so this is a judgement, not a measurement --
+# grade **C**, and one constant to flip if sphere floors ever start showing up
+# as a cause of death.
+CRYSTAL_PREFERRED_TOOL = "big"
+_TOOL_AVAILABLE = {"big": "can_use_big_tool", "small": "can_use_small_tool"}
 
 
-def reset_crystal_sphere() -> None:
-    _crystal_state["action"] = None
-    _crystal_state["tried"] = 0
+def _usable_tool(sphere: dict[str, Any]) -> Optional[str]:
+    """The tool to divine with, preferring `CRYSTAL_PREFERRED_TOOL`.
+
+    A tool is only requested when the payload says it can be used. None means
+    the payload does not describe tools at all, in which case the click is
+    attempted with whatever the screen came up with rather than refusing to
+    play.
+    """
+    order = [CRYSTAL_PREFERRED_TOOL] + [t for t in _TOOL_AVAILABLE
+                                        if t != CRYSTAL_PREFERRED_TOOL]
+    for tool in order:
+        if sphere.get(_TOOL_AVAILABLE[tool]):
+            return tool
+    return None
+
+
+def _clickable_cells(sphere: dict[str, Any]) -> list[dict[str, Any]]:
+    """`clickable_cells` when the payload offers it, else filter `cells`.
+
+    The live fixture carries both -- 97 clickable of 121 -- but a derived list
+    is the kind of convenience field a mod update drops, and falling back to
+    the full grid costs nothing.
+    """
+    listed = sphere.get("clickable_cells")
+    if listed:
+        return [c for c in listed if isinstance(c, dict)]
+    return [c for c in (sphere.get("cells") or [])
+            if isinstance(c, dict) and c.get("is_clickable")]
 
 
 def decide_crystal_sphere(gs: GameState) -> tuple[str, dict[str, Any]]:
@@ -783,14 +819,18 @@ def decide_crystal_sphere(gs: GameState) -> tuple[str, dict[str, Any]]:
 
     # Divinations spent -- the game will now accept the proceed.
     if sphere.get("can_proceed"):
-        reset_crystal_sphere()
         return "crystal_sphere_proceed", {}
 
-    clickable = sphere.get("clickable_cells") or []
+    clickable = _clickable_cells(sphere)
     if not clickable:
         # Nothing to click and we cannot proceed: leave rather than spin.
-        reset_crystal_sphere()
         return "proceed", {}
+
+    # The tool comes first -- a click with the wrong one spends a divination on
+    # the wrong footprint, and the mod's help is explicit about the order.
+    tool = _usable_tool(sphere)
+    if tool is not None and sphere.get("tool") != tool:
+        return CRYSTAL_ACTION_SET_TOOL, {"tool": tool}
 
     # Reveal the most central clickable tile. With no model of which tiles are
     # "dangerous", the centre is simply where the grid keeps most of its
@@ -803,21 +843,4 @@ def decide_crystal_sphere(gs: GameState) -> tuple[str, dict[str, Any]]:
         key=lambda c: abs(c.get("x", 0) - cx) + abs(c.get("y", 0) - cy),
     )
 
-    known = _crystal_state["action"]
-    if known:
-        return known, {"x": cell.get("x", 0), "y": cell.get("y", 0)}
-
-    tried = _crystal_state["tried"]
-    if tried >= len(_CRYSTAL_CLICK_ACTIONS):
-        # None of the candidates worked. Leave the screen; the loop's escape
-        # path handles it from here without relaunching the game.
-        reset_crystal_sphere()
-        return "proceed", {}
-    _crystal_state["tried"] = tried + 1
-    return _CRYSTAL_CLICK_ACTIONS[tried], {"x": cell.get("x", 0), "y": cell.get("y", 0)}
-
-
-def note_crystal_sphere_result(action: str, ok: bool) -> None:
-    """Remember whichever click action the game actually accepted."""
-    if ok and action in _CRYSTAL_CLICK_ACTIONS:
-        _crystal_state["action"] = action
+    return CRYSTAL_ACTION_CLICK_CELL, {"x": cell.get("x", 0), "y": cell.get("y", 0)}

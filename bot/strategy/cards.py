@@ -119,6 +119,108 @@ ARCHETYPE_QUALITY_UNIT = 40.0   # roughly "a solidly playable card" = 1.0
 ENGINE_TAG_WEIGHT = 1.5         # Powers and payoff cards *are* the engine
 ENGINE_TAGS = frozenset({"power", "poison_payoff", "shiv_payoff", "discard_engine"})
 
+# A *damage* engine: a card that adds damage every turn, by itself, for the
+# rest of the fight. `ENGINE_TAGS` above is deliberately broader -- it counts
+# every Power -- so Footwork (Dexterity), Wraith Form (Intangible) and
+# Well-Laid Plans (Retain) all satisfy it. Those are fine cards and not one of
+# them adds a point of damage, so answering "does this deck own an engine yet?"
+# with the broad set lets a Footwork suppress the pull toward a first Infinite
+# Blades. That pull is the mechanism recommendation 2 identified: the only act
+# 1 boss fight on record that was won held one per-turn damage engine in a
+# deck small enough to draw it every turn.
+DAMAGE_ENGINE_GENERATOR_TAGS = frozenset({
+    "shiv", "poison", "thorns", "damage", "scales_with_plays",
+})
+DAMAGE_ENGINE_PAYOFF_TAGS = frozenset({"shiv_payoff", "poison_payoff"})
+# A Power whose scaling is real but is not damage, which the tag rule below
+# would otherwise catch. Afterimage scales Block.
+DAMAGE_ENGINE_EXCLUDE = frozenset({"Afterimage"})
+# What an owned engine wants more of. Keyed on the engine's own tag, valued by
+# the tag a card needs to carry to feed it: Infinite Blades wants shivs,
+# Noxious Fumes wants poison, Serpent Form wants draw. Caltrops wants nothing
+# -- it is self-contained, and no amount of anything else makes it bigger.
+ENGINE_FEED_TAGS: dict[str, str] = {
+    "shiv": "shiv",
+    "poison": "poison",
+    "shiv_payoff": "shiv",
+    "poison_payoff": "poison",
+    "scales_with_plays": "draw",
+}
+# Past this many cards, each flat addition costs the engine draw frequency.
+# The won fight's deck was 17; the losses ran 18-22 holding the same number of
+# real cards, so what separated them was how often the engine came up.
+ENGINE_DILUTION_DECK = 20
+ENGINE_DILUTION_PENALTY = 12.0
+
+
+def damage_engine_kind(name: str) -> Optional[str]:
+    """`"self"`, `"payoff"`, or None if this card is not a damage engine.
+
+    `"self"` produces the damage it scales -- Infinite Blades makes the Shivs,
+    Noxious Fumes applies the poison -- so it is an engine in any deck.
+    `"payoff"` multiplies damage the rest of the deck has to supply, and
+    Accuracy in a deck with no Shivs is a dead card, so a payoff only counts
+    as *this* deck's engine once an enabler is present. A one-shot attack is
+    never an engine however much damage it deals, which is why a Power or a
+    standalone payoff tag is required.
+    """
+    if base_name(name) in DAMAGE_ENGINE_EXCLUDE:
+        return None
+    tags = set((card_info(name) or {}).get("tags") or [])
+    if "power" not in tags and not (tags & DAMAGE_ENGINE_PAYOFF_TAGS):
+        return None
+    if tags & DAMAGE_ENGINE_GENERATOR_TAGS:
+        return "self"
+    if tags & DAMAGE_ENGINE_PAYOFF_TAGS:
+        return "payoff"
+    return None
+
+
+def damage_engines(deck_card_names: list[str]) -> list[str]:
+    """Every damage engine the deck already owns."""
+    return [n for n in deck_card_names if damage_engine_kind(n)]
+
+
+def _payoff_is_live(name: str, counts: dict[str, int]) -> bool:
+    """Whether a payoff engine has anything in this deck to pay off."""
+    tags = set((card_info(name) or {}).get("tags") or [])
+    for payoff, enabler in PAYOFF_ENABLERS.items():
+        if payoff in tags and counts.get(enabler, 0) >= 1:
+            return True
+    return False
+
+
+def _feeds_any_engine(name: str, engine_names: list[str]) -> bool:
+    """Whether this card makes an engine the deck already owns bigger."""
+    tags = set((card_info(name) or {}).get("tags") or [])
+    if not tags:
+        return False
+    wanted = set()
+    for engine in engine_names:
+        for tag in set((card_info(engine) or {}).get("tags") or []):
+            feed = ENGINE_FEED_TAGS.get(tag)
+            if feed:
+                wanted.add(feed)
+    return bool(tags & wanted)
+
+
+def _dilution_penalty(name: str, deck_card_names: list[str]) -> float:
+    """Damp flat picks once the deck is big enough to dilute its own engine.
+
+    The second half of recommendation 2. Exempt: a card that *is* an engine,
+    and a card that feeds one the deck already owns. Both of those make the
+    engine better rather than rarer, so the draw-frequency argument does not
+    apply to them.
+    """
+    if len(deck_card_names) < ENGINE_DILUTION_DECK:
+        return 0.0
+    if damage_engine_kind(name):
+        return 0.0
+    engines = damage_engines(deck_card_names)
+    if engines and _feeds_any_engine(name, engines):
+        return 0.0
+    return -ENGINE_DILUTION_PENALTY
+
 
 def _archetype_weight(name: str) -> float:
     """How much one card argues for its archetype."""
@@ -960,6 +1062,7 @@ def best_card_reward_index(
         # for it wants poison *and* enough Block to live through the swings
         # while the poison ticks.
         raw += _boss_block_bonus(name)
+        raw += _dilution_penalty(name, deck_card_names)
         return raw * _duplicate_multiplier(name, deck_card_names)
 
     # Grand Finale only pays off in a deck we can actually empty. Taken into a
@@ -971,6 +1074,33 @@ def best_card_reward_index(
     gf = next((c for c in cards if base_name(c.get("name", "")) == GRAND_FINALE), None)
     if gf is not None and len(deck_card_names) <= GRAND_FINALE_MAX_DECK:
         return gf["index"]
+
+    # The deck owns no damage engine at all: take one. This sits ahead of the
+    # quality gate on purpose -- the gate judges a card against the median of
+    # the deck we already hold, and that is precisely the comparison a first
+    # Infinite Blades loses to a second good flat card. Grade C when
+    # recommendation 2 was written, on one fight; now the same direction in
+    # three independent sets, with boss losses at 4-11% engine density against
+    # 16-25% for the runs that reached act 2.
+    if not damage_engines(deck_card_names):
+        first_engine = []
+        for card in cards:
+            name = card.get("name", "")
+            kind = damage_engine_kind(name)
+            if kind is None:
+                continue
+            if kind == "payoff" and not _payoff_is_live(name, counts):
+                continue        # nothing here for it to pay off yet
+            base = _base_quality(name)
+            if base is None:
+                continue        # unknown card -- not worth adding blind
+            # The deck-relative bar is skipped; the absolute floor is not.
+            # Wanting an engine badly is not a reason to take a bad one.
+            if _blend_quality(name, base, act, floor) < _absolute_floor(act, floor):
+                continue
+            first_engine.append(card)
+        if first_engine:
+            return max(first_engine, key=_score)["index"]
 
     # A payoff card for an engine the deck already feeds comes first -- see
     # `is_key_payoff`. The quality gate below would refuse Accuracy on its
@@ -1012,6 +1142,7 @@ def best_card_reward_index(
             (quality + _archetype_adjustment(name, archetype, act))
             * _duplicate_multiplier(name, deck_card_names)
             + _curve_penalty(name, deck_card_names)
+            + _dilution_penalty(name, deck_card_names)
         ) > bar
 
     eligible = [c for c in cards if _passes(c)]

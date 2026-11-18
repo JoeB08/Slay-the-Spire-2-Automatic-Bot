@@ -33,6 +33,12 @@ LOG_DIR = Path(__file__).parent.parent / "logs"
 POLL_IDLE_SLEEP = 0.5
 ERROR_BACKOFF = 1.5
 ABANDON_AFTER_N_RECOVERIES = 2  # try resuming once; only give up on the run if it freezes again right after
+# Consecutive rejected actions on one screen before the run is written off.
+# An engine freeze is worth resuming into; a screen the bot cannot satisfy is
+# not -- the autosave puts it straight back on the same screen. Five is past
+# any transient (a screen mid-transition rejects one or two) and well short of
+# the half-dozen polls the stuck detector needs.
+ERROR_STREAK_UNPLAYABLE = 5
 POST_ACTION_DELAY = 0.3  # let the game finish processing an action's effect/animation before polling again
 # Cards that draw, discard or shuffle rearrange the whole hand and animate
 # per card, so they take noticeably longer to resolve than a plain attack.
@@ -350,6 +356,17 @@ def _combat_detail(gs: GameState) -> Optional[dict[str, Any]]:
     }
 
 
+def _screen_fingerprint(gs: GameState) -> tuple:
+    """Which screen we are on, ignoring what was tried on it.
+
+    Deliberately coarser than `_decision_fingerprint`: this counts consecutive
+    failures on *one screen* while the bot varies what it sends. The Crystal
+    Sphere stall rotated through five different actions, so a decision-level
+    fingerprint changed every poll and would have counted nothing.
+    """
+    return (gs.state_type, gs.act, gs.floor, gs.hp)
+
+
 def _decision_fingerprint(gs: GameState) -> tuple:
     """Signature of everything the current screen's decision depends on.
 
@@ -429,6 +446,9 @@ class BotLoop:
         self._prev_summary: Optional[dict[str, Any]] = None
         self._stuck = StuckDetector()
         self._consecutive_recoveries = 0
+        # Rejected actions in a row on one screen -- see ERROR_STREAK_UNPLAYABLE.
+        self._error_streak = 0
+        self._error_streak_fp: Optional[tuple] = None
         self._last_decision_fp: Optional[tuple] = None
         self._last_decision: Optional[tuple[str, tuple]] = None
         self._same_decision_streak = 0
@@ -505,6 +525,30 @@ class BotLoop:
             print("[bot] stuck screen -- escaped without relaunching")
             self._stuck.reset()
             return
+        # A screen that has rejected everything sent to it is not a frozen
+        # engine, and resuming the autosave lands straight back on it. So this
+        # one does not get the "try resuming once" grace that a freeze gets:
+        # relaunch to reach the main menu, then abandon. Without this, 11-13
+        # spent 3h35m relaunching into the same Crystal Sphere screen 52 times.
+        if self._error_streak >= ERROR_STREAK_UNPLAYABLE:
+            self._log({"event": "unplayable_screen",
+                       "state": _summary(gs) if gs is not None else None,
+                       "errors_in_a_row": self._error_streak,
+                       "screen": list(self._error_streak_fp or ())})
+            print(f"[bot] this screen rejected {self._error_streak} actions in a row -- "
+                  "abandoning the run rather than resuming into it")
+            self._error_streak = 0
+            self._error_streak_fp = None
+            deck_memory.reset()  # that deck belongs to a run we are discarding
+            kill_and_relaunch(reason="unplayable_screen")
+            try:
+                self.client.wait_until_ready(attempts=RELAUNCH_WAIT_ATTEMPTS,
+                                             delay=RELAUNCH_WAIT_DELAY)
+            except ApiError:
+                pass
+            self._force_abandon = True
+            self._stuck.reset()
+            return
         self._consecutive_recoveries += 1
         print(f"[bot] game appears frozen -- recovery attempt {self._consecutive_recoveries}")
         self._log({"event": "stuck_detected", "consecutive_recoveries": self._consecutive_recoveries})
@@ -567,6 +611,22 @@ class BotLoop:
         gs = GameState(raw)
         in_a_run = gs.floor > 0 and gs.state_type not in ("menu", "game_over")
         if not in_a_run:
+            # Sitting at the main menu with a save to `continue` is the same
+            # half-played run, one relaunch further along. Nothing in a fresh
+            # process knows why it was left there, and the menu handler's
+            # default is to resume it -- which is how a run stuck on an
+            # unplayable screen survived 52 restarts on 11-13, every new
+            # process dutifully continuing back into it. Abandon it for the
+            # reason an in-progress run is abandoned: it is not a measurement
+            # of this build. `STS2_KEEP_RUN` still wins, as it does below.
+            if (gs.state_type == "menu"
+                    and gs.menu_screen == "main"
+                    and "continue" in menu.option_names(gs.options)
+                    and os.environ.get("STS2_KEEP_RUN") != "1"):
+                print("[bot] a save is waiting on the main menu -- abandoning it rather than resuming")
+                self._log({"event": "abandoning_menu_save", "state": _summary(gs)})
+                deck_memory.reset()
+                self._force_abandon = True
             return
         # `bot_control.ps1 -KeepRun`: continue a paused run instead. Set 4's
         # restart nearly threw away a run the user had asked to keep.
@@ -793,10 +853,11 @@ class BotLoop:
             try:
                 self.client.post_action(action, **fields)
                 record["result"] = "ok"
+                self._error_streak = 0
+                self._error_streak_fp = None
                 # The divination screen's click action name is unverified, so
                 # the handler probes candidates -- remember whichever the game
                 # actually accepted.
-                misc_screens.note_crystal_sphere_result(action, True)
                 # Real progress forgives past freezes -- but a main-menu click is
                 # not progress: "continue" succeeds and then loads straight back
                 # into whatever froze. Resetting on it kept every recovery at 1,
@@ -825,6 +886,13 @@ class BotLoop:
                 # uncaught one previously crashed the whole bot process.
                 record["result"] = "error"
                 record["error"] = str(e)
+                screen_fp = _screen_fingerprint(gs)
+                if screen_fp == self._error_streak_fp:
+                    self._error_streak += 1
+                else:
+                    self._error_streak_fp = screen_fp
+                    self._error_streak = 1
+                record["errors_in_a_row"] = self._error_streak
                 time.sleep(ERROR_BACKOFF)
 
             self._log(record)

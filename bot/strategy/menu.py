@@ -27,6 +27,11 @@ def _option_names(options: Any) -> list[str]:
     return [o.get("name") for o in options if o.get("enabled", True)]
 
 
+def option_names(options: Any) -> list[str]:
+    """The enabled options' names, read exactly as `decide_menu` reads them."""
+    return _option_names(options)
+
+
 def decide_menu(gs: GameState, prefer_abandon: bool = False) -> tuple[str, dict[str, Any]]:
     """`prefer_abandon`: set by the recovery path (bot/recovery.py) when a
     resumed run has frozen again right away, so we stop trying to continue a

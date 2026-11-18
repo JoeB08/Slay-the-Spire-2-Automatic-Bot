@@ -93,6 +93,58 @@ class _FreshMenuClient(_MidRunClient):
         }
 
 
+class _MenuSaveClient(_MidRunClient):
+    """At the main menu with a save to `continue` -- a game relaunched under a
+    run, which is what every restart during the 11-13 stall came back to."""
+
+    def get_state(self):
+        return {
+            "state_type": "menu", "ready_for_command": True, "menu_screen": "main",
+            "run": {"act": 1, "floor": 0},
+            "options": ["continue", "abandon_run", "singleplayer", "settings", "quit"],
+            "player": {"hp": 0, "max_hp": 1, "gold": 0, "potions": [], "max_potion_slots": 3,
+                       "hand": [], "draw_pile": [], "discard_pile": [], "exhaust_pile": []},
+        }
+
+
+def test_a_save_waiting_on_the_main_menu_is_abandoned(tmp_path, monkeypatch):
+    """The 11-13 loop: 52 fresh processes each resumed the same stuck save.
+
+    The API reports a plain main menu, so the in-a-run check above does not
+    fire, and the menu handler's default is to continue. One relaunch further
+    on it is still the same half-played run, and the same reason applies: it
+    is not a measurement of this build.
+    """
+    monkeypatch.delenv("STS2_KEEP_RUN", raising=False)
+    monkeypatch.setattr("bot.loop.LOG_DIR", tmp_path)
+    monkeypatch.setattr("time.sleep", lambda *_: None)
+    relaunched = []
+    monkeypatch.setattr("bot.loop.kill_and_relaunch", lambda **kw: relaunched.append(True))
+
+    client = _MenuSaveClient()
+    loop = BotLoop(client=client, max_actions=1)
+    loop.run()
+    loop.close()
+
+    assert client.actions_posted == [("menu_select", {"option": "abandon_run"})]
+    assert ("menu_select", {"option": "continue"}) not in client.actions_posted
+    # Already at the menu -- nothing to relaunch for.
+    assert not relaunched
+
+
+def test_keep_run_still_resumes_a_save_on_the_menu(tmp_path, monkeypatch):
+    monkeypatch.setenv("STS2_KEEP_RUN", "1")
+    monkeypatch.setattr("bot.loop.LOG_DIR", tmp_path)
+    monkeypatch.setattr("time.sleep", lambda *_: None)
+
+    client = _MenuSaveClient()
+    loop = BotLoop(client=client, max_actions=1)
+    loop.run()
+    loop.close()
+
+    assert client.actions_posted == [("menu_select", {"option": "continue"})]
+
+
 def test_does_not_relaunch_when_no_run_is_in_progress(tmp_path, monkeypatch):
     monkeypatch.setattr("bot.loop.LOG_DIR", tmp_path)
     monkeypatch.setattr("time.sleep", lambda *_: None)
