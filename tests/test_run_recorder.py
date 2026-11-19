@@ -133,3 +133,147 @@ def test_non_baseline_ascension_runs_are_kept_but_excluded_from_comparisons(tmp_
     assert [e["run_id"] for e in relic_stats.load_history()] == ["a0"]
     assert {e["run_id"] for e in relic_stats.load_history(ascension=None)} == {"a0", "a1"}
     assert [e["run_id"] for e in relic_stats.load_history(ascension=1)] == ["a1"]
+
+
+# --- winning (2026-11-19) ------------------------------------------------
+#
+# The bot won on 2026-11-19 and the recorder filed it as "killed by Aeonglass".
+# `outcome = "death" if gs.hp <= 0` could only ever say death, because the mod
+# fills the game_over state with a fixed "Run ended." and an hp of 0 whether
+# the run was won or lost. All 290 runs before that one are recorded as deaths
+# for the same reason.
+#
+# The repaired version asks the game's own win counter. It is NOT allowed to
+# infer a victory from the screens, because clearing the final boss is not the
+# end of the run: The Architect follows, it can kill you, and a death there
+# leaves a trace identical to the win -- boss cleared, rewards taken, event
+# reached, HP still showing, then game_over. Inference separates a death from
+# a non-death and stops there.
+
+
+def _win_trace(rec):
+    """Floor 48: kill the act-3 boss, take the rewards, reach The Architect."""
+    rec.observe(_state(floor=46, act=3, hp=20), "choose_map_node", {"index": 0})
+    rec.observe(_state(state_type="boss", floor=48, act=3, hp=2,
+                       enemies=[{"name": "Aeonglass", "hp": 33, "max_hp": 512}]),
+                "play_card", {"card_index": 0})
+    rec.observe(_state(state_type="rewards", floor=48, act=3, hp=2), "proceed", {})
+    rec.observe(_state(state_type="event", floor=48, act=3, hp=2), "proceed", {})
+    rec.observe(_state(state_type="game_over", floor=48, act=3, hp=0),
+                "menu_select", {"option": "main_menu"})
+
+
+def _record(tmp_path):
+    return json.loads((tmp_path / "runs.jsonl").read_text(encoding="utf-8").strip())
+
+
+def _profile(*win_counts):
+    """A profile reader returning each count in turn: run start, then finish."""
+    counts = list(win_counts)
+
+    def read():
+        return {"profile_id": 1,
+                "characters": [{"id": "silent", "times_won": counts.pop(0)},
+                               {"id": "ironclad", "times_won": 0}]}
+
+    return read
+
+
+def test_the_games_own_counter_calls_the_win(tmp_path):
+    rec = RunRecorder(tmp_path, "run_test.jsonl", profile_reader=_profile(0, 1))
+    _win_trace(rec)
+    record = _record(tmp_path)
+    assert record["outcome"] == "victory"
+    assert record["outcome_source"] == "profile"
+    assert record["killed_by"] is None
+    assert record["final_hp"] == 2
+
+
+def test_dying_at_the_architect_is_not_a_win(tmp_path):
+    """The whole reason inference is not trusted here.
+
+    Identical screens to the victory above -- final boss cleared, rewards
+    taken, the end event reached, HP still showing at the last poll. The only
+    thing that differs is that the game did not count a win.
+    """
+    rec = RunRecorder(tmp_path, "run_test.jsonl", profile_reader=_profile(0, 0))
+    _win_trace(rec)
+    record = _record(tmp_path)
+    assert record["outcome"] != "victory"
+    assert record["cleared_final_boss"] is True
+
+
+def test_the_screens_alone_never_claim_a_victory(tmp_path):
+    """No profile to ask: record what is known, not what is hoped."""
+    rec = _recorder(tmp_path)
+    _win_trace(rec)
+    record = _record(tmp_path)
+    assert record["outcome"] == "ended"
+    assert record["outcome_source"] == "screens"
+    assert record["cleared_final_boss"] is True
+
+
+def test_an_unreadable_profile_never_invents_a_win(tmp_path):
+    def boom():
+        raise OSError("connection refused")
+
+    rec = RunRecorder(tmp_path, "run_test.jsonl", profile_reader=boom)
+    _win_trace(rec)
+    assert _record(tmp_path)["outcome"] == "ended"
+
+
+def test_hp_plays_no_part_in_deciding_a_win(tmp_path):
+    """A win at 2 HP and a win at full HP are both wins."""
+    for hp in (1, 2, 68):
+        path = tmp_path / ("win_%d" % hp)
+        path.mkdir()
+        rec = RunRecorder(path, "run_test.jsonl", profile_reader=_profile(3, 4))
+        rec.observe(_state(state_type="boss", floor=48, act=3, hp=hp,
+                           enemies=[{"name": "Aeonglass", "hp": 1, "max_hp": 512}]),
+                    "play_card", {})
+        rec.observe(_state(state_type="rewards", floor=48, act=3, hp=hp), "proceed", {})
+        rec.observe(_state(state_type="game_over", floor=48, act=3, hp=0), "menu_select", {})
+        record = _record(path)
+        assert record["outcome"] == "victory", "win at %d hp missed" % hp
+        assert record["final_hp"] == hp
+
+
+def test_dying_at_a_boss_is_still_a_death_and_still_names_it(tmp_path):
+    rec = RunRecorder(tmp_path, "run_test.jsonl", profile_reader=_profile(0, 0))
+    rec.observe(_state(state_type="boss", floor=17, hp=13,
+                       enemies=[{"name": "Lagavulin Matriarch", "hp": 90, "max_hp": 180}]),
+                "play_card", {"card_index": 0})
+    rec.observe(_state(state_type="game_over", floor=17, hp=0),
+                "menu_select", {"option": "main_menu"})
+    record = _record(tmp_path)
+    assert record["outcome"] == "death"
+    assert record["final_hp"] == 0
+    assert record["killed_by"]["enemies"][0]["name"] == "Lagavulin Matriarch"
+
+
+def test_hp_still_showing_in_the_last_poll_is_not_a_victory(tmp_path):
+    """Every real death looked like this: the last poll before game_over read
+    1-15 HP, because the killing blow landed between two polls. Reading that
+    as 'walked away alive' would turn all ten of the night's deaths into wins.
+    """
+    for hp in (1, 2, 13, 15):
+        path = tmp_path / ("death_%d" % hp)
+        path.mkdir()
+        rec = RunRecorder(path, "run_test.jsonl")
+        rec.observe(_state(state_type="monster", floor=25, hp=hp), "play_card", {})
+        rec.observe(_state(state_type="game_over", floor=25, hp=0), "menu_select", {})
+        assert _record(path)["outcome"] == "death", "hp %d read as a win" % hp
+
+
+def test_clearing_an_earlier_boss_is_not_clearing_the_final_one(tmp_path):
+    """Seven of the ten deaths got past the act-1 boss first."""
+    rec = _recorder(tmp_path)
+    rec.observe(_state(state_type="boss", floor=17, hp=40,
+                       enemies=[{"name": "Kin Priest", "hp": 10, "max_hp": 200}]),
+                "play_card", {})
+    rec.observe(_state(state_type="rewards", floor=17, hp=40), "proceed", {})
+    rec.observe(_state(state_type="monster", floor=25, act=2, hp=4), "play_card", {})
+    rec.observe(_state(state_type="game_over", floor=25, act=2, hp=0), "menu_select", {})
+    record = _record(tmp_path)
+    assert record["outcome"] == "death"
+    assert record["cleared_final_boss"] is False

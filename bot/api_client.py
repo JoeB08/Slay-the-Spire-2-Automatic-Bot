@@ -48,6 +48,17 @@ class ApiClient:
         resp.raise_for_status()
         return resp.json()
 
+    def get_profile(self) -> dict[str, Any]:
+        """The save profile, which carries the game's own win counters.
+
+        The `game_over` state cannot tell a win from a death -- the mod fills
+        it with a fixed "Run ended." and nothing else -- so this is the only
+        authoritative verdict available. See RunRecorder.finish().
+        """
+        resp = self.session.get(f"{self.base_url}/profile", timeout=self.timeout)
+        resp.raise_for_status()
+        return resp.json()
+
     def post_action(self, action: str, **fields: Any) -> dict[str, Any]:
         payload = {"action": action, **fields}
         resp = self.session.post(f"{self.base_url}/singleplayer", json=payload, timeout=self.timeout)

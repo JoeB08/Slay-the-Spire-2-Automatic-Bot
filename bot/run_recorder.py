@@ -30,7 +30,15 @@ MILESTONE_FLOORS = (17, 33, 50)
 
 
 class RunRecorder:
-    def __init__(self, log_dir: Path, decision_log_name: str):
+    # Dying happens inside a fight, so these are the only screens a run can
+    # end on by death. Everything else means the player walked away alive.
+    COMBAT_SCREENS = ("monster", "elite", "boss")
+
+    def __init__(self, log_dir: Path, decision_log_name: str, profile_reader=None):
+        # Callable returning the save profile, or None when no game is
+        # reachable. Injected rather than built here so the recorder stays
+        # testable offline and a profile read can never break a run.
+        self.profile_reader = profile_reader
         self.log_dir = log_dir
         self.decision_log_name = decision_log_name
         self._runs_path = log_dir / RUNS_FILE
@@ -52,6 +60,12 @@ class RunRecorder:
         self.decisions = 0
         self.counts: dict[str, int] = {}
         self.last_combat: Optional[dict[str, Any]] = None
+        # The game_over state reports hp 0 and carries no victory flag, so it
+        # cannot tell a win from a death -- see finish(). These can.
+        self.last_live_screen: Optional[str] = None
+        self.last_live_hp: Optional[int] = None
+        self.cleared_boss_floor: Optional[int] = None
+        self.wins_at_start: Optional[int] = None
         self.recovery_events = 0
         # The card piles are only populated during combat, and are empty by
         # the time we reach game_over -- so snapshotting the deck at the end
@@ -94,6 +108,10 @@ class RunRecorder:
         self.character = gs.player.get("character")
         self.last_hp = gs.hp
         self.hp_low_water = gs.hp
+        # Read once here so finish() compares like with like. A profile that
+        # cannot be read at either end leaves this None, and the run is
+        # recorded as unconfirmed rather than as a loss.
+        self.wins_at_start = self._wins()
 
     # --- observation ---------------------------------------------------
 
@@ -116,6 +134,8 @@ class RunRecorder:
                 self.damage_taken += self.last_hp - gs.hp
             self.last_hp = gs.hp
             self.hp_low_water = gs.hp if self.hp_low_water is None else min(self.hp_low_water, gs.hp)
+            self.last_live_screen = gs.state_type
+            self.last_live_hp = gs.hp
 
             self.decisions += 1
             self._bump(f"screen:{gs.state_type}")
@@ -137,6 +157,16 @@ class RunRecorder:
                 for name in relics:
                     if name and name not in self.relic_act:
                         self.relic_act[name] = gs.act
+            # A rewards screen on the floor of the boss we were just fighting
+            # is proof the boss died rather than us. Entering any new fight
+            # clears it, so only the most recent boss can count.
+            if gs.is_combat:
+                self.cleared_boss_floor = None
+            elif (gs.state_type == "rewards" and self.last_combat
+                    and self.last_combat.get("state_type") == "boss"
+                    and self.last_combat.get("floor") == floor):
+                self.cleared_boss_floor = floor
+
             if gs.is_combat:
                 if gs.act == 1:
                     for enemy in gs.enemies:
@@ -154,6 +184,40 @@ class RunRecorder:
         if gs.state_type == "game_over" and self.run_id is not None:
             self.finish(gs)
 
+    def _wins(self) -> Optional[int]:
+        """Total runs won across the profile, or None if it cannot be read.
+
+        Summed over every `times_won` anywhere in the payload rather than
+        reached by a fixed path: only one run is ever in flight, so any
+        increase is this run's, and a nesting change upstream cannot silently
+        turn every win into a loss.
+        """
+        if self.profile_reader is None:
+            return None
+        try:
+            payload = self.profile_reader()
+        except Exception:
+            return None
+
+        total = 0
+        found = False
+
+        def walk(node):
+            nonlocal total, found
+            if isinstance(node, dict):
+                for key, value in node.items():
+                    if key == "times_won" and isinstance(value, bool) is False                             and isinstance(value, int):
+                        total += value
+                        found = True
+                    else:
+                        walk(value)
+            elif isinstance(node, list):
+                for item in node:
+                    walk(item)
+
+        walk(payload)
+        return total if found else None
+
     def note_event(self, event: str) -> None:
         if event in ("stuck_detected", "cycle_detected", "stale_action_detected"):
             self.recovery_events += 1
@@ -170,8 +234,36 @@ class RunRecorder:
             self._reset()
             return
 
-        hp = gs.hp
-        outcome = "death" if hp <= 0 else "ended"
+        # gs.hp is 0 at game_over whether the run was won or lost, so it can
+        # never be the test. The first 290 runs recorded were all written down
+        # as deaths for exactly that reason -- including the victory on
+        # 2026-11-19, which finished the act-3 boss with 2 HP left and was
+        # filed as "killed by Aeonglass".
+        #
+        # What separates them is the last screen seen while the run was still
+        # live: a death lands mid-fight, while a win leaves the final boss
+        # through its rewards screen and the epilogue. A run that ends from
+        # neither (abandoned, or a shape not seen before) is "ended" rather
+        # than guessed at in either direction.
+        # Only the game's own counter can call a win. Clearing the final boss
+        # is NOT enough: the run then goes to The Architect, which can kill
+        # you, and a death there leaves a trace identical to the victory on
+        # 2026-11-19 -- boss cleared, rewards taken, event reached, HP still
+        # showing, then a game_over that reports hp 0 either way. Inference
+        # can separate a death from a non-death; it cannot separate a win
+        # from dying at the last step, so it is not allowed to try.
+        wins_now = self._wins()
+        died = self.last_live_screen in self.COMBAT_SCREENS
+        if (self.wins_at_start is not None and wins_now is not None
+                and wins_now > self.wins_at_start):
+            outcome, outcome_source = "victory", "profile"
+        elif died:
+            outcome, outcome_source = "death", "screens"
+        else:
+            # Survived the fighting but unconfirmed as a win. Undercounting a
+            # win is recoverable; inventing one quietly corrupts the metric.
+            outcome, outcome_source = "ended", "screens"
+        hp = 0 if died else (self.last_live_hp or 0)
         record = {
             "run_id": self.run_id,
             "started_ts": self.started_ts,
@@ -179,6 +271,9 @@ class RunRecorder:
             "duration_s": round(time.time() - (self.started_ts or time.time()), 1),
             "character": self.character,
             "outcome": outcome,
+            "outcome_source": outcome_source,
+            "cleared_final_boss": (self.cleared_boss_floor is not None
+                                   and self.cleared_boss_floor == self.max_floor),
             "act_reached": self.max_act,
             "floor_reached": self.max_floor,
             "ascension": gs.ascension,
@@ -193,7 +288,7 @@ class RunRecorder:
             "damage_taken": self.damage_taken,
             "decisions": self.decisions,
             "recovery_events": self.recovery_events,
-            "killed_by": self.last_combat,
+            "killed_by": self.last_combat if outcome == "death" else None,
             "deck": sorted(self.true_deck or gs.full_deck_names() or self.last_known_deck),
             "deck_size": len(self.true_deck or gs.full_deck_names() or self.last_known_deck),
             "deck_includes_tokens": not self.true_deck,

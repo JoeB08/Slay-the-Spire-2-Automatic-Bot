@@ -462,7 +462,9 @@ class BotLoop:
         # the warning is loud but not repeated on every poll.
         self._ascension_warned_run: Optional[int] = None
         self._recent_decisions: deque = deque(maxlen=CYCLE_WINDOW)
-        self._recorder = RunRecorder(LOG_DIR, self._log_path.name)
+        self._recorder = RunRecorder(LOG_DIR, self._log_path.name,
+                                     profile_reader=getattr(self.client,
+                                                            "get_profile", None))
 
     def _log(self, record: dict[str, Any]) -> None:
         record["ts"] = time.time()
