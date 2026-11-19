@@ -81,8 +81,13 @@ STUCK_MINUTES = 8         # the bot's own freeze recovery gets ~4 min of that fi
 # 11-13 -- the counter read 1 all sixty times. Wait for several polls, and only
 # act if the decision log has stopped growing too.
 API_DOWN_POLLS = 4
+# The same question asked without the log-growth corroboration, which has a
+# hole in it -- see only_failed_reads(). Six minutes is past any legitimate
+# relaunch (Steam takes about two), so this can stand on its own.
+API_DOWN_HARD_POLLS = 6
 MAX_RESTARTS = 10         # consecutive failures before giving up for the night
 SETTLE_SECONDS = 150
+DEAD_END_POLLS = 2        # a main menu with no way into a run, twice running
 
 
 def say(message: str) -> None:
@@ -139,6 +144,81 @@ def mod_load_failure() -> "str | None":
     if exc != -1:
         why = " -- " + " ".join(text[exc:exc + 220].split())
     return "the game loaded 0 mods, so the API will never open%s" % why
+
+
+def only_failed_reads(log) -> bool:
+    """True when the bot's recent records are nothing but failed state reads.
+
+    The stall guard asks whether the decision log is still growing, reasoning
+    that a bot writing records is a bot doing something. That is wrong in
+    exactly the case it exists to catch: when the game wedges, the bot writes a
+    `get_state_error` record every poll -- about five a minute -- so the log
+    grows steadily while nothing whatsoever happens.
+
+    On 2026-11-19 that cost 40 minutes. The game hung at the main menu, the API
+    answered nothing from 04:06, and the supervisor said "bot alive, API up" at
+    04:15, 04:30 and 04:45: `static_for` never rose above zero, so neither
+    stall branch could fire, and the heartbeat's text was a fixed string rather
+    than what it had just measured.
+
+    Conservative on purpose -- an unreadable or unparseable tail returns False,
+    because declaring a stall restarts the bot and resets its own escalation.
+    """
+    if log is None:
+        return False
+    try:
+        with open(log, "rb") as fh:
+            fh.seek(0, 2)
+            fh.seek(max(0, fh.tell() - 200_000))
+            tail = fh.read().decode("utf-8", "replace")
+    except OSError:
+        return False
+    # [1:] drops the fragment of whatever record the seek landed inside.
+    lines = [l for l in tail.split("\n")[1:] if l.strip()][-40:]
+    if not lines:
+        return False
+    for line in lines:
+        try:
+            if json.loads(line).get("event") != "get_state_error":
+                return False
+        except ValueError:
+            return False
+    return True
+
+
+def menu_dead_end() -> "str | None":
+    """A main menu with no way into a run -- which no relaunch can fix.
+
+    The game disables the whole main menu except Settings and Quit while an
+    unlock earned by the last run is still unrevealed, and STS2MCP deliberately
+    refuses to open the Timeline from automation: it answers
+    `manual_epoch_reveal_required` and says that entering that screen through
+    the API logs invalid unlock-state errors. So the reveal needs a person, and
+    until one happens the bot's last-resort menu pick clicks Settings, strands
+    itself, relaunches, and clicks Settings again.
+
+    That ended the night of 2026-11-19 after eleven runs. Naming it costs one
+    API read a minute; not naming it costs every hour that is left.
+    """
+    try:
+        with urllib.request.urlopen(API, timeout=5) as resp:
+            state = json.loads(resp.read().decode("utf-8", "replace"))
+    except (urllib.error.URLError, OSError, ValueError):
+        return None
+    if state.get("menu_screen") != "main":
+        return None
+    options = state.get("options")
+    if not isinstance(options, list) or not options:
+        return None                 # still populating; not a dead end yet
+    names = sorted(str(o.get("name") if isinstance(o, dict) else o).lower()
+                   for o in options)
+    if {"continue", "singleplayer"} & set(names):
+        return None
+    pending = [str(e) for b in (state.get("blocked_options") or [])
+               if isinstance(b, dict) for e in (b.get("pending_epoch_ids") or [])]
+    return ("the main menu offers only %s%s" % (
+        ", ".join(names),
+        " -- unrevealed timeline unlock(s): " + ", ".join(pending) if pending else ""))
 
 
 def newest_log():
@@ -266,6 +346,7 @@ def main() -> int:
 
     restarts = 0
     api_down = 0
+    dead_end = 0
     last_count = count
     log = newest_log()
     last_size = log.stat().st_size if log else 0
@@ -311,6 +392,7 @@ def main() -> int:
             last_size = log.stat().st_size if log else 0
             last_growth = time.time()
             api_down = 0
+            dead_end = 0
             continue
 
         # --- health --------------------------------------------------------
@@ -331,12 +413,27 @@ def main() -> int:
                 shut_down("MOD NOT LOADED -- rebuild it against this game version")
                 return 1
 
+        # A menu the bot cannot get out of is not a crash, and restarting into
+        # it only repeats the trap. Stop and say what a person has to do.
+        if api:
+            blocked = menu_dead_end()
+            dead_end = dead_end + 1 if blocked else 0
+            if dead_end >= DEAD_END_POLLS:
+                say("STUCK ON THE MENU: %s" % blocked)
+                say("a person has to clear this: open Timeline in the game, "
+                    "reveal the pending unlock, then back out to the menu")
+                shut_down("MENU DEAD END -- the game needs a manual unlock reveal")
+                return 1
+
         trouble = None
         if not alive:
             trouble = "the bot process is gone"
         elif api_down >= API_DOWN_POLLS and static_for > 2.0:
             trouble = ("the game API has not answered for %d polls and the log "
                        "has been static for %.0f min" % (api_down, static_for))
+        elif api_down >= API_DOWN_HARD_POLLS and only_failed_reads(log):
+            trouble = ("the game API has not answered for %d polls and the bot "
+                       "is logging nothing but failed state reads" % api_down)
         elif static_for > STUCK_MINUTES:
             trouble = "no log growth for %.0f minutes" % static_for
 
@@ -350,14 +447,18 @@ def main() -> int:
                 time.sleep(SETTLE_SECONDS)
                 restarts = 0
             api_down = 0
+            dead_end = 0
             log = newest_log()
             last_size = log.stat().st_size if log else 0
             last_growth = time.time()
             continue
 
         if int(time.time()) % 900 < POLL_SECONDS:      # a heartbeat every ~15 min
-            say("ok -- %d runs, bot alive, API up, log %.1f MB"
-                % (count, size / 1048576))
+            # What it measured, not a fixed string: the old wording claimed
+            # "bot alive, API up" through 40 minutes of a dead API on 11-19.
+            say("ok -- %d runs, bot %s, API %s, log %.1f MB"
+                % (count, "alive" if alive else "GONE",
+                   "up" if api else "DOWN", size / 1048576))
 
     return 0
 

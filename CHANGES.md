@@ -450,6 +450,22 @@ Full write-ups are in the Done sections above and in git history.
   same build**, never one set against one set, and treat any single set's
   headline figure as a draw from a wide distribution. Set 5 was the warning
   (24.1 with none of the change) and was nearly explained away at the time.
+* **A growing log is not a working bot, and a watchdog must print what it
+  measured.** The supervisor's stall guard required the API to be unreachable
+  *and* the decision log to have stopped growing. When the game wedges the bot
+  writes a `get_state_error` record every eleven seconds, so the log grows
+  steadily and `static_for` never leaves zero — the guard was blinded by the
+  exact symptom it existed to catch. It watched a dead API for forty minutes on
+  2026-11-19 while printing `bot alive, API up`, which was *literal text* rather
+  than the values it had just read. Any liveness signal that the failure itself
+  produces is not a liveness signal; and a heartbeat that cannot say `DOWN` is
+  decoration.
+* **Some states no relaunch can fix, and the watchdog must name them rather
+  than retry.** Second instance in two days: a mod that will not load
+  (2026-11-18) and a main menu locked behind a manual unlock reveal
+  (2026-11-19). Both are indistinguishable from "slow" if you only watch from
+  outside, and both cost a night before being named. When a restart cannot
+  change the outcome, stop and say which human action is required.
 * **`can_confirm` means "confirming is legal", never "enough is selected".**
   Three screens have now been caught assuming otherwise (retain prompts,
   multi-pick `card_select`, Enchant). Assume any new selection screen is
