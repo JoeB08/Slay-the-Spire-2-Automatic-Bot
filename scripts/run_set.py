@@ -63,6 +63,13 @@ WATCH_LOG = BOT / "logs" / "run_set.log"
 # for set 6 was written for set 6, and a stale report is worse than none.
 REPORT_SCRIPT = None
 
+# The game writes its own log, and it says plainly whether the mod loaded. On
+# 2026-11-18 a game update broke the mod: it failed to load, the API never
+# opened, and from outside that is indistinguishable from a game that is slow
+# to start. Without this check the supervisor answers it with relaunches --
+# ten of them, then "BROKEN", with nothing in its log naming the real cause.
+GAME_LOG = Path.home() / "AppData" / "Roaming" / "SlayTheSpire2" / "logs" / "godot.log"
+
 POLL_SECONDS = 60
 STUCK_MINUTES = 8         # the bot's own freeze recovery gets ~4 min of that first
 # The bot kills and relaunches the game itself, and Steam takes ~2 minutes over
@@ -108,6 +115,30 @@ def api_up() -> bool:
             return resp.status == 200
     except (urllib.error.URLError, OSError, ValueError):
         return False
+
+
+def mod_load_failure() -> "str | None":
+    """Why the mod did not load, or None if it did (or nothing is known yet).
+
+    Returns a reason only when the game's own log is unambiguous, so a missing
+    or stale log never stops a set: silence here means "no evidence", not
+    "broken". Reads the tail, because the log grows to tens of MB in a session.
+    """
+    try:
+        text = GAME_LOG.read_text(encoding="utf-8", errors="replace")[-200000:]
+    except OSError:
+        return None
+    marker = text.rfind("RUNNING MODDED")
+    if marker == -1:
+        return None
+    line = text[marker:text.find("\n", marker) if text.find("\n", marker) > 0 else None]
+    if "Loaded 0 mods" not in line:
+        return None
+    why = ""
+    exc = text.rfind("Exception thrown while loading mod")
+    if exc != -1:
+        why = " -- " + " ".join(text[exc:exc + 220].split())
+    return "the game loaded 0 mods, so the API will never open%s" % why
 
 
 def newest_log():
@@ -228,6 +259,11 @@ def main() -> int:
             % (args.stop_at, deadline.strftime("%H:%M")))
     say("starting from %d recorded runs; next break at %d" % (count, boundary))
 
+    dead_mod = mod_load_failure()
+    if dead_mod:
+        say("REFUSING TO START: %s" % dead_mod)
+        return 1
+
     restarts = 0
     api_down = 0
     last_count = count
@@ -285,6 +321,15 @@ def main() -> int:
         if size > last_size:
             last_size, last_growth = size, time.time()
         static_for = (time.time() - last_growth) / 60.0
+
+        # A dead mod cannot be restarted into life, so say so and stop rather
+        # than spending MAX_RESTARTS discovering it the slow way.
+        if not api:
+            dead_mod = mod_load_failure()
+            if dead_mod:
+                say("MOD NOT LOADED: %s" % dead_mod)
+                shut_down("MOD NOT LOADED -- rebuild it against this game version")
+                return 1
 
         trouble = None
         if not alive:
