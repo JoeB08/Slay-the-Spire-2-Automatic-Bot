@@ -102,3 +102,32 @@ def test_game_over_reads_nested_options_not_top_level():
     action, fields = menu.decide_game_over(gs)
     assert action == "menu_select"
     assert fields == {"option": "main_menu"}
+
+
+def test_a_menu_of_only_skippable_options_polls_instead_of_clicking_one():
+    """The locked main menu of 2026-11-19, which cost most of a night.
+
+    The game disabled every button except Settings and Quit, pending an unlock
+    reveal that STS2MCP will not perform from automation. The old last resort
+    clicked the first option it had -- Settings -- and the settings screen
+    reports no options and has no action handler, so there is no way back out
+    through the API. Relaunching returned to the same locked menu, and it
+    clicked Settings again.
+    """
+    gs = GameState({"state_type": "menu", "menu_screen": "main",
+                    "options": ["settings", "quit"]})
+    assert menu.decide_menu(gs) == ("state", {})
+
+
+def test_quit_is_never_clicked_as_a_last_resort():
+    """The worst case the old fallback allowed: closing the game outright."""
+    gs = GameState({"state_type": "menu", "menu_screen": "main",
+                    "options": ["quit"]})
+    assert menu.decide_menu(gs) == ("state", {})
+
+
+def test_a_real_option_beside_skippable_ones_is_still_taken():
+    """The fallback still has a job: unmodelled screens with a way forward."""
+    gs = GameState({"state_type": "menu", "menu_screen": "something_new",
+                    "options": ["settings", "proceed_onwards", "quit"]})
+    assert menu.decide_menu(gs) == ("menu_select", {"option": "proceed_onwards"})

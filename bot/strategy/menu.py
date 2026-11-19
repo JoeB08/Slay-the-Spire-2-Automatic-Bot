@@ -100,11 +100,29 @@ def decide_menu(gs: GameState, prefer_abandon: bool = False) -> tuple[str, dict[
     for name in names:
         if name and name.lower() not in SKIP_OPTION_NAMES:
             return "menu_select", {"option": name}
-    if names:
-        return "menu_select", {"option": names[0]}
-    # No actionable option (usually a transitional screen mid-animation).
-    # Poll rather than firing `proceed`, which isn't valid on menu screens and
-    # just produced a burst of errors in a live run.
+    # Nothing left but skippable options, so there is nothing worth clicking.
+    #
+    # There used to be a last resort here that clicked `names[0]` anyway, on
+    # the reasoning that moving is better than stalling. It is not. On
+    # 2026-11-19 the game disabled every main-menu button except Settings and
+    # Quit -- an unlock earned by the previous run needed a manual Timeline
+    # reveal, which STS2MCP will not perform from automation. This rule clicked
+    # Settings, and the settings screen reports no options and has no action
+    # handler at all, so there is no way back out through the API. The freeze
+    # detector relaunched the game, the menu came back just as locked, and it
+    # clicked Settings again.
+    #
+    # Every option this could ever reach is in SKIP_OPTION_NAMES: `quit` closes
+    # the game, `settings` is a one-way door, and `multiplayer`/`daily`/`custom`
+    # are not the mode being measured. So poll instead. A menu with no way
+    # forward is a state a person has to clear, and the supervisor names it
+    # (scripts/run_set.py, `menu_dead_end`). Waiting is harmless; guessing is
+    # how one locked menu became a whole night of relaunches.
+    #
+    # This also covers what it always covered: a transitional screen
+    # mid-animation with no actionable option. Poll rather than firing
+    # `proceed`, which isn't valid on menu screens and just produced a burst of
+    # errors in a live run.
     return "state", {}
 
 
