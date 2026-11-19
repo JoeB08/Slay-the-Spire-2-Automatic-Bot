@@ -344,6 +344,17 @@ def main() -> int:
         say("REFUSING TO START: %s" % dead_mod)
         return 1
 
+    # Same question at the door as in the loop below. The loop would catch it
+    # in two minutes, which is fine; catching it in one second is better, and
+    # it is the difference between a set that never began and a set whose log
+    # has to be read to find out why it has no runs in it.
+    blocked = menu_dead_end()
+    if blocked:
+        say("REFUSING TO START: %s" % blocked)
+        say("open Timeline in the game, reveal the pending unlock, back out, "
+            "then start again")
+        return 1
+
     restarts = 0
     api_down = 0
     dead_end = 0

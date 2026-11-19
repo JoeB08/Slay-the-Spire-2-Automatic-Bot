@@ -211,3 +211,46 @@ def test_it_takes_two_polls_to_act():
     """One poll is a glimpse; the supervisor shuts the night down over this."""
     module = _load()
     assert module.DEAD_END_POLLS >= 2
+
+
+def test_the_startup_check_refuses_a_dead_end_menu(monkeypatch, capsys):
+    """It must not begin a set that cannot produce a single run.
+
+    The loop would catch this two minutes in, which is survivable. Catching it
+    at the door means the refusal is the first line of the log rather than
+    something to be reconstructed from an empty one.
+    """
+    module = _load()
+    _serve(module, BLOCKED)
+    monkeypatch.setattr(module, "runs_recorded", lambda: 0)
+    monkeypatch.setattr(module, "mod_load_failure", lambda: None)
+    monkeypatch.setattr(module.sys, "argv", ["run_set.py", "--until", "23:59"])
+    monkeypatch.setattr(module, "WATCH_LOG", Path("nul"))
+    assert module.main() == 1
+    out = capsys.readouterr().out
+    assert "REFUSING TO START" in out
+    assert "CUSTOM_AND_SEEDS_EPOCH" in out
+
+
+def test_the_startup_check_lets_a_healthy_game_through(monkeypatch):
+    """And must not block a set when the menu is fine -- it would ground every
+    night. Proven by reaching the poll loop, which is where time.sleep is."""
+    module = _load()
+    _serve(module, {"state_type": "combat", "floor": 3})
+    monkeypatch.setattr(module, "runs_recorded", lambda: 0)
+    monkeypatch.setattr(module, "mod_load_failure", lambda: None)
+    monkeypatch.setattr(module.sys, "argv", ["run_set.py", "--until", "23:59"])
+    monkeypatch.setattr(module, "WATCH_LOG", Path("nul"))
+
+    reached = []
+
+    def stop_here(_seconds):
+        reached.append(True)
+        raise KeyboardInterrupt
+
+    monkeypatch.setattr(module.time, "sleep", stop_here)
+    try:
+        module.main()
+    except KeyboardInterrupt:
+        pass
+    assert reached, "startup refused a healthy game"
