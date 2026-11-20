@@ -3,6 +3,37 @@
 A rules-based bot that autonomously plays Slay the Spire 2 as the Silent, via the
 [STS2MCP](https://github.com/Gennadiyev/STS2MCP) mod's local HTTP API.
 
+## It won once, and the recorder wrote it down as a death
+
+On 2026-11-19 the bot cleared all three acts and finished the act-3 boss with
+**2 HP of 68 left** — floor 48, 18:28. The first win in 281 recorded runs, and
+the game's own save has it as the fastest victory on the profile
+(`fastest_win_time: 1108`, which is 18:28).
+
+It was recorded as a loss. `run_recorder.finish()` decided every run's outcome
+with
+
+```python
+hp = gs.hp
+outcome = "death" if hp <= 0 else "ended"
+```
+
+reading `hp` from the `game_over` state — which the mod fills with a fixed
+`"Run ended."` and an hp of 0 whether the run was won or lost. That branch could
+never return anything but `"death"`, and hadn't, across all 281 runs. The win was
+filed as `"killed_by": Aeonglass`. No test caught it, because every test asserted
+the value the code already produced.
+
+The lesson isn't "check the hp field". It's that an outcome column reading the
+same value 281 times running is evidence about the instrument rather than about
+the world, and nothing in the analysis scripts was asking that question of any
+column. The repaired version reads the profile's `total_wins` and is forbidden
+from inferring a win from the screens at all — clearing the final boss is not the
+end of a run, The Architect follows and can kill you, and a death there is
+indistinguishable from the victory. That fix is **written and verified against a
+live profile but deliberately not merged here**: changes wait for a measurement
+set, which is the same rule that produced the 281 runs in the first place.
+
 No machine learning: the per-turn decision is a pipeline of named rules, and nearly
 every rule exists because one play in a real run looked wrong and turned out to be a
 defect. Changes are measured over sets of 15-20 runs with 95% confidence intervals,
