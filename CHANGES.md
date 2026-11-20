@@ -543,3 +543,17 @@ Full write-ups are in the Done sections above and in git history.
     sides**, and the winning run sat at 45% — dead median. Deck size and
     starter fraction at floor 17 predict nothing. Same circularity as the
     deck-size ↔ depth note above.
+- **Refinement of the note above (n=27, not 19):** the floor-17 cluster is not
+  about Lagavulin Matriarch. The 11 deaths there span six bosses (Matriarch 4,
+  Kin Priest 3, Soul Fysh 2, Kin Follower, Waterfall Giant, Vantom), and the
+  kill rate is flat across *all* act bosses — 44% at floor 17, 57% at 33, 50%
+  at 48 — so floor 17 only leads on volume. Act bosses are **62% of all
+  deaths**. What is consistent is the shortfall: the bot removes 50% of the
+  boss at floor 17, 62% at 33, 82% at 48 before dying. It is about one boss
+  fight short on damage, everywhere. Lead is deck quality per act.
+- `MILESTONE_FLOORS = (17, 33, 50)` can never fire its third entry: the final
+  boss is on floor **48** and no run has passed 48. Across 27 runs the only
+  deck snapshots are `a1f17` and `a2f33`, so the deck that fights the final
+  boss — including on the winning run — is never recorded. Same family as the
+  `hp <= 0` win bug: not a wrong value, but a field that cannot be populated.
+  Check a milestone is reachable before trusting its absence.
