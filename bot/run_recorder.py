@@ -185,12 +185,24 @@ class RunRecorder:
             self.finish(gs)
 
     def _wins(self) -> Optional[int]:
-        """Total runs won across the profile, or None if it cannot be read.
+        """Runs won by this character per the game, or None if unreadable.
 
-        Summed over every `times_won` anywhere in the payload rather than
-        reached by a fixed path: only one run is ever in flight, so any
-        increase is this run's, and a nesting change upstream cannot silently
-        turn every win into a loss.
+        Verified against a live /api/v1/profile on 2026-11-20. The field is
+        `total_wins`, on each entry of `characters` and again at the top level:
+
+            {"total_wins": 3, "total_losses": 383, "number_of_runs": 386,
+             "characters": [{"id": "SILENT", "total_wins": 3, ...}, ...],
+             "card_stats": [{"id": "BASH", "times_won": 30, ...}, ...]}
+
+        `times_won` is a DIFFERENT field that lives on `card_stats`, counting
+        runs won with that card in the deck -- it moves by about thirty per
+        victory. An earlier version of this method summed every `times_won` in
+        the payload and would have been reading card statistics.
+
+        The character's own row is preferred over the top-level total so that a
+        win with another character cannot be credited here. The counter also
+        includes runs the user played by hand, so only the delta across a
+        single run means anything -- see finish().
         """
         if self.profile_reader is None:
             return None
@@ -198,25 +210,21 @@ class RunRecorder:
             payload = self.profile_reader()
         except Exception:
             return None
+        if not isinstance(payload, dict):
+            return None
 
-        total = 0
-        found = False
+        def as_count(value):
+            return value if isinstance(value, int) and not isinstance(value, bool) else None
 
-        def walk(node):
-            nonlocal total, found
-            if isinstance(node, dict):
-                for key, value in node.items():
-                    if key == "times_won" and isinstance(value, bool) is False                             and isinstance(value, int):
-                        total += value
-                        found = True
-                    else:
-                        walk(value)
-            elif isinstance(node, list):
-                for item in node:
-                    walk(item)
+        # "The Silent" in game state, "SILENT" in the profile.
+        want = (self.character or "").replace("The ", "").strip().upper()
+        for entry in payload.get("characters") or []:
+            if isinstance(entry, dict) and str(entry.get("id", "")).upper() == want:
+                count = as_count(entry.get("total_wins"))
+                if count is not None:
+                    return count
 
-        walk(payload)
-        return total if found else None
+        return as_count(payload.get("total_wins"))
 
     def note_event(self, event: str) -> None:
         if event in ("stuck_detected", "cycle_detected", "stale_action_detected"):

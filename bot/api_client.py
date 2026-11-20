@@ -53,7 +53,8 @@ class ApiClient:
 
         The `game_over` state cannot tell a win from a death -- the mod fills
         it with a fixed "Run ended." and nothing else -- so this is the only
-        authoritative verdict available. See RunRecorder.finish().
+        authoritative verdict available. The field to read is `total_wins`,
+        not the `times_won` that sits on card_stats. See RunRecorder._wins().
         """
         resp = self.session.get(f"{self.base_url}/profile", timeout=self.timeout)
         resp.raise_for_status()

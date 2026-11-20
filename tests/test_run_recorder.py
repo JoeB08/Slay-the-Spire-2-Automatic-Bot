@@ -167,14 +167,28 @@ def _record(tmp_path):
     return json.loads((tmp_path / "runs.jsonl").read_text(encoding="utf-8").strip())
 
 
-def _profile(*win_counts):
-    """A profile reader returning each count in turn: run start, then finish."""
+def _profile(*win_counts, card_wins=0):
+    """A profile reader returning each count in turn: run start, then finish.
+
+    Shaped like the real /api/v1/profile read on 2026-11-20, card_stats block
+    included -- its per-card `times_won` is a different number from a run count
+    and must not be mistaken for one.
+    """
     counts = list(win_counts)
 
     def read():
-        return {"profile_id": 1,
-                "characters": [{"id": "silent", "times_won": counts.pop(0)},
-                               {"id": "ironclad", "times_won": 0}]}
+        wins = counts.pop(0)
+        return {
+            "total_wins": wins,
+            "total_losses": 381,
+            "number_of_runs": 384,
+            "characters": [
+                {"id": "IRONCLAD", "total_wins": 0, "total_losses": 1},
+                {"id": "SILENT", "total_wins": wins, "total_losses": 381},
+            ],
+            "card_stats": [{"id": "BASH", "times_picked": 1,
+                            "times_won": card_wins, "times_lost": 1}],
+        }
 
     return read
 
@@ -277,3 +291,46 @@ def test_clearing_an_earlier_boss_is_not_clearing_the_final_one(tmp_path):
     record = _record(tmp_path)
     assert record["outcome"] == "death"
     assert record["cleared_final_boss"] is False
+
+
+def test_card_stats_are_not_run_wins(tmp_path):
+    """The bug found when this was first verified against a live profile.
+
+    `times_won` exists on card_stats, counting runs won with that card in the
+    deck -- about thirty of them move per victory. An earlier version summed
+    every `times_won` in the payload, so it was reading card statistics and
+    not run outcomes at all. A profile whose card numbers move while
+    total_wins does not is not a victory.
+    """
+    rec = RunRecorder(tmp_path, "run_test.jsonl",
+                      profile_reader=_profile(3, 3, card_wins=30))
+    _win_trace(rec)
+    assert _record(tmp_path)["outcome"] != "victory"
+
+
+def test_a_win_by_another_character_is_not_ours(tmp_path):
+    """total_wins at the top level counts every character.
+
+    The profile also counts runs played by hand outside the bot, so crediting
+    a top-level increase would hand the bot someone else's victory.
+    """
+    counts = [3, 4]
+
+    def read():
+        top = counts.pop(0)
+        return {"total_wins": top,
+                "characters": [{"id": "IRONCLAD", "total_wins": top - 3},
+                               {"id": "SILENT", "total_wins": 3}]}
+
+    rec = RunRecorder(tmp_path, "run_test.jsonl", profile_reader=read)
+    _win_trace(rec)
+    assert _record(tmp_path)["outcome"] != "victory"
+
+
+def test_the_real_silent_row_is_read(tmp_path):
+    """Game state says "The Silent"; the profile says "SILENT"."""
+    rec = RunRecorder(tmp_path, "run_test.jsonl", profile_reader=_profile(3, 4))
+    _win_trace(rec)
+    record = _record(tmp_path)
+    assert record["outcome"] == "victory"
+    assert record["outcome_source"] == "profile"
