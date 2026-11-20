@@ -450,6 +450,20 @@ Full write-ups are in the Done sections above and in git history.
   same build**, never one set against one set, and treat any single set's
   headline figure as a draw from a wide distribution. Set 5 was the warning
   (24.1 with none of the change) and was nearly explained away at the time.
+* **A field whose value never varies is a broken field, not a finding.**
+  `run_recorder.finish()` decided every run's outcome with
+  `outcome = "death" if gs.hp <= 0 else "ended"`, reading hp from the
+  `game_over` state -- which the mod fills with a fixed `"Run ended."` and an hp
+  of 0 whether the run was won or lost. The ternary could never return anything
+  but "death", and did not, across **281 consecutive runs**. The bot won on
+  2026-11-19 and the win was filed as `killed_by: Aeonglass`. No test caught it,
+  because every test asserted the value the code already produced. The lesson is
+  not "check the hp field" -- it is that an outcome column reading the same value
+  281 times running is evidence about the instrument, not about the world, and
+  nothing in the analysis scripts was asking that question of any column. Outcome
+  now comes from the game's own `times_won` counter; inference is forbidden from
+  claiming a win at all, because clearing the final boss is not the end of a run
+  -- The Architect follows and can kill you, and a death there looks identical.
 * **A growing log is not a working bot, and a watchdog must print what it
   measured.** The supervisor's stall guard required the API to be unreachable
   *and* the decision log to have stopped growing. When the game wedges the bot
