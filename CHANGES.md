@@ -526,3 +526,20 @@ Full write-ups are in the Done sections above and in git history.
 - Is the deck-size ↔ depth correlation (+0.77 real cards vs floor) causal, or
   just that deeper runs collect more cards? Partly circular; do not cite as
   causal.
+- The act 1 boss on floor 17 kills 41% of the runs that reach it (7 of 17,
+  both sets pooled) — far and away the biggest single gate; the act 2 boss is
+  next at 3. Lagavulin Matriarch is 3 of the 7, and the bot leaves it at 46,
+  112 and 119 HP of 222. The handling is not missing: `boss_intel.py` carries
+  the Matriarch and `combat.py` knows its sleep opening and its 12-block-a-turn
+  re-block. It is a damage-throughput shortfall, so the lead points at **act 1
+  card selection**, not combat tactics.
+- Two explanations for that cluster were tested and are **wrong** — do not
+  re-propose them:
+  - *"It reaches the boss with no potions."* It holds 0 in all 7 deaths, but
+    `counts` shows 3–5 `use_potion` in the same runs. It spent them, which is
+    what `potions.py` is told to do at a boss.
+  - *"Its deck is starter-bloated."* 40–53% Strike/Defend at floor 17 looks
+    damning, but splitting the runs on it gives **mean floor 25.2 on both
+    sides**, and the winning run sat at 45% — dead median. Deck size and
+    starter fraction at floor 17 predict nothing. Same circularity as the
+    deck-size ↔ depth note above.
