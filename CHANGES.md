@@ -549,11 +549,24 @@ Full write-ups are in the Done sections above and in git history.
   kill rate is flat across *all* act bosses — 44% at floor 17, 57% at 33, 50%
   at 48 — so floor 17 only leads on volume. Act bosses are **62% of all
   deaths**. What is consistent is the shortfall: the bot removes 50% of the
-  boss at floor 17, 62% at 33, 82% at 48 before dying. It is about one boss
-  fight short on damage, everywhere. Lead is deck quality per act.
+  boss at floor 17, 62% at 33, 82% at 48 before dying. Lead is deck quality
+  per act. **Superseded at n=36 — see the next entry; that 50% was wrong.**
 - `MILESTONE_FLOORS = (17, 33, 50)` can never fire its third entry: the final
   boss is on floor **48** and no run has passed 48. Across 27 runs the only
   deck snapshots are `a1f17` and `a2f33`, so the deck that fights the final
   boss — including on the winning run — is never recorded. Same family as the
   `hp <= 0` win bug: not a wrong value, but a field that cannot be populated.
   Check a milestone is reachable before trusting its absence.
+- **Corrected at n=36.** The "50% of the boss at floor 17" above mixed two
+  different failures together. Separating them: in *contested* fights the bot
+  removes **65%** of the act 1 boss (n=10) and **55%** of the act 2 boss
+  (n=5) — it loses by about a third of a health bar, not half. Run 27 left
+  the final boss on 90 HP of 512, 18% short.
+- The other failure is only three deaths but it is **not a damage problem**:
+  runs 23, 26 and 31 died swinging at enemies still on 97–100% HP (run 31 to
+  a Tracker Raider on a full 22/22), having arrived with `hp_low_water` of
+  4, 4 and 6. That is routing and when-to-rest. Keep it separate from the
+  boss shortfall so damage does not get tuned to fix it.
+- Act bosses are **54% of all deaths** (19 of 35) and kill ~half of what
+  reaches them: 42% at floor 17, 50% at floor 33. The 13 floor-17 deaths
+  span six bosses, so no boss-specific mechanic explains it.
